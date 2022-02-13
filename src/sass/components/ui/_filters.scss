@@ -1,0 +1,49 @@
+.filters {
+    &__container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        // background-color: #ff0000;
+        align-items: center;
+
+        p {
+            display: flex;
+            width: 20%;
+            justify-content: flex-end;
+        }
+        &__dates {
+            display: flex;
+            width: 80%;
+            justify-content: space-between;
+            .day {
+                width: 22.5%;
+            }
+            .month {
+                width: 45%;
+            }
+            .year {
+                width: 32.5%;
+            }
+            select {
+                box-shadow: 0px 1px 8px #00000021;
+                border: 1px solid #fefefe;
+                width: 70%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 8px;
+                border-radius: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+//
+// &__filters {
+//     display: flex;
+//     justify-content: flex-end;
+//     align-items: center;
+//     width: 30%;
+// }

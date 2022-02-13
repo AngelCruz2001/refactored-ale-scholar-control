@@ -1,0 +1,49 @@
+.navbar {
+    width: calc(100vw - 2rem);
+    margin: 0rem 1rem;
+    height: calc(150px);
+    display: flex;
+    // position: sticky;
+    &__logo {
+        display: flex;
+        width: 35%;
+        height: 100%;
+        img {
+            height: 100%;
+        }
+        &__text {
+            content: "";
+            color: $color-black;
+            text-align: center;
+            align-self: center;
+            font-size: calc(1rem + .3vw);
+            letter-spacing: 0.8px;
+        }
+    }
+
+    &__text {
+        height: 100%;
+        color: $blue-heroLogin;
+        display: flex;
+        justify-content: center;
+        width: 33.33%;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-transform: uppercase;
+        font-size: calc(.8rem + .25vw);
+    }
+
+    &__logout {
+        width: 33.33%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        i {
+            margin-right: 3rem;
+            font-size: calc(2.5rem + .25vw);
+            color: $blue-heroLogin;
+        }
+    }
+}

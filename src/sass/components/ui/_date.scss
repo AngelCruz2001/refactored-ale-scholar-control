@@ -1,0 +1,48 @@
+.date__content {
+    display: flex;
+    flex-direction: column;
+
+    .date__selects {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        &-day {
+            width: 27%;
+        }
+        &-month {
+            width: 35%;
+        }
+        &-year {
+            width: 27%;
+        }
+    }
+}
+select {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    color: $gray-inputsText;
+}
+
+.date__container {
+    display: flex;
+    font-size: calc(8px + 0.5vw);
+    justify-content: flex-start;
+    width: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    height: 35px;
+    align-items: center;
+}
+
+.date__textTitle {
+    padding: 6px;
+    font-weight: 600;
+}
+.date__data {
+    background-color: $blue-sky3;
+    border-radius: 7px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+}

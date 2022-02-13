@@ -1,0 +1,175 @@
+{
+    "alumnos": {
+        "nameSection": "alumnos",
+        "dataEndpointName": "students",
+        "endpoint": "students",
+        "placeholder": "Buscar por nombre o matricula del alumno",
+        "sizesColumn": [
+            30,
+            15,
+            15,
+            30,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del alumno",
+                "textAlign": "left"
+            },
+            {
+                "title": "Matricula",
+                "textAlign": "center"
+            },
+            {
+                "title": "Grupo",
+                "textAlign": "center"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "student_name",
+            "matricula",
+            "group_name",
+            "career_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ]
+    },
+    "grupos": {
+        "nameSection": "grupos",
+        "dataEndpointName": "groups",
+        "endpoint": "groups",
+        "placeholder": "Buscar por nombre o carrera",
+        "sizesColumn": [
+            17,
+            30,
+            35,
+            8,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del grupo",
+                "textAlign": "left"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "Campus",
+                "textAlign": "left"
+            },
+            {
+                "title": "Ver",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "group_name",
+            "major_name",
+            "campus_name",
+            "",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "buttonSee",
+            "button"
+        ]
+    },
+    "materias": {
+        "nameSection": "materias",
+        "dataEndpointName": "courses",
+        "endpoint": "courses",
+        "placeholder": "Buscar por nombre o clave de la materia",
+        "sizesColumn": [
+            30,
+            15,
+            45,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre de la materia",
+                "textAlign": "left"
+            },
+            {
+                "title": "Clave",
+                "textAlign": "center"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "course_name",
+            "clave",
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "button"
+        ]
+    },
+    "carreras": {
+        "nameSection": "carreras",
+        "dataEndpointName": "majors",
+        "endpoint": "majors",
+        "placeholder": "Buscar por nombre o clave de la carrera",
+        "sizesColumn": [
+            35,
+            15,
+            40,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre de la carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "major_name"
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ]
+    }
+}

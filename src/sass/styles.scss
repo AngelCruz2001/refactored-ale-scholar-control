@@ -1,0 +1,41 @@
+@import "./abstracts/mixins";
+@import "./base";
+@import "./abstracts/variables";
+
+
+
+// Components ---------------------------------------------------------------
+@import "./components/general/main";
+@import "./components/general/texture";
+@import "./components/general/navbar";
+@import "./components/general/sidebar";
+@import "./components/general/overtexture";
+
+@import "./components/sections/documents";
+@import "./components/sections/expenseRecords";
+@import "./components/sections/feed";
+@import "./components/sections/requestDocument";
+@import "./components/sections/requestGrades";
+
+
+// Ui -----------------------------------------------------------------------
+@import "./components/ui/matricula";
+@import "./components/ui/date";
+@import "./components/ui/disabled";
+
+@import "./components/ui/animations";
+
+@import "./components/ui/buttons";
+
+@import "./components/ui/table";
+
+@import "./components/ui/search";
+
+@import "./components/ui/radioButtonList";
+
+@import "./components/ui/studentInformation";
+
+@import "./components/ui/quantity";
+
+@import "./components/ui/select";
+@import "./components/ui/filters";
