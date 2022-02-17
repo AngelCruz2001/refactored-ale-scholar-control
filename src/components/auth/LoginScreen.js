@@ -16,8 +16,8 @@ export const LoginScreen = () => {
             username: 'admin',
             password: 'jopi',
         },
+        
         onSubmit: (values) => {
-           
             dispatch(authStartLogin(values.username, values.password))
             resetForm()
         },

@@ -8,22 +8,27 @@ import { Searchbar } from '../ui/Searchbar'
 import { StudentInformation } from '../ui/StudentInformation'
 import { Table } from '../ui/Table'
 
-const headers = [{
-    title: "Materia",
-    textAlign: 'left'
-},
-{
-    title: "Profesor",
-    textAlign: 'left'
-},
-{
-    title: "Fecha de impartición",
-    textAlign: 'center'
-},
-{
-    title: "Calificación",
-    textAlign: 'center'
-}];
+const headers = [
+    {
+        title: "Materia",
+        textAlign: 'left'
+    },
+    {
+        title: "Profesor",
+        textAlign: 'left'
+    },
+    {
+        title: "Fecha de impartición",
+        textAlign: 'center'
+    },
+    {
+        title: "Calificación",
+        textAlign: 'center'
+    },
+    {
+        title: "",
+        textAlign: 'center'
+    }];
 export const GradesDetails = ({ dataStudent, setIsAStudentActive }) => {
     const dispatch = useDispatch();
     const { grades, ui } = useSelector(state => state)
@@ -70,6 +75,8 @@ export const GradesDetails = ({ dataStudent, setIsAStudentActive }) => {
         if (activeStudentGrade.length !== 0) generateData();
     }, [loading, valueSearchFilter])
 
+
+        console.log(headers)
 
     return (
         <>

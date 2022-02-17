@@ -76,7 +76,7 @@ export const RequestGrades = () => {
                     :
                     < div className="gra__container" >
                         <Searchbar placeholder="Buscar por nombre, matrícula o grupo del estudiante" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
-                        <h4>Todos los alumnos</h4>
+                        <h4 className="general__title-h4">Todos los alumnos</h4>
                         <Table
                             headers={headers}
                             data={dataShow}

@@ -1,0 +1,31 @@
+.change-router-pay {
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+
+    &__link {
+        
+        color: $gray-changePage;
+        margin: 0 1.3rem;
+        padding: 0.4rem 0;
+        transition: 0.3s all ease-in-out;
+        
+        &:hover {
+            color: $dark-grey;
+            border-color: $dark-grey;
+        }
+        
+        &.selected {
+            border-bottom: 2.5px solid $gray-changePage;
+            border-color: $color-black;
+            color: $color-black;
+            transition: 0.3s all ease-in-out;
+        }
+    }
+
+    
+}

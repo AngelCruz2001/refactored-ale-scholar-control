@@ -21,7 +21,7 @@ export const RequestsDocuments = () => {
     return (
         <>
             <div className="gen__body__request__title requests">
-                <p>Nuevas solicitudes</p>
+                <h4 className='general__title-h4'>Nuevas solicitudes</h4>
             </div>
             <div className="gen__body__request__content">
                 <Table

@@ -9,13 +9,24 @@ export const Documents = () => {
             <div className='gen'>
                 <div className="gen__header">
                     <div className='gen__header__checkHistory'>
-                        <button className="btn  req__footer__checkHistory" onClick={() => console.log(true)}><i className="fas fa-history"></i><span>Ver Historial</span></button>
+                        <button className="btn  req__footer__checkHistory" onClick={() => console.log(true)}>
+                            <i className="fas fa-history"></i>
+                            <span>Ver Historial</span>
+                        </button>
                     </div>
                     <div className='gen__header__nav'>
-                        <NavLink className="gen__header__nav__item" activeClassName="gen__header__nav__item__active" to="/generar_documento/solicitudes" >
+                        <NavLink
+                            className="gen__header__nav__item"
+                            activeClassName="gen__header__nav__item__active"
+                            to="/generar_documento/solicitudes"
+                        >
                             <p>Solicitudes</p>
                         </NavLink>
-                        <NavLink className="gen__header__nav__item" activeClassName="gen__header__nav__item__active" to="/generar_documento/generar" >
+                        <NavLink
+                            className="gen__header__nav__item"
+                            activeClassName="gen__header__nav__item__active"
+                            to="/generar_documento/generar"
+                        >
                             <p>Generar documento</p>
                         </NavLink>
                     </div>
@@ -23,9 +34,17 @@ export const Documents = () => {
 
                 <div className="gen__body">
                     <Switch>
-                        <Route path="/generar_documento/solicitudes" component={RequestsDocuments} />
-                        <Route path="/generar_documento/generar" component={GenerateDocument} />
-                        <Redirect to="/generar_documento/solicitudes" />
+                        <Route
+                            path="/generar_documento/solicitudes"
+                            component={RequestsDocuments}
+                        />
+                        <Route
+                            path="/generar_documento/generar"
+                            component={GenerateDocument}
+                        />
+                        <Redirect
+                            to="/generar_documento/solicitudes"
+                        />
                     </Switch>
                 </div>
             </div>

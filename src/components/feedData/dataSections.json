@@ -4,12 +4,13 @@
         "dataEndpointName": "students",
         "endpoint": "students",
         "placeholder": "Buscar por nombre o matricula del alumno",
+        "classNameIconAdd": "fa-solid fa-user-plus",
         "sizesColumn": [
             30,
             15,
             15,
-            30,
-            10
+            32,
+            8
         ],
         "headers": [
             {
@@ -37,7 +38,7 @@
             "student_name",
             "matricula",
             "group_name",
-            "career_name",
+            "major_name",
             ""
         ],
         "orderTable": [
@@ -46,13 +47,182 @@
             "text",
             "text",
             "button"
-        ]
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "name",
+                        "label": "Nombre(s)",
+                        "type": "text",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        }
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "text",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        }
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "text",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "name": "birthdate",
+                        "label": "Fecha de nacimiento",
+                        "type": "date",
+                        "placeholder": "Fecha de nacimiento",
+                        "styles": {
+                            "width": "28%"
+                        }
+                    },
+                    {
+                        "name": "age",
+                        "label": "Edad",
+                        "type": "number",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "10%"
+                        }
+                    },
+                    {
+                        "name": "curp",
+                        "label": "Curp",
+                        "type": "text",
+                        "placeholder": "Curp",
+                        "styles": {
+                            "width": "25%"
+                        }
+                    },
+                    {
+                        "name": "sex",
+                        "label": "Sexo",
+                        "type": "sex",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "22%"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "name": "street",
+                        "label": "Dirección",
+                        "type": "text",
+                        "placeholder": "Calle y numero",
+                        "styles": {
+                            "width": "28%"
+                        }
+                    },
+                    {
+                        "name": "colony",
+                        "label": "",
+                        "type": "text",
+                        "placeholder": "Colonia",
+                        "styles": {
+                            "width": "34%"
+                        }
+                    },
+                    {
+                        "name": "zip",
+                        "label": "",
+                        "type": "text",
+                        "placeholder": "Codigo postal",
+                        "styles": {
+                            "width": "28%"
+                        }, 
+                        "validation": {
+                            "pattern": "^[0-9]{5}$"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "name": "matricula",
+                        "label": "Matrícula",
+                        "type": "text",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "30%"
+                        }
+                    },
+                    {
+                        "name": "birthplace",
+                        "label": "Lugar de nacimiento",
+                        "type": "text",
+                        "placeholder": "País - Ciudad - Municipio",
+                        "styles": {
+                            "width": "65%"
+                        }
+                    }
+                ],
+                [
+                    {
+                        "name": "email",
+                        "label": "Correo electrónico",
+                        "type": "text",
+                        "placeholder": "ejemplo@ejemplo.com",
+                        "styles": {
+                            "width": "40%"
+                        }
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Número",
+                        "type": "text",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        }
+                    },
+                    {
+                        "name": "mobile_back_number",
+                        "label": "Número de teléfono (Opcional)",
+                        "type": "text",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        }
+                    }
+                ]
+            ],
+            "Datos escolares": [
+                [
+                    {
+                        "name": "school",
+                        "label": "Escuela",
+                        "type": "text",
+                        "placeholder": "Nombre"
+                    },
+                    {
+                        "name": "grade",
+                        "label": "Grado",
+                        "type": "text",
+                        "placeholder": "Nombre"
+                    }
+                ]
+            ]
+        }
     },
     "grupos": {
         "nameSection": "grupos",
         "dataEndpointName": "groups",
         "endpoint": "groups",
         "placeholder": "Buscar por nombre o carrera",
+        "classNameIconAdd": "fa-plus-circle",
         "sizesColumn": [
             17,
             30,
@@ -103,6 +273,7 @@
         "dataEndpointName": "courses",
         "endpoint": "courses",
         "placeholder": "Buscar por nombre o clave de la materia",
+        "classNameIconAdd": "fa-plus-circle",
         "sizesColumn": [
             30,
             15,
@@ -145,6 +316,7 @@
         "dataEndpointName": "majors",
         "endpoint": "majors",
         "placeholder": "Buscar por nombre o clave de la carrera",
+        "classNameIconAdd": "fa-plus-circle",
         "sizesColumn": [
             35,
             15,

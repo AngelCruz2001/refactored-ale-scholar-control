@@ -5,6 +5,7 @@
     align-items: center;
     height: 15rem;
     font-family: "Philosopher", sans-serif;
+    // text-align: right;
     position: relative;
     color: $blue-heroLogin;
 
@@ -22,7 +23,7 @@
             color: $color-black;
             font-size: 2.7rem;
             margin-left: 1rem;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
         }
     }
 

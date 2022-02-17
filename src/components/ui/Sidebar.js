@@ -1,26 +1,25 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { NavLink, Route, Switch } from 'react-router-dom'
 export const Sidebar = ({ componentsAccess }) => {
   return (
     <div className="sidebar">
-      {componentsAccess.map(componentsData => (
-        <>
+      {componentsAccess.map((componentsData ,i) => (
+        <Fragment key={componentsData.path + 'asdfasdfasdf'} >
           <NavLink
-            key={componentsData.id}
+            key={i+1000000000000}
             to={componentsData.path}
             activeClassName="active"
             className="sidebar__link"
-            onClick={() => { console.log("first") }}
           >
             <i className={`${componentsData.icon} sidebar__link__icon`} />
             <span className="sidebar__link__text">{componentsData.text}</span>
           </NavLink>
 
-          <Route path={componentsData.path}>
+          <Route key={i+1000}path={componentsData.path}>
             <div className='sidebar__submenu'>
               {componentsData.subMenu.map(({ id, path, icon, text }) => (
                 <NavLink
-                  key={id}
+                  key={id + 'asdfasdfasdf'}
                   to={path}
                   activeClassName="active"
                   className="sidebar__submenu__link"
@@ -31,8 +30,7 @@ export const Sidebar = ({ componentsAccess }) => {
               ))}
             </div>
           </Route>
-
-        </>
+        </Fragment>
       ))
       }
 

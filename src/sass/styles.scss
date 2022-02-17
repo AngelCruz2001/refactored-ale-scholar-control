@@ -1,8 +1,6 @@
+@import "./abstracts/variables";
 @import "./abstracts/mixins";
 @import "./base";
-@import "./abstracts/variables";
-
-
 
 // Components ---------------------------------------------------------------
 @import "./components/general/main";
@@ -13,10 +11,12 @@
 
 @import "./components/sections/documents";
 @import "./components/sections/expenseRecords";
-@import "./components/sections/feed";
 @import "./components/sections/requestDocument";
 @import "./components/sections/requestGrades";
 
+// Feed ---------------------------------------------------------------
+@import "./components/sections/feed/feed";
+@import "./components/sections/feed/forms";
 
 // Ui -----------------------------------------------------------------------
 @import "./components/ui/matricula";
@@ -38,4 +38,13 @@
 @import "./components/ui/quantity";
 
 @import "./components/ui/select";
+
 @import "./components/ui/filters";
+
+@import "./components/ui/switch";
+
+/*Payments*/
+@import "./components/sections/payments/changeRouterPay";
+@import "./components/sections/payments/makePay";
+@import "./components/sections/payments/checkStatePay";
+@import "./components/sections/payments/fertilizerPay";

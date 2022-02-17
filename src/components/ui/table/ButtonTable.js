@@ -56,6 +56,13 @@ export const ButtonTable = ({
                         <button className='btn btnTable cancel' onClick={() => onClick(id)} > <i className="fas fa-times-circle"></i> </button>
                     </div>
                 )
+            case 7:
+                return (
+                    <div className='btnTable__container__editDelete'>
+                        <button className='btn btnTable edit btnBlue' onClick={() => onClick(id)} > <i className="fas fa-solid fa-pen"></i> </button>
+                        <button className='btn btnTable delete btnRed' onClick={() => onClick(id)} > <i className="fas fa-solid fa-trash"></i> </button>
+                    </div>
+                )
 
             default:
                 return (

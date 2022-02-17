@@ -31,7 +31,6 @@ export const GenerateDocument = () => {
                         <Matricula
                             activeClassName={activeDisabled(0, current)}
                         />
-
                     </div>
                     <StudentInformation
                         activeClassName={activeDisabled(1, current)}
@@ -47,7 +46,7 @@ export const GenerateDocument = () => {
                 />
 
             </div>
-            <div className="req__footer gen__footer">
+            <div className=" gen__footer">
                 <button className={"btn btn-primary ".concat(activeDisabled(3, current))} onClick={handleSubmitGenerateDocument}>Generar</button>
             </div>
         </>

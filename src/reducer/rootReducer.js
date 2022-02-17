@@ -4,6 +4,7 @@ import { documentReducer } from "./documentReducer"
 import { expensesReducer } from "./expensesReducer"
 import { feedReducer } from "./feedReducer"
 import { gradesReducer } from "./gradesReducer"
+import { groupsReducer } from "./groupsReducer"
 import { payReducer } from "./payReducer"
 import { requestsReducer } from "./requestsReducer"
 import { studentReducer } from "./studentReducer"
@@ -18,5 +19,6 @@ export const rootReducer = combineReducers({
     requests: requestsReducer,
     grades: gradesReducer,
     expenses: expensesReducer,
-    feed: feedReducer
+    feed: feedReducer, 
+    groups: groupsReducer,
 })

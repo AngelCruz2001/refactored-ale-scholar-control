@@ -10,11 +10,13 @@ export const StudentInformation = ({
 }) => {
     const dispatch = useDispatch()
     const { headers, data } = studentInformation;
+
     useEffect(() => {
         if (!loading && activeClassName === 'activeGuide') {
             dispatch(uiSetCurrent(2));
         }
     }, [loading, dispatch])
+
     return (
         <div className={`stuInfo son ${activeClassName}`}>
             {isStudentShowed && <p className="general__titleSection">Información del alumno</p>}
@@ -39,12 +41,8 @@ export const StudentInformation = ({
                             ))
                         }
                     </div>
-
                 }
-
             </div>
-
-
         </div>
     )
 }

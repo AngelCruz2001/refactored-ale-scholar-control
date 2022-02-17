@@ -1,11 +1,104 @@
 .overtexture {
     background-color: white;
-    width: 70%;
+    flex: 0 0 70%;
     height: 100%;
     box-shadow: 0px 3px 6px #00000017;
     border: 0.5px solid $gray-border;
     border-radius: 1rem;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
+    
+    padding: 3rem;
+    &__modalEdit {
+        width: 75%;
+        height: 90%;
+        z-index: 100;
+        background: #ffffff 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #6b8aa854;
+        border-radius: 10px;
+        display: flex;
+        position: absolute;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+        &__content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            z-index: 2;
+
+            &::before {
+                content: " ";
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                background-image: url("../../../helpers/resources/images/logoAleNoText.png");
+                background-size: 70%;
+                background-repeat: no-repeat;
+                background-position: 80%;
+                opacity: 0.2;
+            }
+
+            &__title {
+                width: 100%;
+                height: 5%;
+                display: flex;
+                justify-content: flex-end;
+                font-size: calc(0.6rem + 1vw);
+                font-weight: bold;
+                text-align: right;
+            }
+
+            &__body {
+                width: 95%;
+                height: 65%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 1rem;
+
+                .title {
+                    width: 40%;
+                    display: flex;
+                    font-size: calc(0.55rem + 1vw);
+                    font-weight: bold;
+                }
+
+                .noTitle {
+                    width: 60%;
+                    display: flex;
+                    font-size: calc(0.3rem + 1vw);
+                }
+            }
+            //Here is going to be the footer
+            &__footer {
+                width: 95%;
+                height: 10%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: flex-end;
+                button span {
+                    font-size: calc(0.25rem + 1vw) !important;
+                }
+                button i {
+                    font-size: calc(0.7rem + 1vw) !important;
+                }
+            }
+        }
+    }
+    &__titleSection {
+        font-size: calc(8.5px + 0.5vw);
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin-left: 1%;
+    }
 }

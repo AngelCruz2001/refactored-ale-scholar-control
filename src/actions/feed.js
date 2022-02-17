@@ -11,7 +11,7 @@ export const feedStartGetData = (endpoint, name) => {
             const res = await fetchConToken(endpoint)
             const body = await res.json()
             if (body.ok) {
-                console.log(body)
+                // console.log(body)
                 dispatch(feedSetData(body[name]))
             } else {
                 console.log(body)

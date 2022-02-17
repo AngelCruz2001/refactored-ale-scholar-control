@@ -1,40 +1,43 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { feedStartGetData } from '../../actions/feed';
-import { useBuildData } from '../../hooks/useBuildData';
+import { useSelector } from 'react-redux';
+import { buildData } from '../../helpers/buildData';
 import { Searchbar } from '../ui/Searchbar';
 import { Table } from '../ui/Table';
-import dataSections from './dataSections.json';
-export const FeedSection = () => {
+import { FormContainer } from './forms/FormContainer';
+export const FeedSection = ({ dataSection }) => {
 
-    const dispatch = useDispatch();
     const { data } = useSelector(state => state.feed);
-    const { name } = useParams();
-    const history = useHistory();
-    const [dataSection, setDataSection] = useState({})
+    const [dataTable, setDataTable] = useState([])
+    const [isAdding, setIsAdding] = useState(false)
+
     const {
         headers,
-        endpoint,
         nameSection,
         placeholder,
         sizesColumn,
-        dataEndpointName,
         orderTable,
-        campusTable
-         } = dataSection;
-        
-    const [dataTable] = useBuildData(data, orderTable, campusTable);
+        campusTable,
+        classNameIconAdd,
+        form
+    } = dataSection;
+
+    const handleIsAdding = () => {
+        setIsAdding(!isAdding)
+    }
 
     useEffect(() => {
-        if (name === undefined) {
-            history.push('/captura_de_datos/alumnos')
-        } else {
-            const data = dataSections[name];
-            dispatch(feedStartGetData(data.endpoint, data.dataEndpointName))
-            setDataSection(data)
-        }
-    }, [])
+        setDataTable(buildData(data, orderTable, campusTable));
+        console.log("Cargo")
+    }, [data])
+
+
+    if (isAdding) return (
+        <FormContainer
+            dataSection={dataSection}
+            handleIsAdding={handleIsAdding}
+            dataForm={form}
+        />
+    );
 
     return (
         <>
@@ -42,14 +45,14 @@ export const FeedSection = () => {
                 <Searchbar
                     placeholder={placeholder}
                 />
-                <button className='btn btn__add feed__headers__addButton'>
-                    <i className='fas fa-plus-circle'></i>
+                <button className='btn btn__add feed__headers__addButton' onClick={handleIsAdding}>
+                    <i className={`fas ${classNameIconAdd}`}></i>
                     <span>Agregar nuevo</span>
                 </button>
             </div>
             <div className='feed__body'>
                 <div className='feed__body__title'>
-                    <p className="">Registro de {nameSection}</p>
+                    <h4 className="">Registro de {nameSection}</h4>
                 </div>
                 <div className='feed__body__content'>
                     <Table

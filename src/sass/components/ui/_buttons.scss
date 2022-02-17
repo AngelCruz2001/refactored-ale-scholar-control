@@ -6,9 +6,9 @@
         color: $white;
         background-color: $blue-button;
         border-radius: 10px;
-        font-size: calc(0.6em + 0.4vw);
+        font-size: 2rem;
         font-weight: 500;
-        width: 12%;
+        width: 11%;
         height: 60%;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         box-shadow: none;
@@ -104,25 +104,35 @@
         color: initial;
     }
     i {
-        font-size: 1rem;
+        font-size: 2rem;
         text-align: center;
+    }
+
+
+    &__container {
+            
+        &__editDelete {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+        }
     }
 }
 
 .btn__back {
-    width: 25px;
-    height: 25px;
+    width: 5rem;
+    height: 5rem;
     background: RGB(255, 255, 255) 0% 0% no-repeat padding-box;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 5rem;
     color: #00407e;
     padding: 0.5em 0.5em !important;
 
     & i {
-        font-size: 1.3em;
+        font-size: 2rem;
     }
 }
 
@@ -135,3 +145,5 @@
 .btnGreen {
     color: $green-btn-text !important;
 }
+
+

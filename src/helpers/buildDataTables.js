@@ -40,6 +40,7 @@ export const buildDataGrades = (
         { element: <ButtonTable type={0} onClick={() => handleClick({ id_student, student_name, matricula, group_name, campus_name, major_name })} id={id_student} />, searched: false },
     ];
 }
+
 export const buildDataExpenses = (
     id,
     expenses_type,
@@ -78,6 +79,25 @@ export const buildDataGradesDetail = (course, teacher, date, credits, coincidenc
     ];
 }
 
+export const buildDataGroupsDetail = (course, teacher, date, credits, coincidence, adminUser = false) => {
+    if (adminUser) {
+        return [
+            { element: <SpanTable text={course} />, searched: coincidence[0] },
+            { element: <SpanTable text={teacher} />, searched: coincidence[1] },
+            { element: <SpanTable text={date} />, searched: coincidence[2] },
+            { element: <SpanTable text={credits} />, searched: coincidence[3] },
+            { element: <ButtonTable text={credits} />, searched: coincidence[3] },
+        ];
+    }
+    return [
+        { element: <SpanTable text={course} />, searched: false },
+        { element: <SpanTable text={teacher} />, searched: false },
+        { element: <SpanTable text={date} />, searched: false },
+        { element: <InputTable value={credits} />, searched: false },
+        { element: <ButtonTable value={credits} />, searched: false },
+
+    ];
+}
 
 export const buildDataFertilizer = (id, date, concept, cost, anticipo, restante) => {
     return [
@@ -87,6 +107,23 @@ export const buildDataFertilizer = (id, date, concept, cost, anticipo, restante)
         { element: <SpanTable text={anticipo} />, searched: false },
         { element: <SpanTable text={restante} />, searched: false },
         { element: <ButtonTable type={5} id={id} />, searched: false },
+    ];
+}
 
+export const buildDataGroups = (id_group, group_name, major_name, campus_name, onClick, coincidence) => {
+    return [
+        { element: <SpanTable text={group_name} />, searched: coincidence[0] },
+        { element: <SpanTable text={major_name} />, searched: coincidence[1] },
+        { element: <SpanTable text={campus_name} />, searched: coincidence[2] },
+        { element: <ButtonTable type={0} id={id_group} onClick={onClick} />, searched: false },
+    ];
+}
+
+export const buildDataGroupsDetails = (id_course, course_name, clave, teacher_name, handleClick) => {
+    return [
+        { element: <SpanTable text={course_name} />, searched: false },
+        { element: <SpanTable text={clave} />, searched: false },
+        { element: <SpanTable text={teacher_name} />, searched: false },
+        { element: <ButtonTable onClick={() => handleClick} type={0} id={id_course} />, searched: false },
     ];
 }

@@ -17,7 +17,6 @@ export const Main = () => {
       <div className="content">
         <Sidebar componentsAccess={componentsAccess} />
         <div className="overtexture" >
-          <section>
             <Switch>
               {
                 componentsAccess.map((componentData, index) => (
@@ -25,7 +24,6 @@ export const Main = () => {
                 ))
               }
             </Switch>
-          </section>
         </div>
       </div>
     </div>

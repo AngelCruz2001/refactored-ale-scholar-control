@@ -1,29 +1,33 @@
 .gra__ {
     &container {
-        background-color: red;
-        height: 87%;
-        width: 92%;
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         overflow: hidden;
-        h4 {
-            margin: 1.8rem;
-            align-self: center;
-            color: $color-black;
-            font-weight: bold;
+        &__headers {
+            height: 10%;
+            display: flex;
+            justify-content: space-between;
         }
-
-        &__details {
-            height: 87%;
-            width: 92%;
+        &__body {
+            height: 85%;
             display: flex;
             flex-direction: column;
-
+            justify-content: center;
+            align-items: center;
+        }
+        &__details {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             &__headers {
                 display: flex;
                 width: 100%;
-                height: 11%;
+                height: 10%;
                 align-items: flex-start;
                 justify-content: space-between;
                 &__searchAndBack {
@@ -61,12 +65,12 @@
                 display: flex;
                 flex-direction: column;
                 width: 65%;
-                height: 37%;
+                height: 30%;
                 margin-bottom: 1rem;
             }
             &__table {
                 width: 100%;
-                height: 100%;
+                height: 50%;
             }
         }
     }

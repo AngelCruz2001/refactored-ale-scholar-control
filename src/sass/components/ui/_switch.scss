@@ -1,0 +1,35 @@
+.switch__container {
+    display: flex;
+    width: 25%;
+    align-items: center;
+
+    justify-content: space-between;
+    margin-left: 3rem;
+    height: 4.8rem;
+
+    & a {
+        text-decoration: none;
+        width: 45%;
+        height: 100%;
+        display: flex;
+        font-size: 2rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        color: $color-black;
+        border: solid 1px $color-gray;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            border-color: $mustard;
+        }
+        &.active {
+            background-color: $mustard;
+            color: $white;
+            transition: all 0.5s ease-in-out;
+            border: none;
+        }
+
+
+    }
+}

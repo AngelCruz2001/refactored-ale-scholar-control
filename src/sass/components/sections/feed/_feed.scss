@@ -1,6 +1,6 @@
 .feed {
-    height: 87%;
-    width: 92%;
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -16,7 +16,17 @@
             width: 60%;
         }
         .btn__add {
+            font-size: 1.8rem;
             width: 15%;
+            height: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i {
+                font-size: 1.5rem;
+                color: #fff;
+                margin-right: 1.3rem;
+            }
         }
     }
 
@@ -27,14 +37,12 @@
         width: 100%;
         justify-content: space-between;
         &__title {
-            height: 7%;
-            display: flex;
-            width: 100%;
             text-align: center;
-            justify-content: center;
-            font-size: calc(0.7rem + 0.3vw);
-            font-weight: bold;
-            align-items: flex-end;
+            font-size: 2rem;
+            margin: 1.8rem;
+            align-self: center;
+            color: $color-black;
+            font-weight: 600;
         }
         &__content {
             width: 100%;
