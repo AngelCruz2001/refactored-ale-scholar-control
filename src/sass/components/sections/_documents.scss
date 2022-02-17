@@ -1,0 +1,84 @@
+.gen {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__header {
+        height: 11%;
+        width: 100%;
+        display: flex;
+        position: relative;
+        &__checkHistory {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 20%;
+        }
+        &__nav {
+            display: flex;
+            height: 100%;
+            width: 40%;
+            position: absolute;
+            align-items: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            justify-content: space-between;
+            &__item {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $gray-bars;
+                font-size: 2.1rem;
+
+                &__active p {
+                    color: $blue-btn-text;
+                    font-weight: 600;
+                    border-bottom: 2.5px solid $blue-btn-text;
+                    padding-bottom: 4px;
+                }
+            }
+        }
+    }
+
+    &__body {
+        display: flex;
+        height: 86%;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &__request {
+            width: 100%;
+            height: 100%;
+            &__title {
+                font-size: calc(0.9rem + 0.3vw);
+                font-weight: bold;
+                text-align: center;
+                height: 8%;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+            }
+            &__content {
+                height: 88%;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 2rem;
+        width: 100%;
+        height: 15%;
+    }
+}

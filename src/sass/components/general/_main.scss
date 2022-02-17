@@ -1,0 +1,18 @@
+.mainContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    .content {
+        display: flex;
+        width: 100vw;
+        padding: 3.5rem 4rem 5.5rem 2rem;
+        height: calc(100vh - 15rem);
+        justify-content: center;
+      
+    }
+}
+
+

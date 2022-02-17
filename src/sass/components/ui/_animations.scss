@@ -1,0 +1,64 @@
+.animation__loadIcon {
+    width: 4vw;
+    height: 4vw;
+    border: 0.4vw solid $blue-heroLogin;
+    border-top: 0.4vw solid $mustard;
+    border-radius: 50%;
+    animation-name: load;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    position: absolute;
+}
+.animation__fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}
+.animation__fadeOut {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+}
+
+.animation__blur {
+    animation-name: blur;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.animation__aniContainer {
+    position: absolute;
+}
+/*Animations*/
+
+@keyframes load {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes blur {
+    from {
+        filter: blur(0px);
+    }
+    to {
+        filter: blur(1px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
