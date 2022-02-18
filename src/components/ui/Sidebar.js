@@ -3,10 +3,10 @@ import { NavLink, Route, Switch } from 'react-router-dom'
 export const Sidebar = ({ componentsAccess }) => {
   return (
     <div className="sidebar">
-      {componentsAccess.map((componentsData ,i) => (
+      {componentsAccess.map((componentsData, i) => (
         <Fragment key={componentsData.path + 'asdfasdfasdf'} >
           <NavLink
-            key={i+1000000000000}
+            key={i + 1000000000000}
             to={componentsData.path}
             activeClassName="active"
             className="sidebar__link"
@@ -15,11 +15,11 @@ export const Sidebar = ({ componentsAccess }) => {
             <span className="sidebar__link__text">{componentsData.text}</span>
           </NavLink>
 
-          <Route key={i+1000}path={componentsData.path}>
+          <Route key={i + 1000} path={componentsData.path}>
             <div className='sidebar__submenu'>
               {componentsData.subMenu.map(({ id, path, icon, text }) => (
                 <NavLink
-                  key={id + 'asdfasdfasdf'}
+                  key={path}
                   to={path}
                   activeClassName="active"
                   className="sidebar__submenu__link"

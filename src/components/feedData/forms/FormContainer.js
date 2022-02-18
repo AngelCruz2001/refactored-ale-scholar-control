@@ -1,48 +1,13 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
-import * as Yup from 'yup';
-import { MyTextInput } from '../../../helpers/MyTextInput'
-import { MySelect } from '../../../helpers/MySelect';
+import { Input } from '../../ui/Input'
+// import { MySelect } from '../../../helpers/MySelect';
+import { validationsInputs } from '../../../helpers/validationsInputs';
 
 export const FormContainer = ({ handleIsAdding, dataForm }) => {
 
 
-    // TODO: MIRA MI CRUZ AQUI VALIO UN POQUITO MADRE PORQUE YA ES TARDE Y TENGO SUENO so paro hagalo mas bonito
-    const initialValues = {};
-    const requiredFields = [];
-    Object.values(dataForm).forEach((data) => {
-
-        data.forEach((row) => {
-            row.map(({ name, value, validations }) => {
-
-                initialValues[name] = value;
-
-                if (validations) {
-
-                    let schema = Yup.object()
-
-                    for (const rule of validations) {
-                        if (rule.type === 'required') {
-                            schema = schema.required('Este campo es requerido')
-                        }
-                    }
-
-                    requiredFields[name] = schema;
-                }
-
-            })
-        })
-    })
-
-    // TODO: FALTARIA EL CSS PARA QUE SE VEA NICE Y TODO PORQUE COMO PUEDES OBERSVAR ESTA SHIT SO GOD NO?
-    // YA ESTA LISTO PARA VALIDACIONES Y SELECTS AHORITA TODOS TIENEN REQUIRED SI GUSTAS PUEDES QUITARLE A LOS QUE NO TENGAN VALIDACION EN SU JSON LA PROPIEDAD VALIDATIONS Y BOOM BOOM LISTO CALISTO MAQUINA
-    // LO DEJO PORQUE COMO PUEDE OBSERVAR YA ES NIGHT Y NO ME PAGAN HORAS EXTRAS Y POS YA
-    // SALUDOS GG
-
-    const validationSchema = Yup.object({ ...requiredFields });
-
-
-
+    const [initialValues, validationSchema] = validationsInputs(dataForm);
 
     return (
         //General Container
@@ -85,46 +50,28 @@ export const FormContainer = ({ handleIsAdding, dataForm }) => {
                                         <div key={index} className='form__container__body__section__row'>
 
                                             {row.map(({ type, name, placeholder, label, styles, options }, index) => {
-                                                if (type === 'input' || type === 'password' || type === 'email' || type === 'date' || type === 'number' || type === 'sex') {
 
                                                     return (
-                                                        <div key={index} className='form__container__body__section__row__inputContainer' style={styles} >
-                                                            <MyTextInput
-                                                                key={name}
-                                                                type={type}
-                                                                name={name}
-                                                                placeholder={placeholder}
-                                                                label={label} />
-                                                        </div>
-                                                    )
-                                                }
-                                                else if (type === 'select') {
-                                                    return (
 
-                                                        <MySelect
+                                                        <Input 
                                                             key={name}
-                                                            label={label}
+                                                            type={type}
                                                             name={name}
-                                                        >
-                                                            <option value="">Seleccionar una opcion</option>
-                                                            {
-                                                                options.map((opt) => (
-                                                                    <option key={opt} value={opt}>{opt}</option>
-                                                                ))
-                                                            }
-                                                        </MySelect>
+                                                            placeholder={placeholder}
+                                                            label={label}
+                                                            styles={styles}
+                                                            options={options}
+                                                        />
                                                     )
-                                                }
 
                                             })}
 
 
                                         </div>
                                     ))}
-
-                                    {/* Section content, line of inputs*/}
                                 </div>
                             ))}
+                            <button type='submit'>holkaaaa</button>
                         </Form>
 
                     )}

@@ -50,7 +50,7 @@ export const itemsMenu = [
         path: "/consulta_de_calificaciones",
         component: RequestGradesAdmin,
         subMenu: [],
-        name: "admistration"
+        name: "admnistration"
     },
     {
         permissions: [
