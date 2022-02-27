@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authStartLogin } from '../../actions/auth';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import logoAleNoText from '../../helpers/resources/images/logoAleNoText.png';
 
 
 export const LoginScreen = () => {
@@ -34,7 +33,7 @@ export const LoginScreen = () => {
         <div className="container auth__container">
 
             <div className="auth__login">
-                <form className={`${(checking) && "ui_blur "}`} onSubmit={handleSubmit}>
+                <form className={`${(checking) && "animation__blur "}`} onSubmit={handleSubmit}>
                     <div className="auth__login-inputs">
                         <input className="auth__login-inputs-input" placeholder="Usuario" type="text" {...getFieldProps('username')} />
                         <i className="auth__login-inputs-icon fas fa-user-alt"></i>
@@ -57,13 +56,13 @@ export const LoginScreen = () => {
                         className="auth__login-submit btn"
                         type="submit"
                     >
-                        <p>Ingresar</p>
+                       Ingresar
                     </button>
                 </form>
                 {
                     (checking) &&
-                    <div className="ui_fadeIn ui_aniContainer">
-                        <div className="ui_loadIcon" />
+                    <div className="animation__fadeIn animation__aniContainer">
+                        <div className="animation__loadIcon" />
                     </div>
                 }
             </div>

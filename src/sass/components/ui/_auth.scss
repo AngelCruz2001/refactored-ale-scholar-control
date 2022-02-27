@@ -1,6 +1,10 @@
 .auth__container {
     height: 100vh;
     width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
 
 .auth__login {
@@ -30,6 +34,7 @@
         input {
             width: 100%;
             font-family: "Open Sans", sans-serif;
+            font-size: 2rem;
         }
 
         &-input {
@@ -56,17 +61,22 @@
             position: absolute;
             top: 0;
             right: 0;
-            font-size: 90%;
+            font-size: 2rem;
             color: $gray-inputLogin;
         }
     }
     &-submit {
         background-color: $mustard;
         border-radius: 10px;
-        height: 4%;
+        height: 5rem;
         width: 45%;
         color: $white;
         transition: background-color 0.3s;
+
+        &.btn {
+            background-color: $mustard;
+            font-size: 2rem;
+        }
 
         &:hover {
             background-color: darken($color: $mustard, $amount: 3);

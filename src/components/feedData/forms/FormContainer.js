@@ -5,7 +5,7 @@ import { Input } from '../../ui/Input'
 import { validationsInputs } from '../../../helpers/validationsInputs';
 
 export const FormContainer = ({ handleIsAdding, dataForm }) => {
-
+    console.log(dataForm)
 
     const [initialValues, validationSchema] = validationsInputs(dataForm);
 
@@ -34,7 +34,7 @@ export const FormContainer = ({ handleIsAdding, dataForm }) => {
                     }}
                 >
 
-                    {(formik) => (
+                    {({ handleReset }) => (
                         <Form>
                             {Object.values(dataForm).map((data, index) => (
                                 // Section container
@@ -48,34 +48,29 @@ export const FormContainer = ({ handleIsAdding, dataForm }) => {
 
                                     {data.map((row, index) => (
                                         <div key={index} className='form__container__body__section__row'>
-
                                             {row.map(({ type, name, placeholder, label, styles, options }, index) => {
+                                                return (
 
-                                                    return (
-
-                                                        <Input 
-                                                            key={name}
-                                                            type={type}
-                                                            name={name}
-                                                            placeholder={placeholder}
-                                                            label={label}
-                                                            styles={styles}
-                                                            options={options}
-                                                        />
-                                                    )
-
+                                                    <Input
+                                                        key={name}
+                                                        type={type}
+                                                        name={name}
+                                                        placeholder={placeholder}
+                                                        label={label}
+                                                        styles={styles}
+                                                        options={options}
+                                                    />
+                                                )
                                             })}
-
-
                                         </div>
                                     ))}
                                 </div>
                             ))}
-                            <button type='submit'>holkaaaa</button>
+                            <button className='btn btn-clean' onClick={handleReset} >Limpiar</button>
+                            <button className='btn btn-submit' type='submit'>Guardar</button>
                         </Form>
 
                     )}
-
                 </Formik>
             </div>
         </div>

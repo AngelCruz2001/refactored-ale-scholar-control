@@ -156,6 +156,11 @@
                                 "value": "F",
                                 "label": "Femenino"
                             }
+                        ],
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
                         ]
                         
                     }
