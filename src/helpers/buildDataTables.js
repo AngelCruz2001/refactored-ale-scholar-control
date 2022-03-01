@@ -59,14 +59,14 @@ export const buildDataExpenses = (
 
     ];
 }
-export const buildDataGradesDetail = (course, teacher, date, credits, coincidence, adminUser = false) => {
+export const buildDataGradesDetail = (id_grade, course, teacher, date, credits, coincidence, adminUser = false, handleEditGrade) => {
     if (adminUser) {
         return [
             { element: <SpanTable text={course} />, searched: coincidence[0] },
             { element: <SpanTable text={teacher} />, searched: coincidence[1] },
             { element: <SpanTable text={date} />, searched: coincidence[2] },
             { element: <SpanTable text={credits} />, searched: coincidence[3] },
-            { element: <ButtonTable text={credits} />, searched: coincidence[3] },
+            { element: <ButtonTable type={7} id={id_grade} onClick={handleEditGrade} />, searched: coincidence[3] },
         ];
     }
     return [
@@ -115,7 +115,7 @@ export const buildDataGroups = (id_group, group_name, major_name, campus_name, o
         { element: <SpanTable text={group_name} />, searched: coincidence[0] },
         { element: <SpanTable text={major_name} />, searched: coincidence[1] },
         { element: <SpanTable text={campus_name} />, searched: coincidence[2] },
-        { element: <ButtonTable type={0} id={id_group} onClick={onClick} />, searched: false },
+        { element: <ButtonTable type={8} id={id_group} onClick={onClick} />, searched: false },
     ];
 }
 
@@ -124,6 +124,40 @@ export const buildDataGroupsDetails = (id_course, course_name, clave, teacher_na
         { element: <SpanTable text={course_name} />, searched: false },
         { element: <SpanTable text={clave} />, searched: false },
         { element: <SpanTable text={teacher_name} />, searched: false },
-        { element: <ButtonTable onClick={() => handleClick} type={0} id={id_course} />, searched: false },
+        { element: <ButtonTable onClick={handleClick} type={8} id={id_course} />, searched: false },
+    ];
+}
+
+export const buildDataCoursesStudents = (id_course, student_name, matricula, grade, handleClick) => {
+    return [
+        { element: <SpanTable text={student_name} />, searched: false },
+        { element: <SpanTable text={matricula} />, searched: false },
+        { element: <SpanTable text={grade} />, searched: false },
+        { element: <ButtonTable onClick={handleClick} type={7} id={id_course} />, searched: false },
+    ];
+}
+export const buildDataCourses = (id_course, student_name, matricula, grade, handleClick) => {
+    return [
+        { element: <SpanTable text={student_name} />, searched: false },
+        { element: <SpanTable text={matricula} />, searched: false },
+        { element: <SpanTable text={grade} />, searched: false },
+        { element: <ButtonTable onClick={handleClick} type={7} id={id_course} />, searched: false },
+    ];
+}
+
+export const buildDataRequestsDocuments = (
+    id_request,
+    student_name,
+    matricula,
+    date,
+    document_name,
+    handleClick
+) => {
+    return [
+        { element: <SpanTable text={student_name} />, searched: false },
+        { element: <SpanTable text={matricula} />, searched: false },
+        { element: <SpanTable text={date} />, searched: false },
+        { element: <SpanTable text={document_name} />, searched: false },
+        { element: <ButtonTable id={id_request} onClick={handleClick} type={8} />, searched: false },
     ];
 }

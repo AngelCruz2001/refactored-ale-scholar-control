@@ -25,14 +25,20 @@ export const types = {
     studentSetActive: '[student] Set active',
     studentClearData: '[student] Clear data',
 
-    groupsSetGroups : '[groups] Set groups',
+    groupsSetGroups: '[groups] Set groups',
     groupsSetSpecificCourses: '[groups] Set group active',
+    groupsSetActiveCourse: '[groups] Set active course',
+    groupsUpdateGrade: '[groups] Update grade',
+    groupsSetStudentsAndGrades: '[groups] Set students and grades',
+    groupsClearActiveGroup: '[groups] Clear active group',
 
     requestSetRequests: '[request] Set requests',
     requestDeleteRequest: '[request] Delete request',
 
     gradesSetGrades: '[grades] Set grades',
     gradesSetSpecificGrades: '[grades] Set specific grades',
+    gradesModifyGrade: '[grades] Modify grade',
+    gradesDeleteGrade: '[grades] Delete grade',
 
     documentSetDocument: '[document] Set Document',
     documentClearActive: '[document] Clear Active',
@@ -63,6 +69,15 @@ export const types = {
     paySetPayments: '[pay] Set payments',
 
     feedGetData: '[feed] Get data',
+    feedSetActive: '[feed] Set active',
+    feedSetActiveNameId: '[feed] Set active name id',
+    feedDeleteData: '[feed] Delete data',
+    feedClearActive: '[feed] Clear active',
+    feedSetSelectsData: '[feed] Set selects data',
+    feedStartLoadingSelect: '[feed] Start loading selects',
+    feedFinishLoadingSelect: '[feed] Finish loading selects',
+    feedClearActive: '[feed] Clear active name id',
+    feedSetIsAdding: '[feed] Set is adding',
 }
 
 export const typesExpenses = [

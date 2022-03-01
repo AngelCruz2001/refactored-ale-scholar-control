@@ -3,6 +3,7 @@
         "nameSection": "alumnos",
         "dataEndpointName": "students",
         "endpoint": "students",
+        "nameId": "matricula",
         "placeholder": "Buscar por nombre o matricula del alumno",
         "classNameIconAdd": "fa-solid fa-user-plus",
         "sizesColumn": [
@@ -118,6 +119,7 @@
                         "label": "Edad",
                         "type": "number",
                         "placeholder": "",
+                        "disabled": true,
                         "styles": {
                             "width": "10%"
                         },
@@ -150,19 +152,18 @@
                         "options": [
                             {
                                 "value": "M",
-                                "label": "Masculino"
+                                "label": "Hombre"
                             },
                             {
                                 "value": "F",
-                                "label": "Femenino"
+                                "label": "Mujer"
                             }
                         ],
                         "validations": [
                             {
-                                "type": "required"
+                                "type": "radioSex"
                             }
                         ]
-                        
                     }
                 ],
                 [
@@ -220,6 +221,7 @@
                         "name": "matricula",
                         "label": "Matrícula",
                         "type": "input",
+                        "disabled": true,
                         "placeholder": "",
                         "styles": {
                             "width": "30%"
@@ -237,7 +239,7 @@
                     {
                         "name": "birthplace",
                         "label": "Lugar de nacimiento",
-                        "type": "date",
+                        "type": "input",
                         "placeholder": "País - Ciudad - Municipio",
                         "styles": {
                             "width": "65%"
@@ -301,11 +303,14 @@
             "Datos escolares": [
                 [
                     {
-                        "name": "school",
-                        "label": "Escuela",
+                        "name": "id_campus",
+                        "label": "Campus",
                         "type": "select",
-                        "placeholder": "Nombre",
-                        "value": "school",
+                        "placeholder": "Nombre del campus",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
                         "validations": [
                             {
                                 "type": "required"
@@ -313,11 +318,54 @@
                         ]
                     },
                     {
-                        "name": "grade",
-                        "label": "Grado",
+                        "name": "id_group",
+                        "label": "Grupo",
                         "type": "select",
-                        "placeholder": "Nombre",
-                        "value": "grado",
+                        "placeholder": "Nombre del grupo",
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "career",
+                        "label": "Carrera",
+                        "type": "select",
+                        "placeholder": "Nombre de la carrera",
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "group_chief",
+                        "label": "¿El estudiante es lider de grupo?",
+                        "type": "checkbox",
+                        "placeholder": "Nombre de la carrera",
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "options": [
+                            {
+                                "label": [
+                                    "Sí, el estudiante es lider de grupo",
+                                    "No, el estudiante no es lider de grupo"
+                                ]
+                            }
+                        ],
                         "validations": [
                             {
                                 "type": "required"

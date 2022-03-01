@@ -17,13 +17,13 @@ export const Main = () => {
       <div className="content">
         <Sidebar componentsAccess={componentsAccess} />
         <div className="overtexture" >
-            <Switch>
-              {
-                componentsAccess.map((componentData, index) => (
-                  <Route key={index} path={`${componentData.path}/:name?`} component={componentData.component} key={index} />
-                ))
-              }
-            </Switch>
+          <Switch>
+            {
+              componentsAccess.map((componentData, index) => (
+                <Route key={index} path={`${componentData.path}/:name?`} component={componentData.component} key={index} />
+              ))
+            }
+          </Switch>
         </div>
       </div>
     </div>

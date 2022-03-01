@@ -3,17 +3,11 @@ import { useDispatch } from "react-redux";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   changeNameByTime();
-  //   console.log("asdf")
-  // }, [nameSection]);
-
 
   const handleClickLogout = (e) => {
     e.preventDefault();
-    
-    // dispatch(authStartLogout())
   }
+
   return (
     <div className="navbar" >
       <div className="navbar__logo">
@@ -21,7 +15,7 @@ export const Navbar = () => {
         <p className="navbar__logo__text">Instituto de Educación <br />y Cultura Alejandría S.C. </p>
       </div>
       <div className="navbar__text">
-        <h2>safdgdsfg</h2>
+        <h2>General</h2>
       </div>
       <div className="navbar__logout " onClick={handleClickLogout}>
         <i className="fas fa-user-circle btn"></i>

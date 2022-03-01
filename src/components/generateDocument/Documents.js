@@ -9,10 +9,10 @@ export const Documents = () => {
             <div className='gen'>
                 <div className="gen__header">
                     <div className='gen__header__checkHistory'>
-                        <button className="btn  req__footer__checkHistory" onClick={() => console.log(true)}>
+                        {/* <button className="btn  req__footer__checkHistory" onClick={() => console.log(true)}>
                             <i className="fas fa-history"></i>
                             <span>Ver Historial</span>
-                        </button>
+                        </button> */}
                     </div>
                     <div className='gen__header__nav'>
                         <NavLink

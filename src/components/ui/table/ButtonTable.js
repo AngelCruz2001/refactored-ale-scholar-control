@@ -17,7 +17,8 @@ export const ButtonTable = ({
     type,
     onClick,
     title = '',
-    id
+    id,
+    onClick2,
 }) => {
 
     const buttonGenerator = () => {
@@ -60,10 +61,13 @@ export const ButtonTable = ({
                 return (
                     <div className='btnTable__container__editDelete'>
                         <button className='btn btnTable edit btnBlue' onClick={() => onClick(id)} > <i className="fas fa-solid fa-pen"></i> </button>
-                        <button className='btn btnTable delete btnRed' onClick={() => onClick(id)} > <i className="fas fa-solid fa-trash"></i> </button>
+                        <button className='btn btnTable delete btnRed' onClick={() => onClick2(id)} > <i className="fas fa-solid fa-trash"></i> </button>
                     </div>
                 )
-
+            case 8:
+                return (
+                    <button className="btn btnTable btnBlue" onClick={() => onClick(id)}> <span>{title}</span> <i className="fas fa-eye"> </i> </button>
+                )
             default:
                 return (
                     <></>

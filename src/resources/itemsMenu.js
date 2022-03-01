@@ -61,7 +61,7 @@ export const itemsMenu = [
         css: {},
         path: "/registro_de_gastos",
         component: ExpenseRecord,
-        subMenu: [], 
+        subMenu: [],
         name: "expenseRecord"
     },
     {
@@ -139,7 +139,43 @@ export const itemsMenu = [
                 css: {},
                 path: "/captura_de_datos/carreras",
             },
-            
+            // {
+            //     text: "Colaboradores",
+            //     icon: "fas fa-id-badge",
+            //     css: {},
+            //     path: "/captura_de_datos/colaboradores",
+            // },
+            // {
+            //     text: "Becas",
+            //     icon: "fas fa-id-badge",
+            //     css: {},
+            //     path: "/captura_de_datos/becas",
+            // },
+            // {
+            //     text: "Campus",
+            //     icon: "fas fa-id-badge",
+            //     css: {},
+            //     path: "/captura_de_datos/campus",
+            // },
+            // {
+            //     text: "Docentes",
+            //     icon: "fas fa-id-badge",
+            //     css: {},
+            //     path: "/captura_de_datos/docentes",
+            // },
+            // {
+            //     text: "Cursos extracurriculares",
+            //     icon: "fas fa-id-badge",
+            //     css: {},
+            //     path: "/captura_de_datos/cursos-extra",
+            // },
+            // {
+            //     text: "Cursos de graduacion",
+            //     icon: "fas fa-id-badge",
+            //     css: {},
+            //     path: "/captura_de_datos/cursos-graduacion",
+            // },
+
         ]
     }
 

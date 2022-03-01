@@ -3,11 +3,7 @@ import { fetchConToken } from "../helpers/fetch"
 import { types } from "../types/types"
 import { uiFinishLoading, uiStartLoading } from "./ui"
 
-
-
-
-
-export const groupsStartGetAllGroups = (matricula) => {
+export const groupsStartGetAllGroups = () => {
     return async (dispatch) => {
         dispatch(uiStartLoading())
         try {
@@ -38,7 +34,7 @@ export const groupsStartGetCoursesByGroup = (id_group) => {
         try {
             dispatch(uiStartLoading())
 
-            const res = await fetchConToken(`groups/${6}/courses`)
+            const res = await fetchConToken(`groups/${id_group}/courses`)
             const body = await res.json()
             if (body.ok) {
                 console.log(body)
@@ -60,6 +56,61 @@ export const groupsStartGetCoursesByGroup = (id_group) => {
     }
 }
 
+export const groupsStartUpdateGrade = (id, credits, type = 'regular') => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
 
+            const res = await fetchConToken(`grades/${type}/${id}`, { grade: credits }, 'PUT')
+            const body = await res.json()
+            if (body.ok) {
+                console.log(body)
+                dispatch(groupsUpdateGrade(id, credits))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+
+    }
+}
+
+export const groupsGetStudentAndGradesGroup = (id_course, id_group) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+            const res = await fetchConToken(`grades/regular/${id_course}/groups/${id_group}`)
+            const body = await res.json()
+
+            if (body.ok) {
+                dispatch(groupsSetActiveCourse(body))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+    }
+}
+
+export const groupsSetActiveCourse = (course) => ({ type: types.groupsSetActiveCourse, payload: course })
+export const groupsClearActiveGroup = () => ({ type: types.groupsClearActiveGroup })
 const groupsSetGroups = data => ({ type: types.groupsSetGroups, payload: data })
 const groupsSetSpecificCourses = (courses) => ({ type: types.groupsSetSpecificCourses, payload: courses })
+const groupsUpdateGrade = (id, grade) => ({ type: types.groupsUpdateGrade, payload: { id, grade } })
+const groupsSetStudentsAndGrades = (students, grades) => ({ type: types.groupsSetStudentsAndGrades, payload: { students, grades } })

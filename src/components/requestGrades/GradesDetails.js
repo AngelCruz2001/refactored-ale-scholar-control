@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { gradesStartGetGradesByMatricula } from '../../actions/grades'
+import Swal from 'sweetalert2'
+import { gradesStartGetGradesByMatricula, gradesStartUpdateGrade } from '../../actions/grades'
 import { buildDataGradesDetail } from '../../helpers/buildDataTables'
 import { isACoincidenceDate, isACoincidenceSearch } from '../../helpers/isACoincidence'
 import { Filters } from '../ui/Filters'
@@ -29,7 +30,7 @@ const headers = [
         title: "",
         textAlign: 'center'
     }];
-export const GradesDetails = ({ dataStudent, setIsAStudentActive }) => {
+export const GradesDetails = ({ dataStudent, setIsAStudentActive, allowEdit }) => {
     const dispatch = useDispatch();
     const { grades, ui } = useSelector(state => state)
     const { loading } = ui;
@@ -52,15 +53,33 @@ export const GradesDetails = ({ dataStudent, setIsAStudentActive }) => {
         ]
     };
 
+    const handleEditGrade = (id) => {
+        console.log(id)
+        Swal.fire({
+            title: 'Cambiar calificación',
+            input: 'text',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Look up',
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(gradesStartUpdateGrade(id, result.value))
+            }
+        })
+    }
+
     const generateData = () => {
         const dataToShow = [];
         const { searchWord, dateSearch } = valueSearchFilter;
         const { month, year } = dateSearch;
 
-        activeStudentGrade.forEach(({ course, credits, teacher, date }) => {
+        activeStudentGrade.forEach(({ id_grade, course, grade, teacher, date }) => {
             const coincidenceInDate = isACoincidenceDate(date.split(','), dateSearch);
-            const coincidenceInSearch = isACoincidenceSearch([course, teacher, credits], searchWord)
-            const dataBuilded = buildDataGradesDetail(course, teacher, date, credits, [...coincidenceInSearch, coincidenceInDate], true);
+            const coincidenceInSearch = isACoincidenceSearch([course, teacher, grade], searchWord)
+            const dataBuilded = buildDataGradesDetail(id_grade, course, teacher, date, grade, [...coincidenceInSearch, coincidenceInDate], true, handleEditGrade);
             const hasDateSearchValue = (month === '' && year === '') ? false : true;
             const hasSearchWordValue = searchWord === '' ? false : true;
             if (!hasSearchWordValue && !hasDateSearchValue) return dataToShow.push(dataBuilded);
@@ -73,10 +92,8 @@ export const GradesDetails = ({ dataStudent, setIsAStudentActive }) => {
 
     useLayoutEffect(() => {
         if (activeStudentGrade.length !== 0) generateData();
-    }, [loading, valueSearchFilter])
-
-
-        console.log(headers)
+        console.log(activeStudentGrade)
+    }, [loading, valueSearchFilter, activeStudentGrade])
 
     return (
         <>
@@ -99,7 +116,7 @@ export const GradesDetails = ({ dataStudent, setIsAStudentActive }) => {
                     <Table
                         headers={headers}
                         data={dataShow}
-                        sizesColumns={[35, 35, 20, 10]}
+                        sizesColumns={[30, 30, 20, 10, 10]}
                     />
                 </div>
             </div>

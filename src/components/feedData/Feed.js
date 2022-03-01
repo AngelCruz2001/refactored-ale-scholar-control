@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { FeedSection } from './FeedSection';
 
-// import dataSections from './dataSection.json';
-import dataSections from './dataSectionsWithValues.json';
+import dataSections from './dataSections.json';
+// import dataSections from './dataSectionsWithValues.json';
 
 import { useDispatch } from 'react-redux';
 import { feedStartGetData } from '../../actions/feed';
@@ -17,15 +17,17 @@ export const Feed = () => {
 
   useEffect(() => {
     if (dataSection.length !== 0) {
-      dispatch(feedStartGetData(dataSection.endpoint, dataSection.dataEndpointName))
+      dispatch(feedStartGetData(dataSection.endpoint, dataSection.dataEndpointName, dataSection.nameId));
     }
   }, [])
 
+  useLayoutEffect(() => {
+    if (name === undefined) {
+      history.push('/captura_de_datos/alumnos')
+      console.log(name)
+    }
+  }, [])
 
-  if (name === undefined) {
-    history.push('/captura_de_datos/alumnos')
-    console.log(name)
-  }
 
 
   return (

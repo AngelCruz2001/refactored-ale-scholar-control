@@ -59,8 +59,6 @@ const headers = [
 
 export const RequestGradesAdmin = () => {
 
-
-
     const dispatch = useDispatch();
     const { grades, ui, groups } = useSelector(state => state)
 
@@ -84,8 +82,6 @@ export const RequestGradesAdmin = () => {
 
     const { loading } = ui;
 
-
-
     const handleClickSetActiveStudent = (data) => {
         setIsAStudentActive(true);
         setDataStudent(data);
@@ -93,6 +89,7 @@ export const RequestGradesAdmin = () => {
     }
     const handleClickSetActiveGroup = (id_group) => {
         setIsGroupActive(true);
+        console.log(id_group)
         setActiveGroupData(groups.data.find(({ id_group }) => id_group === id_group));
         dispatch(groupsStartGetCoursesByGroup(id_group))
 
@@ -110,7 +107,7 @@ export const RequestGradesAdmin = () => {
             grades: {
                 dataNames: ["id_student", "student_name", "matricula", "group_name", "major_name", "campus_name"],
                 dataSearchElements: ["student_name", "matricula", "group_name", "major_name"],
-                function: handleClickSetActiveStudent
+                functionButton: handleClickSetActiveStudent
             },
             groups: {
                 dataNames: ["id_group", "group_name", "major_name", "campus_name"],
@@ -151,7 +148,8 @@ export const RequestGradesAdmin = () => {
     if (isGroupActive) return (
         <GroupsDetails
             dataGroup={activeGroupData}
-            setIsAStudentActive={setIsAStudentActive}
+            // setIsAStudentActive={setIsAStudentActive}
+            setIsGroupActive={setIsGroupActive}
         />
     )
 
@@ -164,6 +162,7 @@ export const RequestGradesAdmin = () => {
                     <GradesDetails
                         setIsAStudentActive={setIsAStudentActive}
                         dataStudent={dataStudent}
+                        allowEdit={true}
                     />
                     :
                     < div className="gra__container" >
@@ -179,7 +178,7 @@ export const RequestGradesAdmin = () => {
                         <div className='gra__container__body'>
                             <Switch>
                                 <Route path='/consulta_de_calificaciones/alumnos'>
-                                    <h4 className="general__title-h4">Todos los alumnos 1</h4>
+                                    <h4 className="general__title-h4">Todos los alumnos</h4>
                                     <Table
                                         headers={headersToShow}
                                         data={dataShow}
@@ -189,12 +188,11 @@ export const RequestGradesAdmin = () => {
                                 </Route>
                                 <Route path='/consulta_de_calificaciones/grupos'>
 
-                                    <h4 className="general__title-h4">Todos los alumnos 2</h4>
+                                    <h4 className="general__title-h4">Todos los grupos</h4>
                                     <Table
                                         headers={headersToShow}
                                         data={dataShow}
                                         sizesColumns={[30, 35, 25, 10]}
-
                                     />
                                 </Route>
 

@@ -1,42 +1,15 @@
 import { ErrorMessage, Field, useField } from 'formik';
 import { useEffect, useState } from 'react';
+import { Timetable } from './Timetable';
 
 
-export const Input = ({ label, styles, ...props }) => {
+export const Input = ({ label, styles, values, dataSelects, ...props }) => {
 
-    const [field, meta] = useField(props)
-    const [elementInput, setElementInput] = useState(<h1></h1>);
-
-    // const inputElement = () => {
-    //     if ([
-    //         'text',
-    //         'input',
-    //         'email',
-    //         'password',
-    //         'number',
-    //         'date',
-    //     ].includes(props.type)) {
-    //         setElementInput(
-    //             <input {...field} {...props} />
-    //         )
-    //     }
-
-
-    //     if ('radio' === props.type) {
-    //         setElementInput(
-    //             <div>
-    //                 <Field type="radio" name={props.name} value={props.options[0].value} />
-    //                 <Field type="radio" name={props.name} value={props.options[1].value} />
-    //             </div>
-    //         )
-    //     }
-    // }
-
-
+    const [field, meta] = useField(props);
+    console.log(field)
     return (
-
         <div
-            className={`form__container__body__section__row__inputContainer ${(meta.touched && meta.error ? 'error' : '')}`}
+            className={`form__container__body__section__row__inputContainer ${['radio', 'checkbox'].includes(props.type) ? 'radioContainer' : ''} ${(meta.touched && meta.error ? 'error' : '')}`}
             style={styles}
         >
             <label htmlFor={props.name}>{label}</label>
@@ -48,29 +21,61 @@ export const Input = ({ label, styles, ...props }) => {
                     'password',
                     'number',
                     'date',
-                ].includes(props.type) && <input {...field} {...props} />
+                ].includes(props.type) &&
+                <Field
+                    className={`${props.disabled ? 'disabled' : ''}`}
+                    name={props.name}
+                    type={props.type}
+                    placeholder={props.placeholder}
+                    disabled={props.disabled}
+                    maxLength={props.maxlength}
+                    {...field}
+                />
             }
 
             {
-                'radio' === props.type && <>
+                props.type === 'radio' && <>
                     {
-                        props.options.map(({ value }, index) => (
-                            <Field type="radio" name={props.name} value={value} />
+                        props.options.map(({ value, label }, index) => (
+                            <label key={index} className='radioContainer__radioLabel'>
+                                <Field key={value} type={props.type} name={props.name} value={value} />
+                                {label}
+                            </label>
                         ))
                     }
                 </>
-
             }
 
             {
-                'select' === props.type && <Field {...field} {...props} as={props.type} >
-                    <option value="1"></option>
-                    <option value="2"></option>
-                    <option value="3"></option>
+                props.type === 'checkbox' && <>
+                    {
+                        props.options.map(({ value, label }, index) => (
+                            <label key={index} className='radioContainer__radioLabel'>
+                                <Field key={value} type={props.type} name={props.name} value={value} />
+                                {label[+!values[props.name]]}
+                            </label>
+                        ))
+                    }
+                </>
+            }
+            {
+                props.type === 'select' && <Field {...field} as={props.type} name={props.name}>
+                    <option hidden defaultValue>Seleccione una opción</option>
+                    {
+                        props.options !== undefined &&
+                        props.options.map(({ value, text }) => <option key={value} value={value} label={text} />)
+                    }
+                    {
+                        dataSelects && dataSelects.map((elementData, index) => (
+                            <option key={index} value={elementData[props.dataName[1]]} label={elementData[props.dataName[2]]} />
+                        ))
+                    }
                 </Field>
             }
 
-
+            {
+                props.type === 'timetable' && <Timetable />
+            }
 
 
             {meta.touched && meta.error && <span>{meta.error}</span>}
