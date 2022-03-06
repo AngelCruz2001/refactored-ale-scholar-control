@@ -796,7 +796,6 @@
             "text",
             "button"
         ],
-        
         "form": {
             "Datos personales": [
                 [
@@ -930,7 +929,7 @@
                         "name": "salary",
                         "label": "Salario",
                         "type": "number",
-                        "placeholder": "Nombre",
+                        "placeholder": "Salario",
                         "styles": {
                             "width": "40%"
                         },
@@ -963,7 +962,664 @@
                             }
                         ]
                     }
+                ],
+                [
+                    {
+                        "name": "time_tables",
+                        "label": "Horario (Seleccione días y horas)",
+                        "type": "timetable",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
                 ]
+            ]
+        }
+    },
+    "becas": {
+        "nameSection": "becas",
+        "dataEndpointName": "scholarships",
+        "endpoint": "scholarships",
+        "nameId": "id_scholarship",
+        "genderOfSection": 1,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-solid fa-user-plus",
+        "sizesColumn": [
+            25,
+            25,
+            20,
+            20,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del alumno",
+                "textAlign": "left"
+            },
+            {
+                "title": "Matricula",
+                "textAlign": "center"
+            },
+            {
+                "title": "Nombre de la beca",
+                "textAlign": "left"
+            },
+            {
+                "title": "Porcentaje",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "student",
+            "matricula",
+            "scholarship_name",
+            "percentage",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "curp",
+                        "label": "CURP",
+                        "type": "input",
+                        "placeholder": "Curp",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "maxlength": 18,
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "curp"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "rfc",
+                        "label": "RFC",
+                        "type": "input",
+                        "placeholder": "RFC",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Número",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "campus": {
+        "nameSection": "campus",
+        "dataEndpointName": "campus",
+        "endpoint": "campus",
+        "nameId": "id_campus",
+        "genderOfSection": 0,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            25,
+            25,
+            20,
+            20,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del campus",
+                "textAlign": "left"
+            },
+            {
+                "title": "Estado",
+                "textAlign": "left"
+            },
+            {
+                "title": "Municipio",
+                "textAlign": "left"
+            },
+            {
+                "title": "Codigo postal",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "campus_name",
+            "state",
+            "municipality",
+            "zip",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "campus_name",
+                        "label": "Nombre del campus",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "street",
+                        "label": "Direccion",
+                        "type": "input",
+                        "placeholder": "Calle y numero",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "colony",
+                        "label": "Colonia",
+                        "type": "input",
+                        "placeholder": "Colonia",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "zip",
+                        "label": "Codigo postal",
+                        "type": "input",
+                        "placeholder": "Codigo postal",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "id_campus",
+                        "label": "Estado",
+                        "type": "select",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_campus",
+                        "label": "Municipio",
+                        "type": "select",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "docentes": {
+        "nameSection": "docentes",
+        "dataEndpointName": "teachers",
+        "endpoint": "teachers",
+        "nameId": "id_teacher",
+        "genderOfSection": 0,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-solid fa-user-plus",
+        "sizesColumn": [
+            50,
+            20,
+            20,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del docente",
+                "textAlign": "left"
+            },
+            {
+                "title": "Id",
+                "textAlign": "center"
+            },
+            {
+                "title": "Estatus",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "teacher_name",
+            "id_teacher",
+            "active",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "teacher_name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "input",
+                        "placeholder": "Apellido materno",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "input",
+                        "placeholder": "Apellido paterno",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "rfc",
+                        "label": "RFC",
+                        "type": "input",
+                        "placeholder": "RFC",
+                        "styles": {
+                            "width": "20%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Teléfono  celular",
+                        "type": "input",
+                        "placeholder": "Teléfono  celular",
+                        "styles": {
+                            "width": "20%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "time_tables",
+                        "label": "Horario (Seleccione días y horas)",
+                        "type": "timetable",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "cursos-extra": {
+        "nameSection": "cursos extracurriculares",
+        "dataEndpointName": "extracurricular_courses",
+        "endpoint": "extracurricular_courses",
+        "nameId": "id_ext_cou",
+        "genderOfSection": 0,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            45,
+            45,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del curso",
+                "textAlign": "left"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "course_name",
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos escolares": [
+                [
+                    {
+                        "name": "ext_cou_name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_teacher",
+                        "label": "Docente",
+                        "type": "select",
+                        "dataName": [
+                            "teachers",
+                            "id_teacher",
+                            "teacher_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "time_tables",
+                        "label": "Horario (Seleccione días y horas)",
+                        "type": "timetable",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "rfc",
+                        "label": "RFC",
+                        "type": "input",
+                        "placeholder": "RFC",
+                        "styles": {
+                            "width": "20%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Teléfono  celular",
+                        "type": "input",
+                        "placeholder": "Teléfono  celular",
+                        "styles": {
+                            "width": "20%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+               
             ]
         }
     }
