@@ -1,4 +1,4 @@
-const baseUrl = process.env.REACT_APP_API_URL;
+const baseUrl = 'http://api.alejandria.edu.mx:3005/api-ale/v1';
 
 const fetchSinToken = (endpoint, data, method = 'GET') => {
 
