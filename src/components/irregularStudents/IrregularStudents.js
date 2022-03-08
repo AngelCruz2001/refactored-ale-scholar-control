@@ -33,8 +33,12 @@ export const IrregularStudents = () => {
 
     const dispatch = useDispatch();
     const [groups, setGroups] = useState(false)
+
+    
     const handleClick= (matricula)=> {
-        dispatch(uiSetModalOpen());
+        console.log(matricula)
+        // dispatch(uiSetModalOpen());
+        // console.log(matricula)
     }
    
 

@@ -54,7 +54,7 @@ export const buildDataStudents = (
         { element: <SpanTable text={student_name} />, searched: coincidence[0] },
         { element: <SpanTable text={matricula} />, searched: coincidence[1] },
         { element: <SpanTable text={major_name} />, searched: coincidence[2] },
-        { element: <ButtonTable title={"Asignar grupo"} type={9} onClick={() => handleClick(matricula) }/>, searched: false },
+        { element: <ButtonTable id = {matricula} title={"Asignar grupo"} type={9} onClick={handleClick}  />, searched: false },
         { element: <ButtonTable title={"Asignar examen"} type={9} />,  searched: false },
     ];
 }
