@@ -11,7 +11,7 @@ export const Navbar = () => {
   return (
     <div className="navbar" >
       <div className="navbar__logo">
-        <img src='./logoAleNoText.png' alt="Logotipo del Instituto de Educación y Cultura Alejandría." />
+        <img src='./images/logoAleNoText.png' alt="Logotipo del Instituto de Educación y Cultura Alejandría." />
         <p className="navbar__logo__text">Instituto de Educación <br />y Cultura Alejandría S.C. </p>
       </div>
       <div className="navbar__text">

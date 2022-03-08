@@ -41,6 +41,24 @@ export const buildDataGrades = (
     ];
 }
 
+
+export const buildDataStudents = (
+    
+    student_name,
+    matricula,
+    major_name,
+    handleClick,
+    coincidence
+) => {
+    return [
+        { element: <SpanTable text={student_name} />, searched: coincidence[0] },
+        { element: <SpanTable text={matricula} />, searched: coincidence[1] },
+        { element: <SpanTable text={major_name} />, searched: coincidence[2] },
+        { element: <ButtonTable title={"Asignar grupo"} type={9} onClick={() => handleClick(matricula) }/>, searched: false },
+        { element: <ButtonTable title={"Asignar examen"} type={9} />,  searched: false },
+    ];
+}
+
 export const buildDataExpenses = (
     id,
     expenses_type,

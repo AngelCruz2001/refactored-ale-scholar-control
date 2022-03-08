@@ -28,9 +28,8 @@ export const uiSetCurrent = (current) => ({
     payload: current
 })
 
-export const uiSetModalOpen = (isModalOpen) => ({
+export const uiSetModalOpen = () => ({
     type: types.uiIsModalOpen,
-    payload: isModalOpen
 })
 export const uiSetShowHistory = (isShowHistoryOpen) => ({
     type: types.uiIsShowHistoryOpen,

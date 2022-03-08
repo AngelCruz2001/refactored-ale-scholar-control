@@ -2,10 +2,15 @@ import { ExpenseRecord } from '../components/expenseRecord/ExpenseRecord'
 import { Feed } from '../components/feedData/Feed'
 import { FertilizerPay } from '../components/fertilizerPay/FertilizerPay'
 import { Documents } from '../components/generateDocument/Documents'
+import { AdvancesGroups } from '../components/advancesGroups/AdvancesGroups'
+import { IrregularStudents } from '../components/irregularStudents/IrregularStudents'
+
 import { MakePay } from '../components/makePayment/MakePay'
 import { RequestDocument } from '../components/requestDocument/RequestDocument'
 import { RequestGrades } from '../components/requestGrades/RequestGrades'
 import { RequestGradesAdmin } from '../components/requestGrades/RequestsGradesAdmin'
+
+
 
 export const itemsMenu = [
     {
@@ -23,6 +28,40 @@ export const itemsMenu = [
         component: RequestDocument,
         subMenu: [],
         name: "requestDocument"
+    },
+    {
+        permissions: [
+            11,
+            14,
+            1
+        ],
+        text: "Avances de grupos",
+        icon: "fas fa-file",
+        css: {
+            "transform": "rotate(90deg) scaleX(-1)"
+        },
+        path: "/avances_de_grupo",
+        component: AdvancesGroups,
+
+        subMenu: [],
+        name: "advancesGroups"
+    },
+    {
+        permissions: [
+            11,
+            14,
+            1
+        ],
+        text: "Alumnos irregulares",
+        icon: "fas fa-file",
+        css: {
+            "transform": "rotate(90deg) scaleX(-1)"
+        },
+        path: "/irregular_students",
+        component: IrregularStudents,
+
+        subMenu: [],
+        name: "irregularStudents"
     },
     {
         permissions: [

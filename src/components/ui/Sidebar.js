@@ -13,6 +13,7 @@ export const Sidebar = ({ componentsAccess }) => {
           >
             <i className={`${componentsData.icon} sidebar__link__icon`} />
             <span className="sidebar__link__text">{componentsData.text}</span>
+
           </NavLink>
 
           <Route key={i + 1000} path={componentsData.path}>

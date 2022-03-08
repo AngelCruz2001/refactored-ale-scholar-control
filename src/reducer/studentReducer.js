@@ -10,6 +10,8 @@ const initialValue = {
     major_name: '',
     ins_date: '',
     course_name: '',
+
+    students: []
 }
 
 export const studentReducer = (state = initialValue, action) => {
@@ -21,6 +23,12 @@ export const studentReducer = (state = initialValue, action) => {
             }
         case types.studentClearData:
             return initialValue
+        case types.studentSetStudents:
+            return {
+                ...state,
+                students:action.payload
+            }
+
 
         default:
             return state;

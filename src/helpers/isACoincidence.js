@@ -13,3 +13,7 @@ export const isACoincidenceSearch = (data = [], wordToSearch) => {
     return coincidence;
 }
 
+export const isACoincidenceSpecificWord = (searchIn, wordToSearch) => {
+    if (wordToSearch === '') return null;
+    return searchIn.toString().match(RegExp(wordToSearch, 'gi')) ? true : false;
+}

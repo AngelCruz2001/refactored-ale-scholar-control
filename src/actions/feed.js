@@ -8,7 +8,7 @@ export const feedStartGetData = (endpoint, name, nameId) => {
         dispatch(uiStartLoading());
         dispatch(feedSetActiveNameId(nameId));
         try {
-            const res = await fetchConToken(endpoint)
+            const res = await fetchConToken(endpoint + "?timeTable=true")
             const body = await res.json()
             if (body.ok) {
                 // console.log(body)

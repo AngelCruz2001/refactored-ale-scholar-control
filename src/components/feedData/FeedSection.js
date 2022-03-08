@@ -9,7 +9,8 @@ export const FeedSection = ({ dataSection }) => {
     const dispatch = useDispatch();
     const { data, active, dataSelects, isAdding } = useSelector(state => state.feed);
 
-    const dataTable = useBuildData(data, dataSection);
+    const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' });
+    const dataTable = useBuildData(data, dataSection, valueSearchFilter.searchWord);
 
     useEffect(() => {
         if (active) {
@@ -18,7 +19,6 @@ export const FeedSection = ({ dataSection }) => {
     }, [active])
 
     useEffect(() => {
-
         dispatch(feedClearActive());
         dispatch(feedSetIsAdding(false));
         console.log(dataSection.formsSelectsDataEndpoint)
@@ -30,24 +30,24 @@ export const FeedSection = ({ dataSection }) => {
         dispatch(feedSetIsAdding(!isAdding))
     }
 
-
-
     if (isAdding) return (
         <FormContainer
             dataSection={dataSection}
             handleIsAdding={handleIsAdding}
             dataForm={dataSection.form}
             active={active}
-            dataSelects={dataSelects}
+            dataSelects={dataSelects} 
         />
     );
 
     return (
         <>
             <div className='feed__headers'>
-                <Searchbar
+                {/* <Searchbar
                     placeholder={dataSection.placeholder}
-                />
+                    setValueSearchFilter={setValueSearchFilter}
+                    searchWord={valueSearchFilter.searchWord}
+                /> */}
                 <button className='btn btn__add feed__headers__addButton' onClick={handleIsAdding}>
                     <i className={`fas ${dataSection.classNameIconAdd}`}></i>
                     <span>Agregar {`${dataSection.genderOfSection ? 'nueva' : 'nuevo'}`}</span>

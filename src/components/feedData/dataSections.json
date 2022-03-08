@@ -7,6 +7,12 @@
         "placeholder": "Buscar por nombre o matricula del alumno",
         "classNameIconAdd": "fa-solid fa-user-plus",
         "genderOfSection": 0,
+        "columsToSearch": [
+            "student_name",
+            "matricula",
+            "name_group",
+            "major_name"
+        ],
         "sizesColumn": [
             30,
             15,
@@ -425,7 +431,8 @@
             "button"
         ],
         "formsSelectsDataEndpoint": [
-            "majors"
+            "majors",
+            "campus"
         ],
         "form": {
             "Datos escolares": [
@@ -456,7 +463,27 @@
                             "major_name"
                         ],
                         "styles": {
-                            "width": "100%"
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "placeholder": "Nombre del campus",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
                         },
                         "value": "",
                         "validations": [
@@ -498,7 +525,7 @@
                 ],
                 [
                     {
-                        "name": "time_tables",
+                        "name": "time_table",
                         "label": "Horario (Seleccione días y horas)",
                         "type": "timetable",
                         "styles": {
@@ -507,7 +534,7 @@
                         "value": "",
                         "validations": [
                             {
-                                "type": "required"
+                                "type": "timeTable"
                             }
                         ]
                     }
@@ -753,6 +780,10 @@
         "genderOfSection": 1,
         "placeholder": "Buscar por nombre o clave de la carrera",
         "classNameIconAdd": "fa-plus-circle",
+        "formsSelectsDataEndpoint": [
+            "departments",
+            "campus"
+        ],
         "sizesColumn": [
             25,
             25,
@@ -877,6 +908,9 @@
                         "validations": [
                             {
                                 "type": "required"
+                            },
+                            {
+                                "type": "rfc"
                             }
                         ]
                     },
@@ -965,7 +999,7 @@
                 ],
                 [
                     {
-                        "name": "time_tables",
+                        "name": "time_table",
                         "label": "Horario (Seleccione días y horas)",
                         "type": "timetable",
                         "styles": {
@@ -974,7 +1008,7 @@
                         "value": "",
                         "validations": [
                             {
-                                "type": "required"
+                                "type": "timeTable"
                             }
                         ]
                     }
@@ -1020,7 +1054,7 @@
             }
         ],
         "campusTable": [
-            "student",
+            "student_name",
             "matricula",
             "scholarship_name",
             "percentage",
@@ -1034,7 +1068,7 @@
             "button"
         ],
         "form": {
-            "Datos personales": [
+            "Datos de la institución": [
                 [
                     {
                         "name": "name",
@@ -1055,7 +1089,7 @@
                         "name": "surname_f",
                         "label": "Apellido materno",
                         "type": "input",
-                        "placeholder": "Nombre",
+                        "placeholder": "Apellido materno",
                         "styles": {
                             "width": "27.5%"
                         },
@@ -1070,7 +1104,7 @@
                         "name": "surname_m",
                         "label": "Apellido paterno",
                         "type": "input",
-                        "placeholder": "Nombre",
+                        "placeholder": "Apellido paterno",
                         "styles": {
                             "width": "27.5%"
                         },
@@ -1114,6 +1148,9 @@
                         "validations": [
                             {
                                 "type": "required"
+                            },
+                            {
+                                "type": "rfc"
                             }
                         ]
                     },
@@ -1261,14 +1298,10 @@
                 ],
                 [
                     {
-                        "name": "id_campus",
+                        "name": "state",
                         "label": "Estado",
-                        "type": "select",
-                        "dataName": [
-                            "campus",
-                            "id_campus",
-                            "campus_name"
-                        ],
+                        "type": "selectState",
+                        "dataName": "state",
                         "styles": {
                             "width": "45%"
                         },
@@ -1280,14 +1313,10 @@
                         ]
                     },
                     {
-                        "name": "id_campus",
+                        "name": "municipality",
                         "label": "Municipio",
-                        "type": "select",
-                        "dataName": [
-                            "campus",
-                            "id_campus",
-                            "campus_name"
-                        ],
+                        "type": "selectMunicipality",
+                        "dataName": "municipalities",
                         "styles": {
                             "width": "45%"
                         },
@@ -1350,7 +1379,7 @@
             "Datos personales": [
                 [
                     {
-                        "name": "teacher_name",
+                        "name": "name",
                         "label": "Nombre(s)",
                         "type": "input",
                         "placeholder": "Nombre",
@@ -1408,6 +1437,9 @@
                         "validations": [
                             {
                                 "type": "required"
+                            },
+                            {
+                                "type": "rfc"
                             }
                         ]
                     },
@@ -1443,22 +1475,6 @@
                         ],
                         "styles": {
                             "width": "40%"
-                        },
-                        "value": "",
-                        "validations": [
-                            {
-                                "type": "required"
-                            }
-                        ]
-                    }
-                ],
-                [
-                    {
-                        "name": "time_tables",
-                        "label": "Horario (Seleccione días y horas)",
-                        "type": "timetable",
-                        "styles": {
-                            "width": "100%"
                         },
                         "value": "",
                         "validations": [
@@ -1508,16 +1524,20 @@
             "text",
             "button"
         ],
+        "formsSelectsDataEndpoint": [
+            "teachers",
+            "majors"
+        ],
         "form": {
             "Datos escolares": [
                 [
                     {
                         "name": "ext_cou_name",
-                        "label": "Nombre(s)",
+                        "label": "Nombre del curso",
                         "type": "input",
-                        "placeholder": "Nombre",
+                        "placeholder": "Nombre del curso",
                         "styles": {
-                            "width": "45%"
+                            "width": "47.5%"
                         },
                         "value": "",
                         "validations": [
@@ -1536,7 +1556,7 @@
                             "teacher_name"
                         ],
                         "styles": {
-                            "width": "45%"
+                            "width": "47.5%"
                         },
                         "value": "",
                         "validations": [
@@ -1548,66 +1568,9 @@
                 ],
                 [
                     {
-                        "name": "time_tables",
-                        "label": "Horario (Seleccione días y horas)",
-                        "type": "timetable",
-                        "styles": {
-                            "width": "100%"
-                        },
-                        "value": "",
-                        "validations": [
-                            {
-                                "type": "required"
-                            }
-                        ]
-                    }
-                ],
-                [
-                    {
-                        "name": "rfc",
-                        "label": "RFC",
-                        "type": "input",
-                        "placeholder": "RFC",
-                        "styles": {
-                            "width": "20%"
-                        },
-                        "value": "",
-                        "validations": [
-                            {
-                                "type": "required"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "mobile_number",
-                        "label": "Teléfono  celular",
-                        "type": "input",
-                        "placeholder": "Teléfono  celular",
-                        "styles": {
-                            "width": "20%"
-                        },
-                        "value": "",
-                        "validations": [
-                            {
-                                "type": "required"
-                            },
-                            {
-                                "type": "number"
-                            },
-                            {
-                                "type": "phone"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "id_campus",
-                        "label": "Campus",
-                        "type": "select",
-                        "dataName": [
-                            "campus",
-                            "id_campus",
-                            "campus_name"
-                        ],
+                        "name": "start_date",
+                        "label": "Fecha de inicio",
+                        "type": "date",
                         "styles": {
                             "width": "40%"
                         },
@@ -1617,9 +1580,180 @@
                                 "type": "required"
                             }
                         ]
+                    },
+                    {
+                        "name": "start_hour",
+                        "label": "Hora de inicio",
+                        "type": "select",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "options": [
+                            {
+                                "value": "09:00",
+                                "text": "09:00"
+                            },
+                            {
+                                "value": "10:00",
+                                "text": "10:00"
+                            },
+                            {
+                                "value": "11:00",
+                                "text": "11:00"
+                            },
+                            {
+                                "value": "12:00",
+                                "text": "12:00"
+                            },
+                            {
+                                "value": "13:00",
+                                "text": "13:00"
+                            },
+                            {
+                                "value": "14:00",
+                                "text": "14:00"
+                            },
+                            {
+                                "value": "15:00",
+                                "text": "15:00"
+                            },
+                            {
+                                "value": "16:00",
+                                "text": "16:00"
+                            },
+                            {
+                                "value": "17:00",
+                                "text": "17:00"
+                            },
+                            {
+                                "value": "18:00",
+                                "text": "18:00"
+                            },
+                            {
+                                "value": "19:00",
+                                "text": "19:00"
+                            },
+                            {
+                                "value": "20:00",
+                                "text": "20:00"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "finish_hour",
+                        "label": "Hora de finalización",
+                        "type": "select",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "options": [
+                            {
+                                "value": "09:00",
+                                "text": "09:00"
+                            },
+                            {
+                                "value": "10:00",
+                                "text": "10:00"
+                            },
+                            {
+                                "value": "11:00",
+                                "text": "11:00"
+                            },
+                            {
+                                "value": "12:00",
+                                "text": "12:00"
+                            },
+                            {
+                                "value": "13:00",
+                                "text": "13:00"
+                            },
+                            {
+                                "value": "14:00",
+                                "text": "14:00"
+                            },
+                            {
+                                "value": "15:00",
+                                "text": "15:00"
+                            },
+                            {
+                                "value": "16:00",
+                                "text": "16:00"
+                            },
+                            {
+                                "value": "17:00",
+                                "text": "17:00"
+                            },
+                            {
+                                "value": "18:00",
+                                "text": "18:00"
+                            },
+                            {
+                                "value": "19:00",
+                                "text": "19:00"
+                            },
+                            {
+                                "value": "20:00",
+                                "text": "20:00"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "id_major",
+                        "label": "Carrera",
+                        "type": "select",
+                        "placeholder": "Carrera",
+                        "styles": {
+                            "width": "32.5%"
+                        },
+                        "dataName": [
+                            "majors",
+                            "id_major",
+                            "major_name"
+                        ],
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "cost",
+                        "label": "Costo",
+                        "type": "input",
+                        "styles": {
+                            "width": "32.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "cost"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "limit_participants",
+                        "label": "Limite de participantes",
+                        "type": "input",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
                     }
                 ]
-               
             ]
         }
     }

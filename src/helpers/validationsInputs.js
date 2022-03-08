@@ -25,11 +25,15 @@ export const validationsInputs = (dataForm, active) => {
                                 'matricula': Yup.string().min(13, 'Introduzca 13 caracteres.').matches(typesRegex.matricula, 'Matricula invalida'),
                                 'curp': Yup.string().min(18, 'Introduzca 18 caracteres.').matches(typesRegexInputs.curp, 'Curp no válida'),
                                 'phone': Yup.string().min(10, 'Teléfono no válido'),
+                                'timeTable': Yup.array().required('Debe seleccionar al menos un día.').min(1, ''),
+                                'rfc': Yup.string().min(13, 'Introduzca 13 caracteres.').matches(typesRegexInputs.rfc, 'Rfc no válido'),
                             }
                             if (yupsSchema[rule.type]) {
                                 schema = !schema ? yupsSchema[rule.type] : schema.concat(yupsSchema[rule.type]);
                             }
+
                             requiredFields[name] = schema;
+
                         }
                     }
                 }

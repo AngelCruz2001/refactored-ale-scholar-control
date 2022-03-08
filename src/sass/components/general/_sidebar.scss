@@ -12,6 +12,7 @@
     &::-webkit-scrollbar {
         display: none; /* for Chrome, Safari, and Opera */
     }
+
     &__link {
         display: flex;
         align-items: center;
@@ -22,13 +23,13 @@
         }
 
         &__icon {
-            // margin-right: 1.3rem;
             width: 10%;
         }
         &.active {
             color: $mustard;
         }
     }
+
     &__submenu {
         display: flex;
         flex-direction: column;

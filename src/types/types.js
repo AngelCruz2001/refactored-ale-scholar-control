@@ -23,6 +23,7 @@ export const types = {
     uiIsSubMenuOpen: '[UI] Change show sub menu',
 
     studentSetActive: '[student] Set active',
+    studentSetStudents: '[student] Set students',
     studentClearData: '[student] Clear data',
 
     groupsSetGroups: '[groups] Set groups',
@@ -39,6 +40,11 @@ export const types = {
     gradesSetSpecificGrades: '[grades] Set specific grades',
     gradesModifyGrade: '[grades] Modify grade',
     gradesDeleteGrade: '[grades] Delete grade',
+
+
+    majorsSetMajors: '[majors] Set majors',
+    majorsSetSpecificMajor: '[majors] Set specific majors',
+    
 
     documentSetDocument: '[document] Set Document',
     documentClearActive: '[document] Clear Active',

@@ -41,9 +41,10 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                     enableReinitialize={true}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
+
                 >
 
-                    {({ handleReset, values }) => (
+                    {({ handleReset, values, setFieldValue }) => (
                         <Form>
                             {Object.values(dataForm).map((data, index) => (
                                 // Section container
@@ -59,8 +60,6 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                                             ''
                                     }
                                 >
-
-
                                     {/* Section title */}
                                     <span className='form__container__body__section__title' >
                                         {/* DataBuildForm = {title: {}, title2: {} } */}
@@ -74,6 +73,7 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                                                     key={item.name}
                                                     values={values}
                                                     dataSelects={item.dataName ? dataSelects[item.dataName[0]] : null}
+                                                    setFieldValue={setFieldValue}
                                                     {...item}
                                                 />
                                             ))}

@@ -31,5 +31,34 @@ export const studentStartGetStudentByMatricula = (matricula) => {
 }
 
 
+
+export const studentStartGetIrregularStudents = () => {
+    return async (dispatch) => {
+        dispatch(uiStartLoading())
+        try {
+            const res = await fetchConToken(`students?regular=false`, 'GET')
+            const body = await res.json()
+          
+            if (body.ok) {
+                dispatch(studentSetStudents(body.students));
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+            dispatch(uiFinishLoading())
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+    }
+}
+
+
+
+const studentSetStudents = students => ({type: types.studentSetStudents, payload: students})
 const studentSetActive = data => ({ type: types.studentSetActive, payload: data })
 export const studentClearData = () => ({ type: types.studentClearData })

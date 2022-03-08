@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { feedSetActive, feedStartDeleteData } from "../actions/feed";
 import { ButtonTable } from "../components/ui/table/ButtonTable";
+import { isACoincidenceSearchTuneado, isACoincidenceSpecificWord } from "./isACoincidence";
 
-export const useBuildData = (data, dataSection) => {
+export const useBuildData = (data, dataSection, wordToSearch) => {
 
     const dispatch = useDispatch();
 
@@ -10,7 +11,8 @@ export const useBuildData = (data, dataSection) => {
         orderTable,
         campusTable,
         nameId,
-        endpoint
+        endpoint,
+        columsToSearch
     } = dataSection;
     const editElement = (id) => {
         dispatch(feedSetActive(id));
@@ -23,24 +25,31 @@ export const useBuildData = (data, dataSection) => {
 
     const dataTable = [];
     data.forEach((dataElement, index) => {
-        dataTable.push(campusTable.map((elementName, index) => (
-            generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement)
-        )))
-    });
+        dataTable.push(campusTable.map((elementName, index) => {
+            if (columsToSearch && !columsToSearch.includes(elementName)) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false);
+            const coincidence = isACoincidenceSpecificWord(dataElement[elementName], wordToSearch);
+            if (coincidence === null) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false)
 
-    return dataTable
+            if (coincidence) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, true)
+
+            return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false);
+        }).filter(element => element !== null)
+        )
+    })
+
+    return dataTable;
 }
 
 
-const generateElement = (typeOfElement, infoForElement, id, editElement, deleteElement) => {
+const generateElement = (typeOfElement, infoForElement, id, editElement, deleteElement, searched) => {
     switch (typeOfElement) {
         case 'text':
-            return { element: <p>{infoForElement}</p>, coincidence: false }
+            return { element: <p>{infoForElement}</p>, searched: searched }
         case 'button':
-            return { element: <ButtonTable type={7} id={id} onClick={editElement} onClick2={deleteElement} />, coincidence: false }
+            return { element: <ButtonTable type={7} id={id} onClick={editElement} onClick2={deleteElement} />, searched: false }
         case 'buttonSee':
-            return { element: <ButtonTable type={0} id={id} onClick={editElement} onClick2={deleteElement} />, coincidence: false }
+            return { element: <ButtonTable type={0} id={id} onClick={editElement} onClick2={deleteElement} />, searched: false }
         default:
-            return { element: <p>default</p>, coincidence: false }
+            return { element: <p>default</p>, searched: false }
     }
 }

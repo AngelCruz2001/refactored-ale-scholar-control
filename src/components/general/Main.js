@@ -3,10 +3,14 @@ import { Navbar } from '../ui/Navbar'
 import { Sidebar } from '../ui/Sidebar'
 import { useAccess } from '../../hooks/useAccess'
 import { Route, Switch } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
+
 export const Main = () => {
+  const { ui: { isModalOpen } } = useSelector(state => state);
   const [roles, componentsAccess] = useAccess();
   return (
-    <div className='mainContainer'>
+    <div className={`mainContainer ${isModalOpen && 'modal-active'} `}>
       {/* Texture */}
       <div className="texture" />
 
@@ -20,7 +24,7 @@ export const Main = () => {
           <Switch>
             {
               componentsAccess.map((componentData, index) => (
-                <Route key={index} path={`${componentData.path}/:name?`} component={componentData.component} key={index} />
+                <Route key={index} path={`${componentData.path}/:name?`} component={componentData.component}  />
               ))
             }
           </Switch>

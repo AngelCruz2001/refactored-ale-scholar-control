@@ -1,12 +1,13 @@
 import { ErrorMessage, Field, useField } from 'formik';
 import { useEffect, useState } from 'react';
 import { Timetable } from './Timetable';
+import dataStates from '../../helpers/resources/dataStates.json';
 
 
-export const Input = ({ label, styles, values, dataSelects, ...props }) => {
+export const Input = ({ label, styles, values, dataSelects, setFieldValue, ...props }) => {
 
     const [field, meta] = useField(props);
-    console.log(field)
+
     return (
         <div
             className={`form__container__body__section__row__inputContainer ${['radio', 'checkbox'].includes(props.type) ? 'radioContainer' : ''} ${(meta.touched && meta.error ? 'error' : '')}`}
@@ -72,9 +73,32 @@ export const Input = ({ label, styles, values, dataSelects, ...props }) => {
                     }
                 </Field>
             }
+            {
+                props.type === 'selectState' && <Field {...field} as='select' name={props.name}>
+                    <option hidden defaultValue>Seleccione una opción</option>
+                    {
+                        dataStates.states.map((elementData, index) => (
+                            <option key={props.dataName + index} value={elementData[props.dataName]} label={elementData[props.dataName]} />
+                        ))
+                    }
+
+                </Field>
+            }
 
             {
-                props.type === 'timetable' && <Timetable />
+                props.type === 'selectMunicipality' && <Field {...field} as='select' name={props.name} disabled={values.state === ''}>
+                    <option hidden defaultValue>Seleccione una opción</option>
+                    {
+                        values.state !== '' &&
+                        dataStates.states.find(e => e.state === values.state).municipalities.map((municipality, index) => (
+                            <option key={municipality} value={municipality} label={municipality} />
+                        ))
+                    }
+                </Field>
+
+            }
+            {
+                props.type === 'timetable' && <Field name={props.name} component={Timetable} />
             }
 
 
