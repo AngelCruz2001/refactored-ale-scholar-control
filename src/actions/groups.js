@@ -1,0 +1,116 @@
+import Swal from "sweetalert2"
+import { fetchConToken } from "../helpers/fetch"
+import { types } from "../types/types"
+import { uiFinishLoading, uiStartLoading } from "./ui"
+
+export const groupsStartGetAllGroups = () => {
+    return async (dispatch) => {
+        dispatch(uiStartLoading())
+        try {
+            const res = await fetchConToken("groups", 'GET')
+            const body = await res.json()
+            if (body.ok) {
+                console.log(body)
+                dispatch(groupsSetGroups(body.groups));
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+            dispatch(uiFinishLoading())
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+    }
+}
+
+
+export const groupsStartGetCoursesByGroup = (id_group) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+
+            const res = await fetchConToken(`groups/${id_group}/courses`)
+            const body = await res.json()
+            if (body.ok) {
+                console.log(body)
+                dispatch(groupsSetSpecificCourses(body.group))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+
+    }
+}
+
+export const groupsStartUpdateGrade = (id, credits, type = 'regular') => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+
+            const res = await fetchConToken(`grades/${type}/${id}`, { grade: credits }, 'PUT')
+            const body = await res.json()
+            if (body.ok) {
+                console.log(body)
+                dispatch(groupsUpdateGrade(id, credits))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+
+    }
+}
+
+export const groupsGetStudentAndGradesGroup = (id_course, id_group) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+            const res = await fetchConToken(`grades/regular/${id_course}/groups/${id_group}`)
+            const body = await res.json()
+
+            if (body.ok) {
+                dispatch(groupsSetActiveCourse(body))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+    }
+}
+
+export const groupsSetActiveCourse = (course) => ({ type: types.groupsSetActiveCourse, payload: course })
+export const groupsClearActiveGroup = () => ({ type: types.groupsClearActiveGroup })
+const groupsSetGroups = data => ({ type: types.groupsSetGroups, payload: data })
+const groupsSetSpecificCourses = (courses) => ({ type: types.groupsSetSpecificCourses, payload: courses })
+const groupsUpdateGrade = (id, grade) => ({ type: types.groupsUpdateGrade, payload: { id, grade } })
+const groupsSetStudentsAndGrades = (students, grades) => ({ type: types.groupsSetStudentsAndGrades, payload: { students, grades } })

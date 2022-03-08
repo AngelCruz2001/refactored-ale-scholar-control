@@ -1,0 +1,26 @@
+.sea {
+    &__container {
+        box-shadow: 0px 1px 8px #00000021;
+        border: 1px solid #fefefe;
+        width: 60%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 8px;
+        border-radius: 10px;
+        height: 4.8rem;
+        i {
+            display: flex;
+            align-items: center;
+            font-size: 2.5em;
+            color: $gray-logout;
+            margin-right: 1.3rem;
+        }
+        & input {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            font-size: 1.7rem;
+        }
+    }
+}

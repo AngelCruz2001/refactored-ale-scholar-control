@@ -1,0 +1,92 @@
+.exp__ {
+    &container {
+        height: 87%;
+        width: 92%;
+        display: flex;
+        flex-direction: column;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+
+        .history {
+            &__container {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                background-color: white;
+                border-radius: 5px;
+
+                &__header {
+                    display: grid;
+                    grid-template-columns: 25px calc(100% - 25px);
+
+                    h4 {
+                        align-self: center;
+                        color: $color-black;
+                        font-weight: bold;
+                        text-align: center;
+                    }
+
+                    padding-bottom: 3rem;
+                }
+            }
+        }
+    }
+    &body {
+        margin-top: 1em;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 75%;
+
+        &__quantity {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__teacherName {
+            display: flex;
+            flex-direction: column;
+            width: calc(100% - 1rem - 1px);
+        }
+        p.description,
+        p.quantity {
+            margin-top: 1.5rem;
+        }
+        textarea {
+            // Description
+            width: calc(100% - 1rem);
+            height: 100%;
+            resize: none;
+            padding: 0.5em;
+            box-shadow: 0px 3px 6px #00000029;
+            border: 1px solid #c7c7c7;
+            border-radius: 8px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &footer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 15%;
+        align-items: flex-end;
+        &__checkHistory {
+            background-color: transparent;
+            color: $blue-btn-text;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            font-size: calc(0.8rem + 0.3vw);
+            align-items: center;
+            span {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}

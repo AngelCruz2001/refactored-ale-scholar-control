@@ -1,0 +1,1820 @@
+{
+    "alumnos": {
+        "nameSection": "alumnos",
+        "dataEndpointName": "students",
+        "endpoint": "students",
+        "nameId": "matricula",
+        "placeholder": "Buscar por nombre o matricula del alumno",
+        "classNameIconAdd": "fa-solid fa-user-plus",
+        "genderOfSection": 0,
+        "titleForm": "Capturar datos del alumno",
+        "columsToSearch": [
+            "student_name",
+            "matricula",
+            "name_group",
+            "major_name"
+        ],
+        "sizesColumn": [
+            30,
+            15,
+            15,
+            32,
+            8
+        ],
+        "headers": [
+            {
+                "title": "Nombre del alumno",
+                "textAlign": "left"
+            },
+            {
+                "title": "Matricula",
+                "textAlign": "center"
+            },
+            {
+                "title": "Grupo",
+                "textAlign": "center"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "student_name",
+            "matricula",
+            "name_group",
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "formsSelectsDataEndpoint": [
+            "groups",
+            "majors",
+            "campus"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "birthdate",
+                        "label": "Fecha de nacimiento",
+                        "type": "date",
+                        "placeholder": "Fecha de nacimiento",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "curp",
+                        "label": "Curp",
+                        "type": "input",
+                        "placeholder": "Curp",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "maxlength": 18,
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "curp"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "gender",
+                        "label": "Sexo",
+                        "type": "radio",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "27%"
+                        },
+                        "value": "",
+                        "options": [
+                            {
+                                "value": "M",
+                                "label": "Hombre"
+                            },
+                            {
+                                "value": "F",
+                                "label": "Mujer"
+                            }
+                        ],
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "street",
+                        "label": "Dirección",
+                        "type": "input",
+                        "placeholder": "Calle y numero",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "colony",
+                        "label": "",
+                        "type": "input",
+                        "placeholder": "Colonia",
+                        "styles": {
+                            "width": "34%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "zip",
+                        "label": "",
+                        "type": "input",
+                        "placeholder": "Codigo postal",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "matricula",
+                        "label": "Matrícula",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "disabled": true
+                    },
+                    {
+                        "name": "birthplace",
+                        "label": "Lugar de nacimiento",
+                        "type": "text",
+                        "placeholder": "País - Ciudad - Municipio",
+                        "styles": {
+                            "width": "65%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "email",
+                        "label": "Correo electrónico (opcional)",
+                        "type": "email",
+                        "placeholder": "ejemplo@ejemplo.com",
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": ""
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Número",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_back_number",
+                        "label": "Número de teléfono (Opcional)",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": ""
+                    }
+                ]
+            ],
+            "Datos escolares": [
+                [
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "placeholder": "Nombre del campus",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_group",
+                        "label": "Grupo",
+                        "type": "select",
+                        "placeholder": "Nombre del grupo",
+                        "value": "",
+                        "dataName": [
+                            "groups",
+                            "id_group",
+                            "group_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "id_major",
+                        "label": "Carrera",
+                        "type": "select",
+                        "placeholder": "Nombre de la carrera",
+                        "value": "",
+                        "dataName": [
+                            "majors",
+                            "id_major",
+                            "major_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "group_chief",
+                        "label": "¿El estudiante es lider de grupo?",
+                        "type": "checkbox",
+                        "placeholder": "Nombre de la carrera",
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "options": [
+                            {
+                                "label": [
+                                    "Sí, el estudiante es lider de grupo",
+                                    "No, el estudiante no es lider de grupo"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "grupos": {
+        "nameSection": "grupos",
+        "dataEndpointName": "groups",
+        "endpoint": "groups",
+        "nameId": "id_group",
+        "genderOfSection": 0,
+        "placeholder": "Buscar por nombre o carrera",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            17,
+            30,
+            35,
+            8,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del grupo",
+                "textAlign": "left"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "Campus",
+                "textAlign": "left"
+            },
+            {
+                "title": "Ver",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos del grupo",
+        "columsToSearch": [
+            "group_name",
+            "campus_name",
+            "major_name"
+        ],
+        "campusTable": [
+            "group_name",
+            "major_name",
+            "campus_name",
+            "",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "buttonSee",
+            "button"
+        ],
+        "formsSelectsDataEndpoint": [
+            "majors",
+            "campus"
+        ],
+        "form": {
+            "Datos escolares": [
+                [
+                    {
+                        "name": "name_group",
+                        "label": "Nombre del grupo",
+                        "type": "input",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "id_major",
+                        "label": "Carrera",
+                        "type": "select",
+                        "dataName": [
+                            "majors",
+                            "id_major",
+                            "major_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "placeholder": "Nombre del campus",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "entry_year",
+                        "label": "Fecha de inicio",
+                        "type": "date",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "end_year",
+                        "label": "Fecha de finalización",
+                        "type": "date",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "time_table",
+                        "label": "Horario (Seleccione días y horas)",
+                        "type": "timetable",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "timeTable"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "materias": {
+        "nameSection": "Materias",
+        "dataEndpointName": "courses",
+        "genderOfSection": 1,
+        "endpoint": "courses",
+        "nameId": "id_course",
+        "placeholder": "Buscar por nombre o clave de la materia",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            30,
+            15,
+            45,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre de la materia",
+                "textAlign": "left"
+            },
+            {
+                "title": "Clave",
+                "textAlign": "center"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos de materia",
+        "columsToSearch": [
+            "course_name",
+            "major_name"
+        ],
+        "campusTable": [
+            "course_name",
+            "clave",
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "formsSelectsDataEndpoint": [
+            "majors",
+            "extracurricular_courses",
+            "courses"
+        ],
+        "form": {
+            "Datos escolares": [
+                [
+                    {
+                        "name": "course_name",
+                        "label": "Nombre de la materia",
+                        "type": "input",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "id_major",
+                        "label": "Carrera",
+                        "type": "select",
+                        "placeholder": "Nombre de la carrera",
+                        "dataName": [
+                            "majors",
+                            "id_major",
+                            "major_name"
+                        ],
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "clave",
+                        "label": "Clave",
+                        "type": "input",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "restricted_by_course",
+                        "label": "Curso requerido antes",
+                        "type": "select",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "dataName": [
+                            "courses",
+                            "id_course",
+                            "course_name"
+                        ],
+                        "value": "",
+                        "validations": [],
+                        "options": [
+                            {
+                                "value": null,
+                                "text": "Ninguno"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "restricted_by_extracourse",
+                        "label": "Curso extracocurricular requerido antes",
+                        "type": "select",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "dataName": [
+                            "extraCurricularCourses",
+                            "id_ext_cou",
+                            "course_name"
+                        ],
+                        "value": "",
+                        "validations": [],
+                        "options": [
+                            {
+                                "value": null,
+                                "text": "Ninguno"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "credits",
+                        "label": "Créditos",
+                        "type": "input",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "carreras": {
+        "nameSection": "carreras",
+        "dataEndpointName": "majors",
+        "endpoint": "majors",
+        "nameId": "id_major",
+        "genderOfSection": 1,
+        "placeholder": "Buscar por nombre o clave de la carrera",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            90,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre de la carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos de carrera",
+        "columsToSearch": [
+            "major_name"
+        ],
+        "campusTable": [
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos escolares": [
+                [
+                    {
+                        "name": "major_name",
+                        "label": "Nombre de la carrera",
+                        "type": "input",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "edu_level",
+                        "label": "Nivel de estudios",
+                        "type": "select",
+                        "options": [
+                            {
+                                "value": 1,
+                                "text": "Licenciatura"
+                            },
+                            {
+                                "value": 2,
+                                "text": "Maestría"
+                            }
+                        ],
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "colaboradores": {
+        "nameSection": "colaboradores",
+        "dataEndpointName": "employees",
+        "endpoint": "employees",
+        "nameId": "id_employee",
+        "genderOfSection": 1,
+        "placeholder": "Buscar por nombre o clave de la carrera",
+        "classNameIconAdd": "fa-plus-circle",
+        "formsSelectsDataEndpoint": [
+            "departments",
+            "campus"
+        ],
+        "sizesColumn": [
+            25,
+            25,
+            20,
+            20,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del colaborador",
+                "textAlign": "left"
+            },
+            {
+                "title": "RFC",
+                "textAlign": "center"
+            },
+            {
+                "title": "Departamento",
+                "textAlign": "center"
+            },
+            {
+                "title": "Campus",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos del colaborador",
+        "columsToSearch": [
+            "name",
+            "rfc",
+            "department_name",
+            "campus_name"
+        ],
+        "campusTable": [
+            "name",
+            "rfc",
+            "department_name",
+            "campus_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "curp",
+                        "label": "CURP",
+                        "type": "input",
+                        "placeholder": "Curp",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "maxlength": 18,
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "curp"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "rfc",
+                        "label": "RFC",
+                        "type": "input",
+                        "placeholder": "RFC",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "rfc"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Número",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
+                    }
+                ]
+            ],
+            "Datos escolares": [
+                [
+                    {
+                        "name": "id_department",
+                        "label": "Departamento",
+                        "type": "select",
+                        "placeholder": "Departamento",
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": "",
+                        "dataName": [
+                            "departments",
+                            "id_department",
+                            "department_name"
+                        ],
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "salary",
+                        "label": "Salario",
+                        "type": "number",
+                        "placeholder": "Salario",
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "placeholder": "Nombre del campus",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "time_table",
+                        "label": "Horario (Seleccione días y horas)",
+                        "type": "timetable",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "timeTable"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "becas": {
+        "nameSection": "becas",
+        "dataEndpointName": "scholarships",
+        "endpoint": "scholarships",
+        "nameId": "id_scholarship",
+        "genderOfSection": 1,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-solid fa-user-plus",
+        "sizesColumn": [
+            25,
+            25,
+            20,
+            20,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del alumno",
+                "textAlign": "left"
+            },
+            {
+                "title": "Matricula",
+                "textAlign": "center"
+            },
+            {
+                "title": "Nombre de la beca",
+                "textAlign": "left"
+            },
+            {
+                "title": "Porcentaje",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos de la beca",
+        "columsToSearch": [
+            "student_name",
+            "matricula",
+            "scholarship_name"
+        ],
+        "campusTable": [
+            "student_name",
+            "matricula",
+            "scholarship_name",
+            "percentage",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos de la institución": [
+                [
+                    {
+                        "name": "name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "input",
+                        "placeholder": "Apellido materno",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "input",
+                        "placeholder": "Apellido paterno",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "curp",
+                        "label": "CURP",
+                        "type": "input",
+                        "placeholder": "Curp",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "maxlength": 18,
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "curp"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "rfc",
+                        "label": "RFC",
+                        "type": "input",
+                        "placeholder": "RFC",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "rfc"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Número",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "campus": {
+        "nameSection": "campus",
+        "dataEndpointName": "campus",
+        "endpoint": "campus",
+        "nameId": "id_campus",
+        "genderOfSection": 0,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            25,
+            25,
+            20,
+            20,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del campus",
+                "textAlign": "left"
+            },
+            {
+                "title": "Estado",
+                "textAlign": "left"
+            },
+            {
+                "title": "Municipio",
+                "textAlign": "left"
+            },
+            {
+                "title": "Codigo postal",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos del campus",
+        
+        "columsToSearch": [
+            "campus_name",
+            "state",
+            "municipality"
+        ],
+        "campusTable": [
+            "campus_name",
+            "state",
+            "municipality",
+            "zip",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "campus_name",
+                        "label": "Nombre del campus",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "100%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "street",
+                        "label": "Direccion",
+                        "type": "input",
+                        "placeholder": "Calle y numero",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "colony",
+                        "label": "Colonia",
+                        "type": "input",
+                        "placeholder": "Colonia",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "zip",
+                        "label": "Codigo postal",
+                        "type": "input",
+                        "placeholder": "Codigo postal",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "state",
+                        "label": "Estado",
+                        "type": "selectState",
+                        "dataName": "state",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "municipality",
+                        "label": "Municipio",
+                        "type": "selectMunicipality",
+                        "dataName": "municipalities",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "docentes": {
+        "nameSection": "docentes",
+        "dataEndpointName": "teachers",
+        "endpoint": "teachers",
+        "nameId": "id_teacher",
+        "genderOfSection": 0,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-solid fa-user-plus",
+        "sizesColumn": [
+            50,
+            20,
+            20,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del docente",
+                "textAlign": "left"
+            },
+            {
+                "title": "Id",
+                "textAlign": "center"
+            },
+            {
+                "title": "Estatus",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos de los docentes",
+        "columsToSearch": [
+            "teacher_name",
+            "active"
+        ],
+        "campusTable": [
+            "teacher_name",
+            "id_teacher",
+            "active",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "input",
+                        "placeholder": "Apellido materno",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "input",
+                        "placeholder": "Apellido paterno",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "rfc",
+                        "label": "RFC",
+                        "type": "input",
+                        "placeholder": "RFC",
+                        "styles": {
+                            "width": "20%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "rfc"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Teléfono  celular",
+                        "type": "input",
+                        "placeholder": "Teléfono  celular",
+                        "styles": {
+                            "width": "20%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "dataName": [
+                            "campus",
+                            "id_campus",
+                            "campus_name"
+                        ],
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "cursos-extra": {
+        "nameSection": "cursos extracurriculares",
+        "dataEndpointName": "extracurricular_courses",
+        "endpoint": "extracurricular_courses",
+        "nameId": "id_ext_cou",
+        "genderOfSection": 0,
+        "placeholder": "Buscar",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            45,
+            45,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del curso",
+                "textAlign": "left"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "titleForm": "Capturar datos del curso extracurricular",
+        "columsToSearch": [
+            "course_name",
+            "major_name"
+        ],
+        "campusTable": [
+            "course_name",
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "button"
+        ],
+        "formsSelectsDataEndpoint": [
+            "teachers",
+            "majors"
+        ],
+        "form": {
+            "Datos escolares": [
+                [
+                    {
+                        "name": "ext_cou_name",
+                        "label": "Nombre del curso",
+                        "type": "input",
+                        "placeholder": "Nombre del curso",
+                        "styles": {
+                            "width": "47.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_teacher",
+                        "label": "Docente",
+                        "type": "select",
+                        "dataName": [
+                            "teachers",
+                            "id_teacher",
+                            "teacher_name"
+                        ],
+                        "styles": {
+                            "width": "47.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "start_date",
+                        "label": "Fecha de inicio",
+                        "type": "date",
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "start_hour",
+                        "label": "Hora de inicio",
+                        "type": "select",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "options": [
+                            {
+                                "value": "09:00",
+                                "text": "09:00"
+                            },
+                            {
+                                "value": "10:00",
+                                "text": "10:00"
+                            },
+                            {
+                                "value": "11:00",
+                                "text": "11:00"
+                            },
+                            {
+                                "value": "12:00",
+                                "text": "12:00"
+                            },
+                            {
+                                "value": "13:00",
+                                "text": "13:00"
+                            },
+                            {
+                                "value": "14:00",
+                                "text": "14:00"
+                            },
+                            {
+                                "value": "15:00",
+                                "text": "15:00"
+                            },
+                            {
+                                "value": "16:00",
+                                "text": "16:00"
+                            },
+                            {
+                                "value": "17:00",
+                                "text": "17:00"
+                            },
+                            {
+                                "value": "18:00",
+                                "text": "18:00"
+                            },
+                            {
+                                "value": "19:00",
+                                "text": "19:00"
+                            },
+                            {
+                                "value": "20:00",
+                                "text": "20:00"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "finish_hour",
+                        "label": "Hora de finalización",
+                        "type": "select",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "options": [
+                            {
+                                "value": "09:00",
+                                "text": "09:00"
+                            },
+                            {
+                                "value": "10:00",
+                                "text": "10:00"
+                            },
+                            {
+                                "value": "11:00",
+                                "text": "11:00"
+                            },
+                            {
+                                "value": "12:00",
+                                "text": "12:00"
+                            },
+                            {
+                                "value": "13:00",
+                                "text": "13:00"
+                            },
+                            {
+                                "value": "14:00",
+                                "text": "14:00"
+                            },
+                            {
+                                "value": "15:00",
+                                "text": "15:00"
+                            },
+                            {
+                                "value": "16:00",
+                                "text": "16:00"
+                            },
+                            {
+                                "value": "17:00",
+                                "text": "17:00"
+                            },
+                            {
+                                "value": "18:00",
+                                "text": "18:00"
+                            },
+                            {
+                                "value": "19:00",
+                                "text": "19:00"
+                            },
+                            {
+                                "value": "20:00",
+                                "text": "20:00"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "id_major",
+                        "label": "Carrera",
+                        "type": "select",
+                        "placeholder": "Carrera",
+                        "styles": {
+                            "width": "32.5%"
+                        },
+                        "dataName": [
+                            "majors",
+                            "id_major",
+                            "major_name"
+                        ],
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "cost",
+                        "label": "Costo",
+                        "type": "input",
+                        "styles": {
+                            "width": "32.5%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "cost"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "limit_participants",
+                        "label": "Limite de participantes",
+                        "type": "input",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.ui__ {
+    &disabledEffect {
+        opacity: 80%;
+        pointer-events: none;
+
+        &.totalPay {
+            opacity: 100%;
+            background-color: $blue-button;
+        }
+        &.inputsPay {
+            visibility: hidden;
+        }
+    }
+
+    &noTouch {
+        pointer-events: none;
+    }
+}

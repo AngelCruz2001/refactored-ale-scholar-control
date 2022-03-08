@@ -1,0 +1,62 @@
+@mixin respond($breakpoint) {
+    @if $breakpoint==phone {
+        @media (max-width: 37.5em) {
+            @content
+        }
+
+        ; // 600px
+    }
+
+    @if $breakpoint==tab-port {
+        @media (max-width: 56.25em) {
+            @content
+        }
+
+        ; // 900px
+    }
+
+    
+
+    @if $breakpoint==google {
+        @media (max-width: 71.37em) {
+            @content
+        }
+
+        ; // 900px
+    }
+
+    @if $breakpoint==tab-land {
+        @media (max-width: 75em) {
+            @content
+        }
+
+        ; //1200px
+    }
+
+    @if $breakpoint==big-desk {
+        @media (min-width: 112.5em) {
+            @content
+        }
+
+        ; //1800px
+    }
+}
+
+
+@font-face {
+    font-family: 'Segoe UI';
+    src: url("./typography/Segoe_UI.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Segoe UI Bold';
+    src: url("./typography/Segoe_UI_Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'Segoe UI Bold Italic';
+    src: url("./typography/Segoe_UI_Bold_Italic.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'Segoe UI Italic';
+    src: url("./typography/Segoe_UI_Italic.ttf") format("truetype");
+}

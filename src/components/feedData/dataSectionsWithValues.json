@@ -1,0 +1,506 @@
+{
+    "alumnos": {
+        "nameSection": "alumnos",
+        "dataEndpointName": "students",
+        "endpoint": "students",
+        "nameId": "matricula",
+        "placeholder": "Buscar por nombre o matricula del alumno",
+        "classNameIconAdd": "fa-solid fa-user-plus",
+        "sizesColumn": [
+            30,
+            15,
+            15,
+            32,
+            8
+        ],
+        "headers": [
+            {
+                "title": "Nombre del alumno",
+                "textAlign": "left"
+            },
+            {
+                "title": "Matricula",
+                "textAlign": "center"
+            },
+            {
+                "title": "Grupo",
+                "textAlign": "center"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "student_name",
+            "matricula",
+            "group_name",
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ],
+        "form": {
+            "Datos personales": [
+                [
+                    {
+                        "name": "name",
+                        "label": "Nombre(s)",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "35%"
+                        },
+                        "value": "Angel Retana",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_f",
+                        "label": "Apellido materno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "Cruz",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "surname_m",
+                        "label": "Apellido paterno",
+                        "type": "input",
+                        "placeholder": "Nombre",
+                        "styles": {
+                            "width": "27.5%"
+                        },
+                        "value": "García",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "birthdate",
+                        "label": "Fecha de nacimiento",
+                        "type": "date",
+                        "placeholder": "Fecha de nacimiento",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "age",
+                        "label": "Edad",
+                        "type": "number",
+                        "placeholder": "",
+                        "disabled": true,
+                        "styles": {
+                            "width": "10%"
+                        },
+                        "value": "21"
+                    },
+                    {
+                        "name": "curp",
+                        "label": "Curp",
+                        "type": "input",
+                        "placeholder": "Curp",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "asdfasdfasdfdas",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "sex",
+                        "label": "Sexo",
+                        "type": "radio",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "22%"
+                        },
+                        "value": "",
+                        "options": [
+                            {
+                                "value": "M",
+                                "label": "Hombre"
+                            },
+                            {
+                                "value": "F",
+                                "label": "Mujer"
+                            }
+                        ],
+                        "validations": [
+                            {
+                                "type": "radioSex"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "street",
+                        "label": "Dirección",
+                        "type": "input",
+                        "placeholder": "Calle y numero",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "Paseo del alamo 213",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "colony",
+                        "label": "",
+                        "type": "input",
+                        "placeholder": "Colonia",
+                        "styles": {
+                            "width": "34%"
+                        },
+                        "value": "Huizache II",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "zip",
+                        "label": "",
+                        "type": "input",
+                        "placeholder": "Codigo postal",
+                        "styles": {
+                            "width": "28%"
+                        },
+                        "value": "34162",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "matricula",
+                        "label": "Matrícula",
+                        "type": "input",
+                        "disabled": true,
+                        "placeholder": "",
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "value": "DEDG202103002",
+                        "validations": [
+                            {
+                                "type": "required"
+                            },
+                            {
+                                "type": "matricula"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "birthplace",
+                        "label": "Lugar de nacimiento",
+                        "type": "input",
+                        "placeholder": "País - Ciudad - Municipio",
+                        "styles": {
+                            "width": "65%"
+                        },
+                        "value": "Mexico, Durango, Durango",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "email",
+                        "label": "Correo electrónico",
+                        "type": "email",
+                        "placeholder": "ejemplo@ejemplo.com",
+                        "styles": {
+                            "width": "40%"
+                        },
+                        "value": "jopi20101@gmail.com",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_number",
+                        "label": "Número",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "6182593051",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "mobile_back_number",
+                        "label": "Número de teléfono (Opcional)",
+                        "type": "input",
+                        "placeholder": "",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "2864154",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+            ],
+            "Datos escolares": [
+                [
+                    {
+                        "name": "id_campus",
+                        "label": "Campus",
+                        "type": "select",
+                        "placeholder": "Nombre del campus",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "id_group",
+                        "label": "Grupo",
+                        "type": "select",
+                        "placeholder": "Nombre del grupo",
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "name": "career",
+                        "label": "Carrera",
+                        "type": "select",
+                        "placeholder": "Nombre de la carrera",
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "group_chief",
+                        "label": "¿El estudiante es lider de grupo?",
+                        "type": "checkbox",
+                        "placeholder": "Nombre de la carrera",
+                        "value": "",
+                        "styles": {
+                            "width": "45%"
+                        },
+                        "options": [
+                            {
+                                "label": [
+                                    "Sí, el estudiante es lider de grupo",
+                                    "No, el estudiante no es lider de grupo"
+                                ]
+                            }
+                        ],
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    "grupos": {
+        "nameSection": "grupos",
+        "dataEndpointName": "groups",
+        "endpoint": "groups",
+        "placeholder": "Buscar por nombre o carrera",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            17,
+            30,
+            35,
+            8,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre del grupo",
+                "textAlign": "left"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "Campus",
+                "textAlign": "left"
+            },
+            {
+                "title": "Ver",
+                "textAlign": "center"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "group_name",
+            "major_name",
+            "campus_name",
+            "",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "buttonSee",
+            "button"
+        ]
+    },
+    "materias": {
+        "nameSection": "materias",
+        "dataEndpointName": "courses",
+        "endpoint": "courses",
+        "placeholder": "Buscar por nombre o clave de la materia",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            30,
+            15,
+            45,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre de la materia",
+                "textAlign": "left"
+            },
+            {
+                "title": "Clave",
+                "textAlign": "center"
+            },
+            {
+                "title": "Carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "course_name",
+            "clave",
+            "major_name",
+            ""
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "button"
+        ]
+    },
+    "carreras": {
+        "nameSection": "carreras",
+        "dataEndpointName": "majors",
+        "endpoint": "majors",
+        "placeholder": "Buscar por nombre o clave de la carrera",
+        "classNameIconAdd": "fa-plus-circle",
+        "sizesColumn": [
+            35,
+            15,
+            40,
+            10
+        ],
+        "headers": [
+            {
+                "title": "Nombre de la carrera",
+                "textAlign": "left"
+            },
+            {
+                "title": "",
+                "textAlign": "center"
+            }
+        ],
+        "campusTable": [
+            "major_name"
+        ],
+        "orderTable": [
+            "text",
+            "text",
+            "text",
+            "text",
+            "button"
+        ]
+    }
+}
