@@ -14,7 +14,7 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
         handleIsAdding()
         dispatch(feedClearActive())
     }
-
+    console.log("hola",dataSection)
     const handleSubmit = (values) => {
         console.log(values)
         dispatch(feedStartPostData(dataSection.endpoint, values))
@@ -30,7 +30,7 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                         <i className="fas fa-arrow-left"></i>
                     </button>
                 </div>
-                <p className='form__container__header__title'>Capturar nuevo estudiante</p>
+                <p className='form__container__header__title'>{`${dataSection.titleForm}`}</p>
             </div>
 
             {/* Body */}

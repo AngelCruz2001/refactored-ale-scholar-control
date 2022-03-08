@@ -142,8 +142,8 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1,
-            2,
+           20, 
+           1
         ],
         name: "feed",
         text: "Captura de datos",
@@ -180,40 +180,40 @@ export const itemsMenu = [
             },
             {
                 text: "Colaboradores",
-                icon: "fas fa-id-badge",
+                icon: "fa-solid fa-address-card",
                 css: {},
                 path: "/captura_de_datos/colaboradores",
             },
-            {
-                text: "Becas",
-                icon: "fas fa-id-badge",
-                css: {},
-                path: "/captura_de_datos/becas",
-            },
+            // {
+            //     text: "Becas",
+            //     icon: "fa-solid fa-hand-holding-dollar",
+            //     css: {},
+            //     path: "/captura_de_datos/becas",
+            // },
             {
                 text: "Campus",
-                icon: "fas fa-id-badge",
+                icon: "fa-solid fa-landmark",
                 css: {},
                 path: "/captura_de_datos/campus",
             },
             {
                 text: "Docentes",
-                icon: "fas fa-id-badge",
+                icon: "fa-solid fa-chalkboard-user",
                 css: {},
                 path: "/captura_de_datos/docentes",
             },
             {
                 text: "Cursos extracurriculares",
-                icon: "fas fa-id-badge",
+                icon: "fa-solid fa-book",
                 css: {},
                 path: "/captura_de_datos/cursos-extra",
             },
-            {
-                text: "Cursos de graduacion",
-                icon: "fas fa-id-badge",
-                css: {},
-                path: "/captura_de_datos/cursos-graduacion",
-            },
+            // {
+            //     text: "Cursos de graduacion",
+            //     icon: "fa-solid fa-award",
+            //     css: {},
+            //     path: "/captura_de_datos/cursos-graduacion",
+            // },
 
         ]
     }

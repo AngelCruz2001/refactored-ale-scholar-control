@@ -7,6 +7,7 @@
         "placeholder": "Buscar por nombre o matricula del alumno",
         "classNameIconAdd": "fa-solid fa-user-plus",
         "genderOfSection": 0,
+        "titleForm": "Capturar datos del alumno",
         "columsToSearch": [
             "student_name",
             "matricula",
@@ -416,6 +417,12 @@
                 "textAlign": "center"
             }
         ],
+        "titleForm": "Capturar datos del grupo",
+        "columsToSearch": [
+            "group_name",
+            "campus_name",
+            "major_name"
+        ],
         "campusTable": [
             "group_name",
             "major_name",
@@ -574,6 +581,11 @@
                 "textAlign": "center"
             }
         ],
+        "titleForm": "Capturar datos de materia",
+        "columsToSearch": [
+            "course_name",
+            "major_name"
+        ],
         "campusTable": [
             "course_name",
             "clave",
@@ -651,7 +663,7 @@
                         "label": "Curso requerido antes",
                         "type": "select",
                         "styles": {
-                            "width": "45%"
+                            "width": "35%"
                         },
                         "dataName": [
                             "courses",
@@ -659,14 +671,10 @@
                             "course_name"
                         ],
                         "value": "",
-                        "validations": [
-                            {
-                                "type": "required"
-                            }
-                        ],
+                        "validations": [],
                         "options": [
                             {
-                                "value": "",
+                                "value": null,
                                 "text": "Ninguno"
                             }
                         ]
@@ -676,7 +684,7 @@
                         "label": "Curso extracocurricular requerido antes",
                         "type": "select",
                         "styles": {
-                            "width": "45%"
+                            "width": "35%"
                         },
                         "dataName": [
                             "extraCurricularCourses",
@@ -684,12 +692,30 @@
                             "course_name"
                         ],
                         "value": "",
+                        "validations": [],
+                        "options": [
+                            {
+                                "value": null,
+                                "text": "Ninguno"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "credits",
+                        "label": "Créditos",
+                        "type": "input",
+                        "styles": {
+                            "width": "25%"
+                        },
+                        "value": "",
                         "validations": [
                             {
                                 "type": "required"
+                            },
+                            {
+                                "type": "number"
                             }
-                        ],
-                        "optionalDefault": null
+                        ]
                     }
                 ]
             ]
@@ -716,6 +742,10 @@
                 "title": "",
                 "textAlign": "center"
             }
+        ],
+        "titleForm": "Capturar datos de carrera",
+        "columsToSearch": [
+            "major_name"
         ],
         "campusTable": [
             "major_name",
@@ -812,6 +842,13 @@
                 "title": "",
                 "textAlign": "center"
             }
+        ],
+        "titleForm": "Capturar datos del colaborador",
+        "columsToSearch": [
+            "name",
+            "rfc",
+            "department_name",
+            "campus_name"
         ],
         "campusTable": [
             "name",
@@ -1053,6 +1090,12 @@
                 "textAlign": "center"
             }
         ],
+        "titleForm": "Capturar datos de la beca",
+        "columsToSearch": [
+            "student_name",
+            "matricula",
+            "scholarship_name"
+        ],
         "campusTable": [
             "student_name",
             "matricula",
@@ -1216,6 +1259,13 @@
                 "textAlign": "center"
             }
         ],
+        "titleForm": "Capturar datos del campus",
+        
+        "columsToSearch": [
+            "campus_name",
+            "state",
+            "municipality"
+        ],
         "campusTable": [
             "campus_name",
             "state",
@@ -1362,6 +1412,11 @@
                 "title": "",
                 "textAlign": "center"
             }
+        ],
+        "titleForm": "Capturar datos de los docentes",
+        "columsToSearch": [
+            "teacher_name",
+            "active"
         ],
         "campusTable": [
             "teacher_name",
@@ -1513,6 +1568,11 @@
                 "title": "",
                 "textAlign": "center"
             }
+        ],
+        "titleForm": "Capturar datos del curso extracurricular",
+        "columsToSearch": [
+            "course_name",
+            "major_name"
         ],
         "campusTable": [
             "course_name",
