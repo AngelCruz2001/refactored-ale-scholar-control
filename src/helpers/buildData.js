@@ -14,27 +14,22 @@ export const useBuildData = (data, dataSection, wordToSearch) => {
         endpoint,
         columsToSearch
     } = dataSection;
-    const editElement = (id) => {
-        dispatch(feedSetActive(id));
-    }
-    const deleteElement = (id) => {
-        console.log(id)
-        dispatch(feedStartDeleteData(endpoint, id));
-    }
+
+
 
 
     const dataTable = [];
     data.forEach((dataElement, index) => {
         let coincidences = [];
         const data = campusTable.map((elementName, index) => {
-            if (columsToSearch && !columsToSearch.includes(elementName)) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false);
+            if (columsToSearch && !columsToSearch.includes(elementName)) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId]);
             const coincidence = isACoincidenceSpecificWord(dataElement[elementName], wordToSearch);
             coincidences.push(coincidence)
-            if (coincidence === null) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false)
+            if (coincidence === null) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId])
 
-            if (coincidence) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, true)
+            if (coincidence) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], true)
 
-            return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false);
+            return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId]);
         })
         if (coincidences.includes(true) || wordToSearch === '') dataTable.push(data)
         else dataTable.push(null);
@@ -44,7 +39,21 @@ export const useBuildData = (data, dataSection, wordToSearch) => {
 }
 
 
-const generateElement = (typeOfElement, infoForElement, id, editElement, deleteElement, searched) => {
+const generateElement = (typeOfElement, infoForElement, id, searched = false) => {
+
+
+    const editElement = (id) => {
+        dispatch(feedSetActive(id));
+    }
+    const deleteElement = (id) => {
+        console.log(id)
+        dispatch(feedStartDeleteData(endpoint, id));
+    }
+
+    const seeElement = (id) => {
+        console.log(id)
+    }
+
     switch (typeOfElement) {
         case 'text':
             return { element: <p>{infoForElement}</p>, searched: searched }
