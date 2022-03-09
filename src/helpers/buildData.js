@@ -22,16 +22,22 @@ export const useBuildData = (data, dataSection, wordToSearch) => {
     data.forEach((dataElement, index) => {
         let coincidences = [];
         const data = campusTable.map((elementName, index) => {
-            if (columsToSearch && !columsToSearch.includes(elementName)) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId]);
+
+            if (columsToSearch && !columsToSearch.includes(elementName)) return element;
             const coincidence = isACoincidenceSpecificWord(dataElement[elementName], wordToSearch);
+
             coincidences.push(coincidence)
-            if (coincidence === null) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId])
 
-            if (coincidence) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], true)
+            const element = generateElement(orderTable[index], dataElement[elementName],
+                dataElement[nameId], coincidence, dispatch);
 
-            return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId]);
+            if (coincidence === null) return element;
+
+            return element;
         })
+
         if (coincidences.includes(true) || wordToSearch === '') dataTable.push(data)
+
         else dataTable.push(null);
     })
 
@@ -39,7 +45,7 @@ export const useBuildData = (data, dataSection, wordToSearch) => {
 }
 
 
-const generateElement = (typeOfElement, infoForElement, id, searched = false) => {
+const generateElement = (typeOfElement, infoForElement, id, searched = false, dispatch) => {
 
 
     const editElement = (id) => {
@@ -52,6 +58,11 @@ const generateElement = (typeOfElement, infoForElement, id, searched = false) =>
 
     const seeElement = (id) => {
         console.log(id)
+        // TODO: Dispath que guarde el grupo seleccionado. 
+        // Redux comparar el id del grupo con el id del grupo seleccionado para saber el grupo. 
+        // TODO: Ya teniendo el nombre del grupo, guardarlo en un active. 
+        // TODO: Renderizar el componente de los alumnos, con el grupo seleccionado como active en la busqueda.
+
     }
 
     switch (typeOfElement) {
@@ -60,7 +71,7 @@ const generateElement = (typeOfElement, infoForElement, id, searched = false) =>
         case 'button':
             return { element: <ButtonTable type={7} id={id} onClick={editElement} onClick2={deleteElement} />, searched: false }
         case 'buttonSee':
-            return { element: <ButtonTable type={0} id={id} onClick={editElement} onClick2={deleteElement} />, searched: false }
+            return { element: <ButtonTable type={0} id={id} onClick={seeElement} onClick2={deleteElement} />, searched: false }
         default:
             return { element: <p>default</p>, searched: false }
     }

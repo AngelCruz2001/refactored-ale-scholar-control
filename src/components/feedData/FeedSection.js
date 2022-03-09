@@ -7,7 +7,7 @@ import { Table } from '../ui/Table';
 import { FormContainer } from './forms/FormContainer';
 export const FeedSection = ({ dataSection }) => {
     const dispatch = useDispatch();
-    const { data, active, dataSelects, isAdding } = useSelector(state => state.feed);
+    const { data, active, dataSelects, isAdding} = useSelector(state => state.feed);
 
     const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' });
     const dataTable = useBuildData(data, dataSection, valueSearchFilter.searchWord);
@@ -36,7 +36,7 @@ export const FeedSection = ({ dataSection }) => {
             handleIsAdding={handleIsAdding}
             dataForm={dataSection.form}
             active={active}
-            dataSelects={dataSelects} 
+            dataSelects={dataSelects}
         />
     );
 
