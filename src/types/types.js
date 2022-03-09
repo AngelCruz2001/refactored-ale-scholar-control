@@ -84,6 +84,7 @@ export const types = {
     feedFinishLoadingSelect: '[feed] Finish loading selects',
     feedClearActive: '[feed] Clear active name id',
     feedSetIsAdding: '[feed] Set is adding',
+    feedPost: '[feed] Post add data',
 }
 
 export const typesExpenses = [

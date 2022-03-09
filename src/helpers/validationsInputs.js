@@ -25,6 +25,7 @@ export const validationsInputs = (dataForm, active) => {
                                 'phone': Yup.string().min(10, 'Teléfono no válido'),
                                 'timeTable': Yup.array().required('Debe seleccionar al menos un día.').min(1, ''),
                                 'rfc': Yup.string().min(13, 'Introduzca 13 caracteres.').matches(typesRegexInputs.rfc, 'Rfc no válido'),
+                                'clave': Yup.string().min(5, 'Introduzca 5 caracteres.'),
                             }
                             if (yupsSchema[rule.type]) {
                                 schema = !schema ? yupsSchema[rule.type] : schema.concat(yupsSchema[rule.type]);

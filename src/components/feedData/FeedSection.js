@@ -43,11 +43,11 @@ export const FeedSection = ({ dataSection }) => {
     return (
         <>
             <div className='feed__headers'>
-                {/* <Searchbar
+                <Searchbar
                     placeholder={dataSection.placeholder}
                     setValueSearchFilter={setValueSearchFilter}
                     searchWord={valueSearchFilter.searchWord}
-                /> */}
+                />
                 <button className='btn btn__add feed__headers__addButton' onClick={handleIsAdding}>
                     <i className={`fas ${dataSection.classNameIconAdd}`}></i>
                     <span>Agregar {`${dataSection.genderOfSection ? 'nueva' : 'nuevo'}`}</span>

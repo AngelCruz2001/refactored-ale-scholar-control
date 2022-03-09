@@ -61,7 +61,11 @@ export const feedReducer = (state = initialState, action) => {
                 ...state,
                 isAdding: action.payload
             }
-
+        case types.feedPost:
+            return {
+                ...state,
+                data: [...state.data, action.payload]
+            }
         default:
             return state;
     }

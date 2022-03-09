@@ -25,19 +25,22 @@ export const useBuildData = (data, dataSection, wordToSearch) => {
 
     const dataTable = [];
     data.forEach((dataElement, index) => {
-        dataTable.push(campusTable.map((elementName, index) => {
+        let coincidences = [];
+        const data = campusTable.map((elementName, index) => {
             if (columsToSearch && !columsToSearch.includes(elementName)) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false);
             const coincidence = isACoincidenceSpecificWord(dataElement[elementName], wordToSearch);
+            coincidences.push(coincidence)
             if (coincidence === null) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false)
 
             if (coincidence) return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, true)
 
             return generateElement(orderTable[index], dataElement[elementName], dataElement[nameId], editElement, deleteElement, false);
-        }).filter(element => element !== null)
-        )
+        })
+        if (coincidences.includes(true) || wordToSearch === '') dataTable.push(data)
+        else dataTable.push(null);
     })
 
-    return dataTable;
+    return dataTable.filter(data => data !== null);
 }
 
 

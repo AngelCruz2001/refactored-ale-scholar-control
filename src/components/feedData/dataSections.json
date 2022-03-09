@@ -253,13 +253,18 @@
                 [
                     {
                         "name": "email",
-                        "label": "Correo electrónico (opcional)",
+                        "label": "Correo electrónico",
                         "type": "email",
                         "placeholder": "ejemplo@ejemplo.com",
                         "styles": {
                             "width": "40%"
                         },
-                        "value": ""
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "required"
+                            }
+                        ]
                     },
                     {
                         "name": "mobile_number",
@@ -363,7 +368,7 @@
                         "label": "¿El estudiante es lider de grupo?",
                         "type": "checkbox",
                         "placeholder": "Nombre de la carrera",
-                        "value": "",
+                        "value": false,
                         "styles": {
                             "width": "45%"
                         },
@@ -646,6 +651,7 @@
                         "name": "clave",
                         "label": "Clave",
                         "type": "input",
+                        "maxlength": 5,
                         "styles": {
                             "width": "45%"
                         },
@@ -810,10 +816,6 @@
         "genderOfSection": 1,
         "placeholder": "Buscar por nombre o clave de la carrera",
         "classNameIconAdd": "fa-plus-circle",
-        "formsSelectsDataEndpoint": [
-            "departments",
-            "campus"
-        ],
         "sizesColumn": [
             25,
             25,
@@ -863,6 +865,10 @@
             "text",
             "text",
             "button"
+        ],
+        "formsSelectsDataEndpoint": [
+            "departments",
+            "campus"
         ],
         "form": {
             "Datos personales": [
@@ -1110,6 +1116,10 @@
             "text",
             "button"
         ],
+        "formsSelectsDataEndpoint": [
+            "departments",
+            "campus"
+        ],
         "form": {
             "Datos de la institución": [
                 [
@@ -1260,7 +1270,6 @@
             }
         ],
         "titleForm": "Capturar datos del campus",
-        
         "columsToSearch": [
             "campus_name",
             "state",
@@ -1429,6 +1438,9 @@
             "text",
             "text",
             "button"
+        ],
+        "formsSelectsDataEndpoint": [
+            "campus"
         ],
         "form": {
             "Datos personales": [
@@ -1792,7 +1804,7 @@
                                 "type": "required"
                             },
                             {
-                                "type": "cost"
+                                "type": "number"
                             }
                         ]
                     },

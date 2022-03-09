@@ -8,7 +8,7 @@ export const feedStartGetData = (endpoint, name, nameId) => {
         dispatch(uiStartLoading());
         dispatch(feedSetActiveNameId(nameId));
         try {
-            const res = await fetchConToken(endpoint + "?timeTable=true")
+            const res = await fetchConToken(endpoint)
             const body = await res.json()
             if (body.ok) {
                 // console.log(body)
@@ -104,7 +104,7 @@ export const feedStartPostData = (endpoint, data) => {
                     text: 'El registro se ha guardado correctamente',
                     icon: 'success',
                 })
-
+                dispatch(feedPost(data))
                 dispatch(feedSetIsAdding(false))
             } else {
                 console.log(body)
@@ -160,4 +160,9 @@ const feedStartLoadingSelect = () => ({
 })
 const feedFinishLoadingSelects = () => ({
     type: types.feedFinishLoadingSelect
+})
+
+const feedPost = (data) => ({
+    type: types.feedPost,
+    payload: data
 })
