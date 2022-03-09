@@ -3,7 +3,7 @@
         "nameSection": "alumnos",
         "dataEndpointName": "students",
         "endpoint": "students",
-        "nameId": "matricula",
+        "nameId": "id_student",
         "placeholder": "Buscar por nombre o matricula del alumno",
         "classNameIconAdd": "fa-solid fa-user-plus",
         "genderOfSection": 0,

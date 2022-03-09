@@ -14,7 +14,7 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
         handleIsAdding()
         dispatch(feedClearActive())
     }
-    console.log("hola",dataSection)
+    console.log("hola", dataSection)
     const handleSubmit = (values) => {
         console.log(values)
         dispatch(feedStartPostData(dataSection.endpoint, values))
@@ -83,8 +83,8 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                                     {
                                         index === Object.values(dataForm).length - 1 &&
                                         <div className='btnFeedContainer'>
-                                            <button className='btn btnCleanFeed' onClick={handleReset} >Reiniciar</button>
                                             <button className='btn btnSubmitFeed' type='submit'>Guardar</button>
+                                            <button className='btn btnCleanFeed' onClick={handleReset} >Reiniciar</button>
                                         </div>
                                     }
 
