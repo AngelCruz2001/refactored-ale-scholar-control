@@ -75,6 +75,7 @@ export const types = {
     paySetPayments: '[pay] Set payments',
 
     feedGetData: '[feed] Get data',
+    feedSetActiveNameById: '[feed] SetActiveNameById',
     feedSetActive: '[feed] Set active',
     feedSetActiveNameId: '[feed] Set active name id',
     feedDeleteData: '[feed] Delete data',

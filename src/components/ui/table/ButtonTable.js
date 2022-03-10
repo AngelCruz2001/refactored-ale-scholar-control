@@ -20,7 +20,6 @@ export const ButtonTable = ({
     title2 = '',
     id,
     onClick2,
-    func
 }) => {
 
     const buttonGenerator = () => {
@@ -73,7 +72,7 @@ export const ButtonTable = ({
 
             case 9:
                 return (
-                    <button className='btn btnTable edit btnBlue' onClick={() => func(id)} > {title} <i className="fa-solid fa-circle-chevron-right"></i></button>
+                    <button className='btn btnTable edit btnBlue' onClick={() => onClick(id)} > {title} <i className="fa-solid fa-circle-chevron-right"></i></button>
                 )
             default:
                 return (

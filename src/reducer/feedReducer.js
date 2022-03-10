@@ -5,6 +5,7 @@ const initialState = {
     active: null,
     activeIdName: '',
     dataSelects: {},
+    activeGroup: '',
     selectsLoading: false,
 }
 
@@ -20,6 +21,12 @@ export const feedReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeIdName: action.payload
+            }
+
+        case types.feedSetActiveNameById:
+            return {
+                ...state,
+                activeGroup: state.data.find(register => register.id_group === action.payload).group_name
             }
 
         case types.feedDeleteData:

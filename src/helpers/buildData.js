@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
-import { feedSetActive, feedStartDeleteData } from "../actions/feed";
+import { feedSetActive, feedSetActiveGroup, feedStartDeleteData } from "../actions/feed";
 import { ButtonTable } from "../components/ui/table/ButtonTable";
 import { isACoincidenceSearchTuneado, isACoincidenceSpecificWord } from "./isACoincidence";
+import { useHistory } from "react-router-dom";
 
 export const useBuildData = (data, dataSection, wordToSearch) => {
+    let history = useHistory();
 
     const dispatch = useDispatch();
 
@@ -23,13 +25,14 @@ export const useBuildData = (data, dataSection, wordToSearch) => {
         let coincidences = [];
         const data = campusTable.map((elementName, index) => {
 
-            if (columsToSearch && !columsToSearch.includes(elementName)) return element;
             const coincidence = isACoincidenceSpecificWord(dataElement[elementName], wordToSearch);
 
             coincidences.push(coincidence)
 
             const element = generateElement(orderTable[index], dataElement[elementName],
-                dataElement[nameId], coincidence, dispatch);
+                dataElement[nameId], coincidence, dispatch, endpoint, history);
+
+            if (columsToSearch && !columsToSearch.includes(elementName)) return element;
 
             if (coincidence === null) return element;
 
@@ -45,7 +48,7 @@ export const useBuildData = (data, dataSection, wordToSearch) => {
 }
 
 
-const generateElement = (typeOfElement, infoForElement, id, searched = false, dispatch) => {
+const generateElement = (typeOfElement, infoForElement, id, searched = false, dispatch, endpoint, history) => {
 
 
     const editElement = (id) => {
@@ -57,12 +60,8 @@ const generateElement = (typeOfElement, infoForElement, id, searched = false, di
     }
 
     const seeElement = (id) => {
-        console.log(id)
-        // TODO: Dispath que guarde el grupo seleccionado. 
-        // Redux comparar el id del grupo con el id del grupo seleccionado para saber el grupo. 
-        // TODO: Ya teniendo el nombre del grupo, guardarlo en un active. 
-        // TODO: Renderizar el componente de los alumnos, con el grupo seleccionado como active en la busqueda.
-
+        dispatch(feedSetActiveGroup(id))
+        history.push("/captura_de_datos/alumnos");
     }
 
     switch (typeOfElement) {
@@ -71,7 +70,7 @@ const generateElement = (typeOfElement, infoForElement, id, searched = false, di
         case 'button':
             return { element: <ButtonTable type={7} id={id} onClick={editElement} onClick2={deleteElement} />, searched: false }
         case 'buttonSee':
-            return { element: <ButtonTable type={0} id={id} onClick={seeElement} onClick2={deleteElement} />, searched: false }
+            return { element: <ButtonTable type={8} id={id} onClick={seeElement} onClick2={deleteElement} />, searched: false }
         default:
             return { element: <p>default</p>, searched: false }
     }

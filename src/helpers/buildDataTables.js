@@ -43,7 +43,7 @@ export const buildDataGrades = (
 
 
 export const buildDataStudents = (
-    
+    id,
     student_name,
     matricula,
     major_name,

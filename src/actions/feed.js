@@ -122,6 +122,12 @@ export const feedStartPostData = (endpoint, data) => {
 }
 
 
+export const feedSetActiveGroup = (id) => ({
+    type: types.feedSetActiveNameById,
+    payload: id
+})
+
+
 export const feedSetActive = (id) => ({
     type: types.feedSetActive,
     payload: id
