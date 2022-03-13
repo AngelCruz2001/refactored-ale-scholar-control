@@ -30,6 +30,9 @@ export const feedStartGetData = (endpoint, name, nameId) => {
 
     }
 }
+
+
+
 export const feedStartDeleteData = (endpoint, id) => {
     return async (dispatch) => {
         dispatch(uiStartLoading());
@@ -93,11 +96,12 @@ export const feedStartPostData = (endpoint, data) => {
     return async (dispatch) => {
         try {
             // data["group_chief"] = 0;
+           
             data['edu_level'] && (data['edu_level'] = parseInt(data['edu_level']))
             data['group_chief'] && (data['group_chief'] = data['group_chief'] ? 1 : 0)
             const res = await fetchConToken(endpoint, data, 'POST')
             const body = await res.json()
-
+            
             if (body.ok) {
                 Swal.fire({
                     title: '¡Guardado!',
@@ -120,6 +124,44 @@ export const feedStartPostData = (endpoint, data) => {
         }
     }
 }
+
+
+
+export const feedStartEditData = (endpoint, data) => {
+    return async (dispatch,getState) => {
+
+        const { feed } = getState();
+
+       
+        try {
+            data['edu_level'] && (data['edu_level'] = parseInt(data['edu_level']))
+            data['group_chief'] && (data['group_chief'] = data['group_chief'] ? 1 : 0)
+            const res = await fetchConToken(`${endpoint}/${feed.active[feed.activeIdName]}`, data, 'PUT')
+            const body = await res.json()
+
+            if (body.ok) {
+                Swal.fire({
+                    title: '¡Guardado!',
+                    text: 'El registro se ha actualizado correctamente',
+                    icon: 'success',
+                })
+                dispatch(feedPut(data))
+                dispatch(feedSetIsAdding(false))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+    }
+}
+
 
 
 export const feedSetActiveGroup = (id) => ({
@@ -166,6 +208,11 @@ const feedStartLoadingSelect = () => ({
 })
 const feedFinishLoadingSelects = () => ({
     type: types.feedFinishLoadingSelect
+})
+
+const feedPut = (data) => ({
+    type: types.feedPut,
+    payload:data
 })
 
 const feedPost = (data) => ({

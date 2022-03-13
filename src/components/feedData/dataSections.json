@@ -450,7 +450,7 @@
             "Datos escolares": [
                 [
                     {
-                        "name": "name_group",
+                        "name": "group_name",
                         "label": "Nombre del grupo",
                         "type": "input",
                         "styles": {
@@ -1583,11 +1583,11 @@
         ],
         "titleForm": "Capturar datos del curso extracurricular",
         "columsToSearch": [
-            "course_name",
+            "ext_cou_name",
             "major_name"
         ],
         "campusTable": [
-            "course_name",
+            "ext_cou_name",
             "major_name",
             ""
         ],

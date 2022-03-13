@@ -77,6 +77,7 @@ export const types = {
     feedGetData: '[feed] Get data',
     feedSetActiveNameById: '[feed] SetActiveNameById',
     feedSetActive: '[feed] Set active',
+    feedPut: '[feed] Put Edit data',
     feedSetActiveNameId: '[feed] Set active name id',
     feedDeleteData: '[feed] Delete data',
     feedClearActive: '[feed] Clear active',

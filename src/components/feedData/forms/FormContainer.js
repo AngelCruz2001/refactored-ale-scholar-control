@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik'
 import { Input } from '../../ui/Input'
 // import { MySelect } from '../../../helpers/MySelect';
 import { validationsInputs } from '../../../helpers/validationsInputs';
-import { feedClearActive, feedStartPostData } from '../../../actions/feed';
+import { feedClearActive, feedStartEditData, feedStartPostData } from '../../../actions/feed';
 import { useDispatch } from 'react-redux';
 
 export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, dataSection }) => {
@@ -17,7 +17,13 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
     console.log("hola", dataSection)
     const handleSubmit = (values) => {
         console.log(values)
-        dispatch(feedStartPostData(dataSection.endpoint, values))
+        if(active) {
+            dispatch(feedStartEditData(dataSection.endpoint, values))
+        } else {
+
+            dispatch(feedStartPostData(dataSection.endpoint, values))
+        }
+
     }
     return (
         //General Container

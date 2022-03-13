@@ -73,6 +73,14 @@ export const feedReducer = (state = initialState, action) => {
                 ...state,
                 data: [...state.data, action.payload]
             }
+        case types.feedPut:
+            return {
+                ...state,
+                data: state.data.map((item, i) => (
+                    item[state.activeIdName] === action.payload[state.activeIdName] ?
+                        action.payload : item
+                ))
+            }
         default:
             return state;
     }
