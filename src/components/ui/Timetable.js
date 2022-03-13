@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 const days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 const timesOriginal = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'
     , '16:00', '17:00', '18:00', '19:00', '20:00'];
+const timeTable = Array(7).fill({}).map((_, i) => ({ day: i, selected: false, dayName: days[i] }));
 
 
 export const Timetable = ({ field, form }) => {
-    const timeTable = Array(7).fill({}).map((_, i) => ({ day: i, selected: false, dayName: days[i] }));
 
     const [times, setTimes] = useState(timeTable);
     console.log(times)
@@ -25,8 +25,7 @@ export const Timetable = ({ field, form }) => {
     }, []);
 
     const setDataToform = () => {
-        form.setFieldValue(field.name, times.filter(time => time.selected === true)
-            .map(time => ({ day: time.day, start_hour: time.start_hour, finish_hour: time.finish_hour })))
+        form.setFieldValue(field.name, times.map(time => ({ day: time.day, start_hour: time.start_hour, finish_hour: time.finish_hour })).filter(time => time.selected === true))
     }
     const handleDayClicked = (index) => {
         setTimes(prev => {
