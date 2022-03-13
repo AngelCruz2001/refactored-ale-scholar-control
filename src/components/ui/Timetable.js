@@ -8,8 +8,9 @@ const timesOriginal = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15
 export const Timetable = ({ field, form }) => {
     const timeTable = Array(7).fill({}).map((_, i) => ({ day: i, selected: false, dayName: days[i] }));
 
-    const [times, setTimes] = useState(timeTable)
-
+    const [times, setTimes] = useState(timeTable);
+    console.log(times)
+    console.log(field)
     useEffect(() => {
         if (field.value) {
             const newTimes = [...times]
@@ -21,7 +22,7 @@ export const Timetable = ({ field, form }) => {
             })
             setTimes(newTimes)
         }
-    }, [])
+    }, []);
 
     const setDataToform = () => {
         form.setFieldValue(field.name, times.filter(time => time.selected === true)

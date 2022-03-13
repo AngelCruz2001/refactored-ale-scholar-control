@@ -6,7 +6,7 @@ import { validationsInputs } from '../../../helpers/validationsInputs';
 import { feedClearActive, feedStartEditData, feedStartPostData } from '../../../actions/feed';
 import { useDispatch } from 'react-redux';
 
-export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, dataSection }) => {
+export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, dataSection, activeIdName }) => {
 
     const [initialValues, validationSchema] = validationsInputs(dataForm, active);
     const dispatch = useDispatch();
@@ -17,10 +17,9 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
     console.log("hola", dataSection)
     const handleSubmit = (values) => {
         console.log(values)
-        if(active) {
+        if (active) {
             dispatch(feedStartEditData(dataSection.endpoint, values))
         } else {
-
             dispatch(feedStartPostData(dataSection.endpoint, values))
         }
 
@@ -76,9 +75,11 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                                         <div key={index} className='form__container__body__section__row'>
                                             {row.map((item, index) => (
                                                 <Input
+                                                    activeIdName={activeIdName}
                                                     key={item.name}
                                                     values={values}
                                                     dataSelects={item.dataName ? dataSelects[item.dataName[0]] : null}
+                                                    active={active}
                                                     setFieldValue={setFieldValue}
                                                     {...item}
                                                 />

@@ -7,7 +7,7 @@ import { Table } from '../ui/Table';
 import { FormContainer } from './forms/FormContainer';
 export const FeedSection = ({ dataSection }) => {
     const dispatch = useDispatch();
-    const { data, active, dataSelects, isAdding, activeGroup } = useSelector(state => state.feed);
+    const { data, active, dataSelects, isAdding, activeGroup, activeIdName } = useSelector(state => state.feed);
 
     const [valueSearchFilter, setValueSearchFilter] = useState({
         searchWord: (dataSection.nameSection === 'alumnos') ? activeGroup : '',
@@ -39,6 +39,7 @@ export const FeedSection = ({ dataSection }) => {
             dataForm={dataSection.form}
             active={active}
             dataSelects={dataSelects}
+            activeIdName={activeIdName}
         />
     );
 

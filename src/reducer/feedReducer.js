@@ -80,6 +80,7 @@ export const feedReducer = (state = initialState, action) => {
                     item[state.activeIdName] === action.payload[state.activeIdName] ?
                         action.payload : item
                 ))
+
             }
         default:
             return state;
