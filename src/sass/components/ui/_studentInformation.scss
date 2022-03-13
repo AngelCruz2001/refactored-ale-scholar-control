@@ -1,11 +1,10 @@
 .stuInfo {
-    margin-top: 1em;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 
-    
     &__container {
         display: flex;
         align-items: center;
@@ -36,16 +35,13 @@
                 &__info {
                     text-align: inherit;
                     font-weight: 500;
-                    padding-left: 1em;
+                    // padding-left: 1em;
                     width: 77%;
                 }
             }
         }
     }
 }
-
-
-
 
 // &studentInformation {
 //     display: flex;

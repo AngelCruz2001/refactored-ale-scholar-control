@@ -1,412 +1,104 @@
-.make__ {
+.makeAPay {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    height: 89%;
-    width: 87%;
-    // font-family: "Philosopher", sans-serif !important;
-    position: relative;
-    &date {
-        height: 8%;
-    }
+    height: 100%;
+    width: 100%;
 
-    &idSection {
-        margin-top: 1em;
-    }
-
-    &container {
-        display: flex;
-        height: 92%;
+    &__headers {
         width: 100%;
-        justify-content: space-between;
     }
 
-    &subContainerLeft,
-    &subContainerRight {
+    &__body {
+        width: 100%;
+        flex: 1;
+        margin-top: 3rem;
         display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    &subContainerLeft {
-        width: 50%;
         justify-content: space-between;
-    }
-
-    &subContainerRight {
-        width: 42.5%;
-        justify-content: space-between;
-        position: relative;
-
-    }
-
-    &containerInput {
-        display: flex;
-        flex-direction: column;
-        //left
-        justify-content: space-between;
-        // height: 12.5%;
-        // margin-top: 1em;
-
-        input {
-            border: 1px solid $gray-bars;
-            border-radius: 7px;
-            height: 41.5%;
-            padding: 8.9px 5px;
-            width: 60%;
-            margin-top: .2em;
-            font-size: calc(6.7px + 0.5vw);
-        }
-    }
-
-    &titleSection {
-        font-size: calc(8.5px + 0.5vw);
-        font-weight: 600;
-        margin-bottom: 0.3rem;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin-left: 1%;
-
-    }
-    &subTitleSection {
-        font-size: calc(5px + 0.5vw);
-        font-weight: 600;
-        // height: 7.5%;
-    }
-
-
-    &conceptPay {
-        display: flex;
-        flex-direction: column;
-        height: 33.5%;
-        justify-content: space-between;
-
-        &-way {
-            height: 35.2%;
+        &__container {
+            width: 45%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
 
-        &-data {
-            display: flex;
-            flex-direction: column;
-            height: 37.5%;
-            justify-content: space-evenly;
-
-            &-input {
-                height: 29%;
+            .matri__container {
+                max-width: 33rem;
             }
 
-            input {
-                border: none;
-                background-color: $blue-sky3;
-                text-transform: uppercase;
-                border-radius: 7px;
-                padding: 0.55rem 0.4rem;
-                width: calc(100% - 0.8rem);
-                font-size: calc(6.7px + 0.5vw);
-                font-weight: 600;
-                pointer-events: none;
-            }
-        }
-    }
+            &__studentData {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 23rem;
 
-    &payMethod {
-        display: flex;
-        justify-content: space-around;
-        flex-direction: column;
-        height: 14%;
-       
-
-        // &container {
-        //     padding-top: 0.5em;
-        // }
-        &__items {
-            height: 51% !important;
-        }
-    }
-
-    //Right Part
-    &card {
-        
-        h5 {
-            font-size: calc(7.7px + 0.5vw);
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-        p {
-            opacity: 0.6;
-            font-size: calc(8.7px + 0.5vw);
-        }
-    }
-    &account {
-        position: relative;
-        display: flex;
-        height: 7.5%;
-        
-
-        select {
-            -moz-appearance: none; /* Firefox */
-            -webkit-appearance: none; /* Safari and Chrome */
-            appearance: none;
-            border: 1px solid $gray-changePage;
-            border-radius: 5px;
-            padding: 0.2rem;
-            height: 100%;
-            margin: 0;
-            font-weight: bold;
-            color: $color-black;
-            font-family: "Segoe UI", sans-serif !important;
-        }
-        .iconContainer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            top: 0;
-            pointer-events: none;
-            i {
-                margin-right: 0.5rem;
-                font-size: calc(5px + 0.5vw);
-                color: $gray-changePage;
-            }
-        }
-    }
-    &containerListConcepts {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        width: 110%;
-        height: 80%;
-        pointer-events: all;
-        background-color: #7ca5ce;
-        justify-content: center;
-        bottom: 0;
-        left: -4%;
-        border-radius: 7px;
-        &__show {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            height: 90%;
-            width: 90%;
-
-            &__form {
-                height: 12% !important;
-                form {
-                    width: 100% !important;
+                .stuInfo {
+                    margin: 0 !important;
                 }
             }
-            &__data {
-                height: 80%;
-                margin-top: 0.4rem;
-                background-color: $white;
-                border: 1px solid $filterPaid-back;
-                border-radius: 5px;
-                padding: 0.3rem;
-                overflow: auto;
 
-                &::-webkit-scrollbar {
-                    width: 4px;
+            &__concept {
+                height: auto;
+
+                &__buttons {
+                    display: flex;
+                    justify-content: space-between;
+
+                    &.method {
+                        justify-content: space-between;
+                        button {
+                            flex: 20%;
+                            margin-right: calc(40% / 3);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
                 }
+            }
 
-                &::-webkit-scrollbar-thumb {
-                    background: #ccc;
-                    border-radius: 2px;
-                }
-
-                &::-webkit-scrollbar-thumb:active {
-                    background-color: #999999;
-                }
-
-                &::-webkit-scrollbar-thumb:hover {
-                    background: #b3b3b3;
-                }
-
-                /* Estilos track de scroll */
-                &::-webkit-scrollbar-track {
-                    background: transparent;
-                }
-
-                p {
-                    padding: 2px;
-                    border: 1px solid transparent;
-                    cursor: pointer;
-                    font-size: 0.85rem;
+            &__conceptToPay {
+                display: flex;
+                flex-direction: column;
+                span {
+                    display: flex;
+                    background-color: $blue-sky3;
+                    padding: 1rem;
+                    font-size: 1.8rem;
+                    border-radius: 10px;
                     text-transform: uppercase;
-                }
-                p:hover {
-                    border: 1px solid #7ca5ce;
-                    border-radius: 5px;
+                    margin-top: 0.5rem;
                 }
             }
-        }
-    }
-
-    &total {
-        display: flex;
-        height: 7.6%;
-        
-
-        &-pay {
-            font-size: calc(7.7px + 0.5vw);
-        }
-
-        &-quantity {
-            border: 1px solid $color-black;
-            width: 30%;
-            height: 90%;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: calc(9.7px + 0.5vw);
-            font-weight: 600;
-
-            &::before,
-            &:after {
-                content: "";
-                width: 0px;
-                height: 0px;
-                position: absolute;
-                left: -16px;
-                border: 8px solid transparent;
-                border-right-color: black;
-            }
-
-            &:after {
-                border-right: 8px solid #fff;
-                left: -15px;
-             
-            }
-        }
-    }
-
-    &formMoney {
-        display: grid;
-        height: 30%;
-        div {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            justify-content: space-around;
-            input {
-                margin-bottom: 0.6rem;
-                width: 97%;
-                height: 38%;
-            }
-        }
-    }
-
-    &notAllowed {
-        cursor: not-allowed;
-    }
-
-    &submit {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-
-        &-button {
-            width: 30%;
-            padding: 0.7em 0;
-            cursor: pointer;
-            font-size: calc(7.7px + 0.5vw);
         }
     }
 }
 
-//Generals
+.payTitle {
+    font-size: 2rem;
+    font-weight: bold;
+}
 
-.btn-payContainer {
+.btn-makeAPay {
+    padding: 1rem;
+    background-color: $gray-border;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px #00000017;
+    background-color: darken($color: $white, $amount: 10);
+    font-size: 1.8rem;
     display: flex;
     justify-content: space-between;
-    height: 54%;
+    margin-top: 1rem;
 
-    .btn-payElement:disabled {
-        cursor: not-allowed;
-        background-color: $filterPaid-back;
-        opacity: 1;
-    }
-    .btn-payElement {
+    i {
         display: flex;
-        font-size: calc(6.7px + 0.5vw);
         align-items: center;
         justify-content: center;
-        background-color: $filterPaid-back;
-        border-radius: 10px;
-        cursor: pointer;
-        padding: 1.3em 1.5em;
-
-        div {
-            margin-left: 0.3rem;
-            i {
-                font-size: calc(5px + 0.5vw);
-                color: $gray-changePage;
-            }
-        }
-        a {
-            margin-left: 0.3rem;
-            i {
-                font-size: calc(2px + 0.5vw);
-                color: $gray-changePage;
-            }
-        }
-
-        &.selected {
-            background-color: $yellow-radius;
-        }
-    }
-}
-
-.btn-blue {
-    &.getPay {
-        padding: 0 1.5em;
-        background-color: $blue-btn-text;
-        border: none;
-        color: $white;
-        border-radius: 9px;
-        margin-right: 2rem;
-    }
-    &.submitPay {
-        background-color: $blue-btn-text;
-        border: none;
-        color: $white;
-        border-radius: 8px;
-    }
-}
-
-.dataPay__grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    align-items: center;
-
-    &-header {
-        font-weight: bold !important;
-        place-self: center;
-        font-size: calc(6.7px + 0.5vw);
-    }
-
-    &-item {
-        // font-weight: bold !important;
-        grid-column: span 4;
-        text-align: initial;
-    }
-}
-
-/* UI */
-.ui__ {
-    &disabledEffectBtn {
-        background-color: $blue-button !important;
-        cursor: not-allowed !important;
-    }
-
-    &disabledEffectInfo-title {
-        color: $gray-disabled-title !important;
-    }
-    &disabledEffectInfo-data {
-        background-color: $gray-disabled !important;
+        margin: auto;
+        color: darken($color: $white, $amount: 45);
+        margin-left: 1rem;
     }
 }

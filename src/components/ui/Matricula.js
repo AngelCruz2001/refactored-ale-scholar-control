@@ -9,7 +9,7 @@ export const Matricula = ({
     payment
 }) => {
     const dispatch = useDispatch()
-    const {matricula} = useSelector(state => state.student)
+    const { matricula } = useSelector(state => state.student)
     useEffect(() => {
         setComponentMatricula(matricula)
     }, [matricula])
