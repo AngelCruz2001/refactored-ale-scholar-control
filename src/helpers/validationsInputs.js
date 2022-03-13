@@ -29,7 +29,7 @@ export const validationsInputs = (dataForm, active) => {
                                         day: Yup.number(),
                                         start_hour: Yup.string('Johan no le sabe 1'),
                                         finish_hour: Yup.string('Johan no le sabe 2'),
-                                    }, 'Johan no le sabe 3')
+                                    }, 'asdfasdf')
                                 ).required('Introduzca los datos correspondientes.'),
                                 'rfc': Yup.string().min(13, 'Introduzca 13 caracteres.').matches(typesRegexInputs.rfc, 'Rfc no válido'),
                                 'clave': Yup.string().min(5, 'Introduzca 5 caracteres.'),

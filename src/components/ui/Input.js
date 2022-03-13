@@ -7,9 +7,6 @@ import dataStates from '../../helpers/resources/dataStates.json';
 export const Input = ({ label, styles, values, dataSelects, setFieldValue, active, activeIdName, ...props }) => {
 
     const [field, meta] = useField(props);
-
-    if (props.type === 'timetable') console.log("asdf", meta.value);
-    console.log(meta.error);
     return (
         <div
             className={`form__container__body__section__row__inputContainer ${['radio', 'checkbox'].includes(props.type) ? 'radioContainer' : ''} ${(meta.touched && meta.error ? 'error' : '')}`}
@@ -104,13 +101,12 @@ export const Input = ({ label, styles, values, dataSelects, setFieldValue, activ
             }
             {
                 props.type === 'timetable' && <>
-                    <Field name={props.name} component={Timetable} />
-                    {meta.error && <span>{meta.error[0]['finish_hour']}</span>}
+                    <Field name={props.name} component={Timetable} meta={meta} />
                 </>
             }
 
 
-            {  props.type !== 'timetable' && meta.touched && meta.error && <span>{meta.error}</span>}
+            {props.type !== 'timetable' && meta.touched && meta.error && <span>{meta.error}</span>}
         </div >
     )
 }
