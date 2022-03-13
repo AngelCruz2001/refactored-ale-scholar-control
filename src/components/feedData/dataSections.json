@@ -488,12 +488,12 @@
                         "name": "id_campus",
                         "label": "Campus",
                         "type": "select",
-                        "placeholder": "Nombre del campus",
                         "dataName": [
                             "campus",
                             "id_campus",
                             "campus_name"
                         ],
+                        "placeholder": "Nombre del campus",
                         "styles": {
                             "width": "45%"
                         },

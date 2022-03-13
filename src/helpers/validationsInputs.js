@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { typesRegex, typesRegexInputs } from '../types/typesValidators';
 
+// 0: {day: 0, start_hour: '13:00', finish_hour: '19:00'}
 export const validationsInputs = (dataForm, active) => {
     const initialValues = {};
     const requiredFields = {};
@@ -23,7 +24,13 @@ export const validationsInputs = (dataForm, active) => {
                                 'matricula': Yup.string().min(13, 'Introduzca 13 caracteres.').matches(typesRegex.matricula, 'Matricula invalida'),
                                 'curp': Yup.string().min(18, 'Introduzca 18 caracteres.').matches(typesRegexInputs.curp, 'Curp no válida'),
                                 'phone': Yup.string().min(10, 'Teléfono no válido'),
-                                'timeTable': Yup.array().required('Debe seleccionar al menos un día.').min(1, ''),
+                                'timeTable': Yup.array().of(
+                                    Yup.object({
+                                        day: Yup.number(),
+                                        start_hour: Yup.string('Johan no le sabe 1'),
+                                        finish_hour: Yup.string('Johan no le sabe 2'),
+                                    }, 'Johan no le sabe 3')
+                                ).required('Introduzca los datos correspondientes.'),
                                 'rfc': Yup.string().min(13, 'Introduzca 13 caracteres.').matches(typesRegexInputs.rfc, 'Rfc no válido'),
                                 'clave': Yup.string().min(5, 'Introduzca 5 caracteres.'),
                             }

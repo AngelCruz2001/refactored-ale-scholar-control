@@ -14,9 +14,8 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
         handleIsAdding()
         dispatch(feedClearActive())
     }
-    console.log("hola", dataSection)
     const handleSubmit = (values) => {
-        console.log(values)
+        console.log("🚀 ~ file: FormContainer.js ~ line 19 ~ handleSubmit ~ values", values)
         if (active) {
             dispatch(feedStartEditData(dataSection.endpoint, values))
         } else {
@@ -46,7 +45,6 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                     enableReinitialize={true}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
-
                 >
 
                     {({ handleReset, values, setFieldValue }) => (

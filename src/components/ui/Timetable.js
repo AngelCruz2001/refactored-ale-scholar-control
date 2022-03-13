@@ -9,8 +9,7 @@ const timeTable = Array(7).fill({}).map((_, i) => ({ day: i, selected: false, da
 export const Timetable = ({ field, form }) => {
 
     const [times, setTimes] = useState(timeTable);
-    console.log(times)
-    console.log(field)
+
     useEffect(() => {
         if (field.value) {
             const newTimes = [...times]
@@ -24,25 +23,30 @@ export const Timetable = ({ field, form }) => {
         }
     }, []);
 
+    useEffect(() => {
+        setDataToform()
+    }, [times]);
+
     const setDataToform = () => {
-        form.setFieldValue(field.name, times.map(time => ({ day: time.day, start_hour: time.start_hour, finish_hour: time.finish_hour })).filter(time => time.selected === true))
+        const currentTime = times.filter(time => time.selected === true).map(time => ({ day: time.day, start_hour: time.start_hour, finish_hour: time.finish_hour }))
+        console.log("", currentTime)
+        form.setFieldValue(field.name, times.filter(time => time.selected === true)
+            .map(time => ({ day: time.day, start_hour: time.start_hour ? time.start_hour : null, finish_hour: time.finish_hour ? time.finish_hour : null })));
     }
+
     const handleDayClicked = (index) => {
         setTimes(prev => {
             const newTimes = [...prev];
             newTimes[index].selected = !newTimes[index].selected;
             return newTimes;
         });
-        setDataToform();
     }
-
     const handleChangeValue = (e, index) => {
         setTimes(prev => {
             const newTimes = [...prev];
             newTimes[index][e.target.name] = e.target.value;
             return newTimes;
         });
-        setDataToform();
     }
 
     return (
@@ -58,8 +62,10 @@ export const Timetable = ({ field, form }) => {
                                 {day}
                             </p>
                         </div>
+                        {/* [
+                            {
 
-
+                        ] */}
                         < div className='timetable__row__selects' >
                             <div className="timetable__row__selects__select">
                                 <p>De:</p>

@@ -96,7 +96,7 @@ export const feedStartPostData = (endpoint, data) => {
     return async (dispatch) => {
         try {
             // data["group_chief"] = 0;
-
+            
             data['edu_level'] && (data['edu_level'] = parseInt(data['edu_level']))
             data['group_chief'] && (data['group_chief'] = data['group_chief'] ? 1 : 0)
             const res = await fetchConToken(endpoint, data, 'POST')
@@ -130,7 +130,7 @@ export const feedStartPostData = (endpoint, data) => {
 
 export const feedStartEditData = (endpoint, data) => {
     return async (dispatch, getState) => {
-
+        console.log("data chida", data)
         const { feed } = getState();
 
         try {
