@@ -40,6 +40,8 @@ export const feedStartDeleteData = (endpoint, id) => {
             const res = await fetchConToken(`${endpoint}/${id}`, {}, 'DELETE')
             const body = await res.json()
             if (body.ok) {
+                console.log(body.result)
+               
                 dispatch(feedDeleteData(id))
                 Swal.fire({
                     title: '¡Eliminado!',
@@ -109,7 +111,7 @@ export const feedStartPostData = (endpoint, data) => {
                     icon: 'success',
                 })
                 console.log(body.result)
-                dispatch(feedPost(data))
+                dispatch(feedPost(body.result))
                 dispatch(feedSetIsAdding(false))
             } else {
                 console.log(body)
@@ -143,7 +145,7 @@ export const feedStartEditData = (endpoint, data) => {
                     text: 'El registro se ha actualizado correctamente',
                     icon: 'success',
                 })
-                dispatch(feedPut(data))
+                dispatch(feedPut(body.result))
                 dispatch(feedSetIsAdding(false))
             } else {
                 console.log(body)
