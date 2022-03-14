@@ -59,6 +59,23 @@ export const buildDataStudents = (
     ];
 }
 
+export const buildDataMajorsGroup = (
+    id,
+    student_name,
+    matricula,
+    major_name,
+    handleClick,
+    coincidence
+) => {
+    return [
+        { element: <SpanTable text={student_name} />, searched: false },
+        { element: <SpanTable text={matricula} />, searched: false },
+        { element: <SpanTable text={major_name} />, searched: false },
+      
+    ];
+}
+
+
 export const buildDataExpenses = (
     id,
     expenses_type,

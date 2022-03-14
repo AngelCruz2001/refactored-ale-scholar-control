@@ -1414,7 +1414,7 @@
                 "textAlign": "center"
             },
             {
-                "title": "Estatus",
+                "title": "RFC",
                 "textAlign": "center"
             },
             {
@@ -1425,12 +1425,12 @@
         "titleForm": "Capturar datos de los docentes",
         "columsToSearch": [
             "teacher_name",
-            "active"
+            "rfc"
         ],
         "campusTable": [
             "teacher_name",
             "id_teacher",
-            "active",
+            "rfc",
             ""
         ],
         "orderTable": [

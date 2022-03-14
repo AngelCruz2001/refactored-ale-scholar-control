@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { majorsStartGetMajors } from '../../actions/majors';
+import { majorsStartGetGroupsById, majorsStartGetMajors } from '../../actions/majors';
 import { GroupsTable } from './GroupsTable';
 
 export const AdvancesGroups = () => {
-    const { majors: { data } } = useSelector(state => state)
+    const { majors } = useSelector(state => state)
+    const {data, groupsData } = majors
     const [groups, setGroups] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -13,7 +14,9 @@ export const AdvancesGroups = () => {
 
     const handleMajor = (id_major) => {
         setGroups(!groups);
-
+        if (id_major){
+            dispatch(majorsStartGetGroupsById(id_major))
+        }
     }
 
 
@@ -25,7 +28,7 @@ export const AdvancesGroups = () => {
 
             {
                 groups ? 
-                <GroupsTable handleBack={handleMajor}/> :
+                <GroupsTable handleBack={handleMajor} data={groupsData}/> :
 
             <div className='advance-groups__container scroll'>
                 {data.map(({ major_name, id_major }) => (

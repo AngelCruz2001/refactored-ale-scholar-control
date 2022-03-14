@@ -29,10 +29,40 @@ export const majorsStartGetMajors = () => {
     }
 }
 
+export const majorsStartGetGroupsById = (id_major) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+
+            const res = await fetchConToken(`majors/${id_major}/groups/courses`)
+            const body = await res.json()
+            if (body.ok) {
+                dispatch(majorsSetMajorsGroups(body.groupsTrack))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+
+    }
+}
 
 
 
 
 
-const majorsSetMajors = (majors) => ({ type: types.majorsSetMajors, payload: majors })
+const majorsSetMajorsGroups = (groupsMajor) => ({
+    type:types.majorsSetMajorsGroups,
+    payload:groupsMajor
+})
+const majorsSetMajors = (majors) => ({ type: types.majorsSetMajors, 
+    payload: majors })
 export const majorsSetSpecificMajor = (majors) => ({ type: types.majorsSetSpecificMajor, payload: majors })

@@ -44,6 +44,7 @@ export const types = {
 
     majorsSetMajors: '[majors] Set majors',
     majorsSetSpecificMajor: '[majors] Set specific majors',
+    majorsSetMajorsGroups:'[majors] Set groups of a major',
     
 
     documentSetDocument: '[document] Set Document',
