@@ -145,6 +145,8 @@ export const feedStartEditData = (endpoint, data) => {
                     text: 'El registro se ha actualizado correctamente',
                     icon: 'success',
                 })
+
+                console.log(body.result)
                 dispatch(feedPut(body.result))
                 dispatch(feedSetIsAdding(false))
             } else {

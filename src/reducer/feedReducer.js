@@ -79,7 +79,8 @@ export const feedReducer = (state = initialState, action) => {
                 data: state.data.map((item, i) => (
                     item[state.activeIdName] === action.payload[state.activeIdName] ?
                         action.payload : item
-                ))
+                )),
+                active: null
 
             }
         default:

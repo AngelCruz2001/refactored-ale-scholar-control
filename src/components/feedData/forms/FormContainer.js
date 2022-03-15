@@ -9,21 +9,27 @@ import { useDispatch } from 'react-redux';
 export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, dataSection, activeIdName }) => {
 
     const [initialValues, validationSchema] = validationsInputs(dataForm, active);
+
     const dispatch = useDispatch();
+    
     const handleBack = () => {
         handleIsAdding()
         dispatch(feedClearActive())
     }
-    const handleSubmit = (values) => {
+
+    const handleSubmit = (values, resetForm) => {
         console.log("🚀 ~ file: FormContainer.js ~ line 19 ~ handleSubmit ~ values", values)
         if (active) {
             dispatch(feedStartEditData(dataSection.endpoint, values))
         } else {
             dispatch(feedStartPostData(dataSection.endpoint, values))
         }
-
+        // resetForm();
     }
+
+
     return (
+
         //General Container
         <div className='form__container'>
 
@@ -44,7 +50,7 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
                     initialValues={initialValues}
                     enableReinitialize={true}
                     validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
+                    onSubmit={(values, { resetForm }) => handleSubmit(values, resetForm)}
                 >
 
                     {({ handleReset, values, setFieldValue }) => (

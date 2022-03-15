@@ -295,7 +295,15 @@
                         "styles": {
                             "width": "25%"
                         },
-                        "value": ""
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
                     }
                 ]
             ],
@@ -1607,6 +1615,7 @@
                         "name": "ext_cou_name",
                         "label": "Nombre del curso",
                         "type": "input",
+                        "maxlength": 15,
                         "placeholder": "Nombre del curso",
                         "styles": {
                             "width": "47.5%"
@@ -1615,6 +1624,9 @@
                         "validations": [
                             {
                                 "type": "required"
+                            },
+                            {
+                                "type":"name_course"
                             }
                         ]
                     },

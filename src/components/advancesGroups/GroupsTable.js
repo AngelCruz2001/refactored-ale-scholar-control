@@ -5,19 +5,8 @@ import { Table } from '../ui/Table'
 export const GroupsTable = ({ handleBack, data }) => {
     const [dataShow, setDataShow] = useState([])
 
-    const headers = []
-    const generateData = () => {
-        const dataToShow = [];
-      
-        data.courses.forEach(({id_course,  course_name }) => {
-            const dataBuilded = buildDataStudents(id_course, course_name)
-            
-                dataToShow.push(dataBuilded)
-            
-        });
 
-        setDataShow(dataToShow)
-    }
+
 
     return (
         <div className='groupsTable__container'>
@@ -36,32 +25,35 @@ export const GroupsTable = ({ handleBack, data }) => {
                 </div>
 
                 <div className='groupsTable__container__table__container'>
-                    <div className="groupsTable__container__table__container__headers">
-                        {
-                            headers.map(({ title }, index) => (
-                                <div key={index} className="groupsTable__container__table__container__headers__cell"  >{title}</div>
-                            ))
-                        }
 
-                    </div>
-                    <div className="groupsTable__container__table__container__body scroll">
-                        {dataShow.map((item, index) => (
-                            <div key={index}>
-                                {item.length > 0 &&
-                                    <div className="groupsTable__container__table__container__body__row" key={index}>
-                                        {
-                                            item.map((cell, andex) => (
-                                                <div key={andex} className={`groupsTable__container__table__container__body__row__cell animation__fadeIn `}>
-                                                    {cell.element}
-                                                </div>
-                                            ))
-                                        }
-                                    </div>}
-                            </div>
-                        ))}
-                    </div>
+                    {
+                        data.map(({ group_name, coursesNotTaken }, index) => (
+
+                            <>
+                                <div key={index} className="groupsTable__container__table__container__headers">
+
+                                    <div className="groupsTable__container__table__container__headers__cell">{group_name}</div>
+                                </div><div className="groupsTable__container__table__container__body scroll">
+
+                                    
+
+                                        {coursesNotTaken.map(({ course_name }, index) => (
+                                            <div key={index} className={`groupsTable__container__table__container__body__row__cell animation__fadeIn `}>{course_name}</div>
+                                        ))}
+
+                                   
+                                </div>
+                            </>
+
+
+
+
+                        ))
+                    }
+
                 </div>
             </div>
         </div>
+
     )
 }
