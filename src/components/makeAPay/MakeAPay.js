@@ -55,8 +55,8 @@ export const MakeAPay = () => {
                         </div>
                     </div>
 
-                    <div className="makeAPay__body__container__total">
-                        <button className=''>Total de pago</button>
+                    <div className="makeAPay__body__container__total ">
+                        <button className='btn'>Total de pago</button>
                     </div>
 
                     <div className="makeAPay__body__container__money">

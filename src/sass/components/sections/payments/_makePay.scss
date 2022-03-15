@@ -21,7 +21,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
             .matri__container {
                 max-width: 33rem;
             }
@@ -30,7 +29,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                height: 23rem;
+                height: 25rem;
 
                 .stuInfo {
                     margin: 0 !important;
@@ -43,7 +42,6 @@
                 &__buttons {
                     display: flex;
                     justify-content: space-between;
-
                     &.method {
                         justify-content: space-between;
                         button {
@@ -71,6 +69,23 @@
                     border-radius: 10px;
                     text-transform: uppercase;
                     margin-top: 0.5rem;
+                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                }
+            }
+
+            &__total {
+                button {
+                    color: $white;
+                    background-color: $blue-button;
+                    border-radius: 8px;
+                    font-size: 2rem;
+                    font-weight: 500;
+                    padding: 1rem;
+                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+                    &.active {
+                        background-color: $blue-btn-text;
+                    }
                 }
             }
         }
