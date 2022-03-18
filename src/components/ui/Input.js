@@ -7,7 +7,7 @@ import dataStates from '../../helpers/resources/dataStates.json';
 export const Input = ({ label, styles, values, dataSelects, setFieldValue, active, activeIdName, ...props }) => {
 
     const [field, meta] = useField(props);
-    console.log(field.value); 
+    console.log(field.value);
     return (
         <div
             className={`form__container__body__section__row__inputContainer ${['radio', 'checkbox'].includes(props.type) ? 'radioContainer' : ''} ${(meta.touched && meta.error ? 'error' : '')}`}

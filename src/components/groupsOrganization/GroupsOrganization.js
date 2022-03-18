@@ -22,7 +22,7 @@ const headers = [{
     textAlign: 'center'
 },
 {
-    title: "",
+    title: "Asignar",
     textAlign: 'center'
 },
 {
@@ -35,21 +35,16 @@ export const GroupsOrganization = () => {
     const dispatch = useDispatch();
     const [courses, setCourses] = useState(false)
 
+    useEffect(() => {
+        dispatch(groupsStartGetAllGroups())
+        dispatch(teachersStartGetTeachers())
+    }, [])
 
     const handleClick = (id_group) => {
         console.log(id_group)
         dispatch(uiSetModalOpen());
         setCourses(!courses)
     }
-
-
-
-    useEffect(() => {
-        dispatch(groupsStartGetAllGroups())
-        dispatch(teachersStartGetTeachers())
-    }, [])
-
-
 
     const { groups: { data }, ui: { loading, isModalOpen } } = useSelector(state => state)
     const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
@@ -88,7 +83,7 @@ export const GroupsOrganization = () => {
                         <Table
                             headers={headers}
                             data={dataShow}
-                            sizesColumns={[16, 32, 17, 17, 19]}
+                            sizesColumns={[25, 30, 20, 12.5, 12.5]}
                         />
                     </div>
             }

@@ -2,12 +2,27 @@ import React, { useState } from 'react'
 import { Searchbar } from '../ui/Searchbar'
 import { BackButton } from '../ui/BackButton'
 import { DataList } from './DataList'
-export const Assign = ({ handleBack, dataSelects, data, type = 'radio', title = "ASIGNAR GRUPO" }) => {
-    // const dataList = Array(100).fill({}).map((_, i) => ({ value: i + 1, label: 'Nombre del grupo' }));
-    const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
-    console.log(valueSearchFilter.searchWord)
 
-    const [selectsData, setSelectsData] = useState(dataSelects)
+export const Assign = ({
+    handleBack,
+    type,
+    handleSubmit,
+    title,
+    dataList,
+    ExtraCampus,
+    allowToSubmit,
+    handleInputChange,
+    nameDataList
+}) => {
+
+    // const { section, title, dataList, dataSelects } = dataAssign;
+
+    const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
+
+    const [values, setValues] = useState();
+
+
+
 
 
     return (
@@ -23,23 +38,50 @@ export const Assign = ({ handleBack, dataSelects, data, type = 'radio', title = 
 
                 <div className='assign__container__content__list scroll'>
                     <DataList
-                        data={data}
-                        dataSelects={selectsData}
+                        handleInputChange={handleInputChange}
+                        data={dataList}
                         type={type}
                         valueSearchFilter={valueSearchFilter}
+                        nameDataList={nameDataList}
                     />
                 </div>
 
                 <div className='assign__container__content__submit'>
-                    <select>
-                        <option></option>
-                        {/* {
-                            dataSelects.map(item => (
-                                <option key={item.value} value={item.value}>{item.label}</option>
-                            ))
-                        } */}
-                    </select>
-                    <button className='btn btnAssignGroup'>Aceptar</button>
+
+                    <ExtraCampus />
+                    {/* {section === 'assingGroup' &&
+                        <>
+                            <div className='assign__container__content__submit__select'>
+                                <label htmlFor="">Seleccionar un maestro</label>
+
+                                <select name={nameSelect} >
+                                    <option hidden defaultValue>Seleccione una opción</option>
+                                    {selectData.map(({ value, label }) =>
+                                        <option key={value} value={value}>
+                                            {label}
+                                        </option>)}
+                                </select>
+
+
+                            </div>
+                            <div className='assign__container__content__submit__dateInput'>
+                                <label htmlFor="start_date">Fecha de inicio</label>
+                                <input onChange={handleInputChange} name='start_date' type="date" />
+                            </div>
+                            <div className='assign__container__content__submit__dateInput'>
+                                <label htmlFor="end_date">Fecha de termino</label>
+                                <input onChange={handleInputChange} name='end_date' type="date" />
+                            </div>
+                        </>
+                    }
+
+                    {section === 'assignTest' &&
+                        <div className='assign__container__content__submit__dateInput'>
+                            <label htmlFor="end_date">Fecha de Aplicación</label>
+                            <input onChange={handleInputChange} name='application_date' type="date" />
+                        </div>
+                    } */}
+                    <button className={`btn btnAssignGroup ${allowToSubmit ? '' : 'disableGuide'}`} onClick={() => handleSubmit(values)}>Aceptar</button>
                 </div>
             </div>
         </div>

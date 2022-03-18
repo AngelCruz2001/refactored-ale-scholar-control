@@ -11,7 +11,11 @@ const initialValue = {
     ins_date: '',
     course_name: '',
 
-    irregularStudents: []
+    irregularStudents: {
+        data: [],
+        active: null,
+    }
+
 }
 
 export const studentReducer = (state = initialValue, action) => {
@@ -27,9 +31,18 @@ export const studentReducer = (state = initialValue, action) => {
         case types.studentSetIrregularStudents:
             return {
                 ...state,
-                irregularStudents: action.payload
+                irregularStudents: { ...state.irregularStudents, data: [...action.payload] }
             }
-
+        case types.studentSetIrregularActive:
+            return {
+                ...state,
+                irregularStudents: { ...state.irregularStudents, active: action.payload }
+            }
+        case types.studentClearIrregularActive:
+            return {
+                ...state,
+                irregularStudents: { ...state.irregularStudents, active: null }
+            }
 
         default:
             return state;

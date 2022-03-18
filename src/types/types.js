@@ -15,6 +15,7 @@ export const types = {
     uiFinishLoading: '[UI] Finish loading',
     uiSetCurrent: '[UI] Set current component',
     uiIsModalOpen: '[UI]Change modal open',
+    uiIsModalClose: '[UI]Change modal close',
     uiStartLoadingCards: '[UI] Start loading cards',
     uiFinishLoadingCards: '[UI] Finish loading cards',
     uiIsShowHistoryOpen: '[UI] Change show history open',
@@ -23,8 +24,10 @@ export const types = {
     uiIsSubMenuOpen: '[UI] Change show sub menu',
 
     studentSetActive: '[student] Set active',
+    studentSetIrregularActive: '[student] Set irregular active',
     studentSetIrregularStudents: '[student] Set irregular students',
     studentClearData: '[student] Clear data',
+    studentClearIrregularActive: '[student] Clear irregular active',
 
     groupsSetGroups: '[groups] Set groups',
     groupsSetSpecificCourses: '[groups] Set group active',

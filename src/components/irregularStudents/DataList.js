@@ -1,7 +1,7 @@
 import React from 'react'
 import { isACoincidenceAssing } from '../../helpers/isACoincidence';
 
-export const DataList = ({ data = [], valueSearchFilter, type }) => {
+export const DataList = ({ data = [], valueSearchFilter, type, handleInputChange, nameDataList }) => {
     return (
         <>
             {
@@ -10,13 +10,13 @@ export const DataList = ({ data = [], valueSearchFilter, type }) => {
                     <div className='assign__container__content__list__item' key={item.value}>
                         {type === 'radio' ?
                             <>
-                                <input type='radio' name='group' id={item.value} />
-                                <label htmlFor={item.value}>{item.label}</label>
+                                <input onChange={handleInputChange} type='radio' name={nameDataList} id={item.value} value={item.value} />
+                                <label htmlFor={nameDataList}>{item.label}</label>
                             </>
                             :
                             <>
-                                <input type='checkbox' name='group' id={item.value} />
-                                <label htmlFor={item.value}>{item.label}</label>
+                                <input type='checkbox' name={nameDataList} id={item.value} value={item.value} />
+                                <label htmlFor={nameDataList}>{item.label}</label>
                             </>
                         }
                     </div>
