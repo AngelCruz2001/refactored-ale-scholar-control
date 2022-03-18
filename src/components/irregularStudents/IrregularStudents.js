@@ -45,11 +45,13 @@ export const IrregularStudents = () => {
 
 
 
+
+
     useEffect(() => {
         dispatch(studentStartGetIrregularStudents())
     }, [])
 
-    const { student: { students }, ui: { loading, isModalOpen } } = useSelector(state => state)
+    const { student: { irregularStudents }, ui: { loading, isModalOpen } } = useSelector(state => state)
     const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
     const [dataShow, setDataShow] = useState([])
 
@@ -57,7 +59,7 @@ export const IrregularStudents = () => {
     const generateData = () => {
         const dataToShow = [];
         const { searchWord } = valueSearchFilter;
-        students.forEach(({ id_student, student_name, matricula, major_name }) => {
+        irregularStudents.forEach(({ id_student, student_name, matricula, major_name }) => {
             const coincidence = isACoincidenceSearch([student_name, matricula, major_name], searchWord)
             const dataBuilded = buildDataStudents(id_student, student_name, matricula, major_name, handleClick, coincidence)
             if (searchWord === '') {
@@ -81,20 +83,20 @@ export const IrregularStudents = () => {
     return (
 
         <>
-           {
-            (groups) ?
-            <Assign  handleBack={handleClick}/>
-            :<div className={`gra__container ${isModalOpen && 'modal-active'}`} >
-                <Searchbar placeholder="Buscar por nombre, matrícula o grupo del estudiante" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
-                <h4 className="general__title-h4">Todos los alumnos irregulares</h4>
-                <Table
-                    headers={headers}
-                    data={dataShow}
-                    sizesColumns={[30, 15, 30, 12.5, 12.5]}
-                />
-            </div>
+            {
+                (groups) ?
+                    <Assign handleBack={handleClick} />
+                    : <div className={`gra__container ${isModalOpen && 'modal-active'}`} >
+                        <Searchbar placeholder="Buscar por nombre, matrícula o grupo del estudiante" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
+                        <h4 className="general__title-h4">Todos los alumnos irregulares</h4>
+                        <Table
+                            headers={headers}
+                            data={dataShow}
+                            sizesColumns={[30, 15, 30, 12.5, 12.5]}
+                        />
+                    </div>
             }
-               
+
         </>
     )
 }

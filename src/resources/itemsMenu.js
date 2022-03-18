@@ -9,6 +9,7 @@ import { MakePay } from '../components/makePayment/MakePay'
 import { RequestDocument } from '../components/requestDocument/RequestDocument'
 import { RequestGrades } from '../components/requestGrades/RequestGrades'
 import { RequestGradesAdmin } from '../components/requestGrades/RequestsGradesAdmin'
+import { GroupsOrganization } from '../components/groupsOrganization/GroupsOrganization'
 
 
 
@@ -57,11 +58,28 @@ export const itemsMenu = [
         css: {
             "transform": "rotate(90deg) scaleX(-1)"
         },
-        path: "/irregular_students",
+        path: "/estudiantes_irregulares",
         component: IrregularStudents,
 
         subMenu: [],
         name: "irregularStudents"
+    },
+    {
+        permissions: [
+            11,
+            14,
+            1
+        ],
+        text: "Organizacion de grupos",
+        icon: "fas fa-file",
+        css: {
+            "transform": "rotate(90deg) scaleX(-1)"
+        },
+        path: "/organizacion_grupos",
+        component: GroupsOrganization,
+
+        subMenu: [],
+        name: "groupsOrganization"
     },
     {
         permissions: [

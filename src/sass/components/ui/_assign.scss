@@ -44,6 +44,15 @@
                 display: flex;
                 flex-direction: column;
                 overflow-y: auto;
+                position: relative;
+
+                &__button {
+                    button {
+                    }
+                    select {
+                    }
+                    // display: inline-block;
+                }
 
                 &__item {
                     display: flex;
@@ -63,22 +72,22 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        width: 1rem;
+                        width: 2.5rem;
                         height: 100%;
 
-                        &::before {
-                            position: absolute;
-                            content: "";
-                            width: 2rem;
-                            height: 2rem;
-                            border-radius: 50%;
-                            border: 1px solid $color-black;
-                            background-color: $white;
-                        }
+                        // &::before {
+                        //     position: absolute;
+                        //     content: "";
+                        //     width: 2rem;
+                        //     height: 2rem;
+                        //     border-radius: 50%;
+                        //     border: 1px solid $color-black;
+                        //     background-color: $white;
+                        // }
 
-                        &:checked:before {
-                            background-color: green;
-                        }
+                        // &:checked:before {
+                        //     background-color: green;
+                        // }
                     }
 
                     label {
@@ -89,6 +98,21 @@
                         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
                         text-transform: uppercase;
                     }
+                }
+            }
+
+            &__submit {
+                display: flex;
+                width: 100%;
+                margin-top: 3rem;
+                justify-content: space-between;
+                select {
+                    width: 40% !important;
+                    background-color: $white;
+                }
+
+                button {
+                    width: 20%;
                 }
             }
         }

@@ -31,16 +31,19 @@ export const studentStartGetStudentByMatricula = (matricula) => {
 }
 
 
-
-export const studentStartGetIrregularStudents = () => {
+export const studentStartMoveStudentGroup = (matricula, id_group)=> {
     return async (dispatch) => {
         dispatch(uiStartLoading())
         try {
-            const res = await fetchConToken(`students?regular=false`, 'GET')
+            const res = await fetchConToken(`students/${matricula}/groups/${id_group}`, 'PUT')
             const body = await res.json()
-          
             if (body.ok) {
-                dispatch(studentSetStudents(body.students));
+                console.log(body)
+                Swal.fire({
+                    title: "Estudiantes",
+                    text: "Alumno actualizado correctamente" + '.',
+                    icon: 'success',
+                })
             } else {
                 console.log(body)
                 Swal.fire({
@@ -59,6 +62,33 @@ export const studentStartGetIrregularStudents = () => {
 
 
 
-const studentSetStudents = students => ({type: types.studentSetStudents, payload: students})
+export const studentStartGetIrregularStudents = () => {
+    return async (dispatch) => {
+        dispatch(uiStartLoading())
+        try {
+            const res = await fetchConToken(`students?regular=false`, 'GET')
+            const body = await res.json()
+
+            if (body.ok) {
+                dispatch(studentIrregularSetStudents(body.students));
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+            dispatch(uiFinishLoading())
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+    }
+}
+
+
+
+const studentIrregularSetStudents = students => ({ type: types.studentSetIrregularStudents, payload: students })
 const studentSetActive = data => ({ type: types.studentSetActive, payload: data })
 export const studentClearData = () => ({ type: types.studentClearData })

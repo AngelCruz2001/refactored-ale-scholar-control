@@ -10,6 +10,7 @@ import { requestsReducer } from "./requestsReducer"
 import { studentReducer } from "./studentReducer"
 import { uiReducer } from "./uiReducer"
 import { majorsReducer } from "./majorsReducer"
+import { teachersReducer } from "./teachersReducer"
 
 export const rootReducer = combineReducers({
     auth: authReducer,
@@ -24,4 +25,5 @@ export const rootReducer = combineReducers({
     feed: feedReducer, 
     groups: groupsReducer,
     majors: majorsReducer,
+    teachers: teachersReducer
 })

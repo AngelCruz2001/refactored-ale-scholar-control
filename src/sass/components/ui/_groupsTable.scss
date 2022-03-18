@@ -1,4 +1,4 @@
-.groupsTable {
+.groups-table {
     &__container {
         display: flex;
         height: 100%;
@@ -20,6 +20,8 @@
             }
         }
         &__table {
+
+            border: 1px solid black;
             &__title {
                 height: 4rem;
                 font-size: 1.5rem;
@@ -27,90 +29,62 @@
                 color: white;
                 align-items: center;
                 justify-content: center;
-                background-color: blue;
+                background-color: #012e5a;
                 border-radius: 10px 10px 0 0;
-            }
-
-            &__container {
-                flex-direction: row;
-                border-radius: 1rem;
-                height: 60%;
                 width: 100%;
-                margin: 0;
-                padding: 0;
-
-                &__headers {
-                    // background-color: $color-primary;
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            &__row {
+                width: 100%;
+                justify-content: space-between;
+                flex-direction: row;
+                display: flex;
+                align-items: center;
+                height: 8rem;
+                border: .1px solid #c4daf0;
+                &__header {
                     height: 100%;
-                    padding: 0;
-                    margin: 0;
-                    width: 24rem;
-                    align-items: center;
-                    flex-direction: column;
-                    justify-content: space-between;
-                     
-                    border-radius: 10px 0 0 10px;
-                    // border: 5px solid transparent;
-                    &__cell {
-                        padding: 0;
-                        margin: 0;
-                        color: black;
-                        width: auto !important;
+                    background-color: #012e5a;
+                    &__item {
+                        font-size: 2rem;
                         display: flex;
-
-                        justify-content: center;
                         align-items: center;
-                        font-size: 1.5rem;
-                        font-weight: 400;
+                        height: 100%;
+                        padding: 3rem 5rem;
+                        width: 100%;
+                        color: white;
+                        border: .1px solid #c4daf0;
                     }
                 }
 
                 &__body {
-                    flex-basis: content;
-                    flex-direction: row;
-                    background-color: white;
+                    display: flex;
                     height: 100%;
-
-                    &__row {
-                        margin: 0;
-                        box-shadow: none;
-                        flex-direction: column;
+                    flex: 1;
+                    &__item {
+                        border: .1px solid #c4daf0;
+                        font-size: 2rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         height: 100%;
-                        width: auto;
-                        border-radius: 0;
-                        justify-content: space-between;
+                        padding: 3rem 5rem;
                         width: 100%;
-
-                        padding-top: 2rem;
-                        padding-bottom: 1rem;
-                        &__cell {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: auto !important;
-                            background-color: transparent !important;
-                            span {
-                                font-size: 1.4rem;
-                            }
-
-                            // &.searched {
-                            //     background-color: $color-value-searched !important;
-                            // }
+                        color: #52718f;
+                        &.active {
+                            color: white;
+                            background-color:#c6b300 ;
                         }
-
-                        &:nth-child(even) {
-                            background-color: white;
-                        }
-                        &:nth-child(odd) {
-                            background-color: white;
-                        }
-                    }
-
-                    & .noselect {
-                        width: 100% !important;
                     }
                 }
+
+            }
+
+            
             }
         }
-    }
+    
 }

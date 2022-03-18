@@ -23,7 +23,7 @@ export const types = {
     uiIsSubMenuOpen: '[UI] Change show sub menu',
 
     studentSetActive: '[student] Set active',
-    studentSetStudents: '[student] Set students',
+    studentSetIrregularStudents: '[student] Set irregular students',
     studentClearData: '[student] Clear data',
 
     groupsSetGroups: '[groups] Set groups',
@@ -44,8 +44,8 @@ export const types = {
 
     majorsSetMajors: '[majors] Set majors',
     majorsSetSpecificMajor: '[majors] Set specific majors',
-    majorsSetMajorsGroups:'[majors] Set groups of a major',
-    
+    majorsSetMajorsGroups: '[majors] Set groups of a major',
+
 
     documentSetDocument: '[document] Set Document',
     documentClearActive: '[document] Clear Active',
@@ -88,6 +88,12 @@ export const types = {
     feedClearActive: '[feed] Clear active name id',
     feedSetIsAdding: '[feed] Set is adding',
     feedPost: '[feed] Post add data',
+
+    teacherSetData:'[teachers] Set data',
+    teacherSetActive:'[teachers] Teacher set active',
+    teacherClearData:'[teachers] Teacher clean data'
+
+
 }
 
 export const typesExpenses = [
