@@ -17,7 +17,7 @@ export const RadioButtonListDocument = ({
         dispatch(uiSetCurrent(currentNumber))
         dispatch(documentSetDocument(parseInt(target.id)))
     }
-    
+
     return (
         <div className={"radioButtonList son ".concat(activeClassName)}>
             <p className="general__titleSection">{text}</p>

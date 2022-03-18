@@ -9,13 +9,17 @@ export const Matricula = ({
     payment
 }) => {
     const dispatch = useDispatch()
-    const {matricula} = useSelector(state => state.student)
+    const { matricula } = useSelector(state => state.student)
+
     useEffect(() => {
         setComponentMatricula(matricula)
     }, [matricula])
-    const [componentMatricula, setComponentMatricula] = useState(matricula || '')
+
+    const [componentMatricula, setComponentMatricula] = useState(matricula || '');
+
     const handleMatriculaChange = ({ target }) => {
         setComponentMatricula(target.value);
+
         if (target.value.match(typesRegex.matricula)) {
             dispatch(uiSetCurrent(1))
             dispatch(studentStartGetStudentByMatricula(target.value))
@@ -27,9 +31,9 @@ export const Matricula = ({
 
     return (
 
-        <div style={{ marginTop: payment && "1rem" }} className="matri__container">
+        <div className="matri__container">
             <label className="general__titleSection matri__label" htmlFor="matricula">Matrícula</label>
-            <input className={activeClassName} value={componentMatricula} onChange={handleMatriculaChange} placeholder="0000000000000" maxLength="13" id="matricula" name="matricula" />
+            <input className='' value={componentMatricula} onChange={handleMatriculaChange} placeholder="0000000000000" maxLength="13" id="matricula" name="matricula" />
         </div>
 
     )

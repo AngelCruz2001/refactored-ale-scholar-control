@@ -363,7 +363,7 @@
                             "major_name"
                         ],
                         "styles": {
-                            "width": "45%"
+                            "width": "30%"
                         },
                         "validations": [
                             {
@@ -378,13 +378,30 @@
                         "placeholder": "Nombre de la carrera",
                         "value": false,
                         "styles": {
-                            "width": "45%"
+                            "width": "30%"
                         },
                         "options": [
                             {
                                 "label": [
                                     "Sí, el estudiante es lider de grupo",
                                     "No, el estudiante no es lider de grupo"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "regular",
+                        "label": "¿El estudiante es irregular?",
+                        "type": "checkbox",
+                        "value": false,
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "options": [
+                            {
+                                "label": [
+                                    "Sí, el estudiante es irregular",
+                                    "No, el estudiante no es irregular"
                                 ]
                             }
                         ]
@@ -1626,7 +1643,7 @@
                                 "type": "required"
                             },
                             {
-                                "type":"name_course"
+                                "type": "name_course"
                             }
                         ]
                     },

@@ -89,9 +89,9 @@ export const types = {
     feedSetIsAdding: '[feed] Set is adding',
     feedPost: '[feed] Post add data',
 
-    teacherSetData:'[teachers] Set data',
-    teacherSetActive:'[teachers] Teacher set active',
-    teacherClearData:'[teachers] Teacher clean data'
+    teacherSetData: '[teachers] Set data',
+    teacherSetActive: '[teachers] Teacher set active',
+    teacherClearData: '[teachers] Teacher clean data'
 
 
 }
@@ -116,7 +116,7 @@ export const typesDocuments = [
     "Credencial",
     "Certificado de maestría",
     "Certificado de licenciatura",
-    "Titulo de maestri",
+    "Titulo de maestria",
     "Titulo de licenciatura",
     "Acta de examen",
     "Constancia de titulo en progreso",

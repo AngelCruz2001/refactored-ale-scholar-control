@@ -12,6 +12,7 @@ export const GenerateDocument = () => {
     const { current, loading, loadingDocument } = useSelector(state => state.ui)
     const student = useSelector(state => state.student)
     const [studentInfo, setStudentInfo] = useState({ headers: [], data: [] })
+
     useEffect(() => {
         setStudentInfo({
             headers: ["Alumno", "Grupo", "Campus", "Carrera"],

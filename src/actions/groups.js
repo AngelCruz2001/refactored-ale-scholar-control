@@ -83,6 +83,37 @@ export const groupsStartUpdateGrade = (id, credits, type = 'regular') => {
     }
 }
 
+export const groupsStartPostGroupCourse= (id_group,id_course,data) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+            const res = await fetchConToken(`groups/${id_group}/courses/${id_course}`,data,'POST')
+            const body = await res.json()
+
+            if (body.ok) {
+                console.log(body)
+                Swal.fire({
+                    title: "Grupos",
+                    text: "Curso asignado correctamente" + '.',
+                    icon: 'success',
+                })
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+    }
+
+}
+
 export const groupsGetStudentAndGradesGroup = (id_course, id_group) => {
     return async (dispatch) => {
         try {

@@ -3,7 +3,7 @@ import { types } from "../types/types";
 const initialState = {
     data: [],
     activeMajor: [],
-    groupsData:[],
+    groupsData: [],
 }
 
 export const majorsReducer = (state = initialState, action) => {
@@ -25,7 +25,6 @@ export const majorsReducer = (state = initialState, action) => {
                 ...state,
                 groupsData: action.payload
             }
-     
 
         default:
             return state;

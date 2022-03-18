@@ -57,9 +57,6 @@ export const GroupsOrganization = () => {
 
 
 
-
-
-
     const generateData = () => {
         const dataToShow = [];
         const { searchWord } = valueSearchFilter;
@@ -91,7 +88,7 @@ export const GroupsOrganization = () => {
                         <Table
                             headers={headers}
                             data={dataShow}
-                            sizesColumns={[30, 27, 20, 12.5, 12.5]}
+                            sizesColumns={[16, 32, 17, 17, 19]}
                         />
                     </div>
             }

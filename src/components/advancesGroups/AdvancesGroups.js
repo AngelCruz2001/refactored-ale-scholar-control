@@ -12,7 +12,7 @@ export const AdvancesGroups = () => {
         dispatch(majorsStartGetMajors());
     }, [])
 
-    const handleMajor = (id_major) => {
+    const handleMajor = ({id_major=false}) => {
         setGroups(!groups);
         if (id_major){
             dispatch(majorsStartGetGroupsById(id_major))

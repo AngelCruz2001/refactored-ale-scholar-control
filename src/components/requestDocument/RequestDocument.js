@@ -8,6 +8,7 @@ import { typesDocuments } from '../../types/types'
 import { Date } from '../ui/Date'
 import { Matricula } from '../ui/Matricula'
 import { RadioButtonList } from '../ui/RadioButtonList'
+import { RadioButtonListDocument } from '../ui/RadioButtonListDocument'
 import { StudentInformation } from '../ui/StudentInformation'
 import { HistoryReqDocument } from './HistoryReqDocument'
 
@@ -15,24 +16,34 @@ export const RequestDocument = () => {
     const dispatch = useDispatch()
     const [studentInfo, setStudentInfo] = useState({ headers: [], data: [] })
     const { ui, student, document, requests } = useSelector(state => state)
+
+    const [readyRequest, setReadyRequest] = useState(false)
+
     useEffect(() => {
         setStudentInfo({
             headers: ["Alumno", "Grupo", "Campus", "Carrera"],
-            data: [student.student_name, student.name_group, student.campus_name, student.major_name]
+            data: student.matricula !== "" && [student.student_name, student.name_group, student.campus_name, student.major_name]
         })
     }, [student])
+
     const [showHistory, setShowHistory] = useState(false)
 
     const { current, loading } = ui;
+
+    useEffect(() => {
+        console.log(student, document)
+        student.matricula !== "" &&
+            document.idDocument !== null &&
+            setReadyRequest(true)
+    }, [student, document])
 
 
     const onChangeValueDocument = ({ target }) => {
         dispatch(uiSetCurrent(3))
         dispatch(documentSetDocument(parseInt(target.id)))
     }
-    const handleSubmitRequestDocument = () => {
-        dispatch(requestStartRequestDocument())
-    }
+
+    const handleSubmitRequestDocument = () => readyRequest && dispatch(requestStartRequestDocument())
 
     return (
         <div className="req__container">
@@ -59,24 +70,21 @@ export const RequestDocument = () => {
                             </div>
 
                             <StudentInformation
-                                activeClassName={activeDisabled(1, current)}
+                                // activeClassName={activeDisabled(1, current)}
                                 loading={loading}
                                 studentInformation={studentInfo}
                             />
 
                         </div>
-                        <RadioButtonList
-                            activeClassName={activeDisabled(2, current)}
-                            onChangeValueDocument={onChangeValueDocument}
-                            idValue={document.idDocument}
-                            items={typesDocuments}
+
+                        <RadioButtonListDocument
                             text="Documento a solicitar"
                         />
 
                     </div>
                     <div className="req__footer">
                         <button className="btn req__footer__checkHistory" onClick={() => setShowHistory(true)}><i className="fas fa-history"></i><span>Ver Historial</span></button>
-                        <button className={"btn btn-primary ".concat(activeDisabled(3, current))} onClick={handleSubmitRequestDocument}>Solicitar</button>
+                        <button className={`btn btn-primary ${readyRequest ? 'activeGuide' : 'disableGuide'}`} onClick={handleSubmitRequestDocument}>Solicitar</button>
                     </div>
                 </>
             }

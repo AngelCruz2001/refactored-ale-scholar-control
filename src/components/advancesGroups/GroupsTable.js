@@ -119,8 +119,8 @@ export const GroupsTable = ({ handleBack, data3 }) => {
                 {
                     data.map(({ group_name, courses }, index) => (
 
-                        <div className='groups-table__container__table__row scroll'>
-                            <div key={index} className="groups-table__container__table__row__header">
+                        <div key={index} className='groups-table__container__table__row scroll'>
+                            <div className="groups-table__container__table__row__header">
                                 <div className='groups-table__container__table__row__header__item'>{group_name}</div>
                             </div>
                             <div className="groups-table__container__table__row__body">
@@ -130,10 +130,6 @@ export const GroupsTable = ({ handleBack, data3 }) => {
                                 ))}
                             </div>
                         </div>
-
-
-
-
                     ))
                 }
 

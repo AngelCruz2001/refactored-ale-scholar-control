@@ -31,7 +31,7 @@ export const studentStartGetStudentByMatricula = (matricula) => {
 }
 
 
-export const studentStartMoveStudentGroup = (matricula, id_group)=> {
+export const studentStartMoveStudentGroup = (matricula, id_group) => {
     return async (dispatch) => {
         dispatch(uiStartLoading())
         try {

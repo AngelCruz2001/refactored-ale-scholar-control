@@ -93,6 +93,14 @@
 }
 // Buttons table
 
+.btnArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    font-size: 2rem;
+}
+
 .btnTable {
     display: flex;
     align-items: center;
@@ -184,4 +192,13 @@
     padding: 1rem 3rem;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 10px;
+}
+
+.activeGuide {
+    background-color: $blue-btn-text;
+    color: $white;
+}
+
+.disableGuide {
+    pointer-events: none;
 }

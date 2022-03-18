@@ -29,6 +29,33 @@ export const majorsStartGetMajors = () => {
     }
 }
 
+export const majorsStartGetgroupsFromAMajor = (id_major) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+
+            const res = await fetchConToken(`majors/${id_major}/groups`)
+            const body = await res.json()
+            if (body.ok) {
+                console.log("body", body)
+                dispatch(majorsSetMajorsGroups(body.groups))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+
+    }
+}
+
 export const majorsStartGetGroupsById = (id_major) => {
     return async (dispatch) => {
         try {
@@ -60,9 +87,11 @@ export const majorsStartGetGroupsById = (id_major) => {
 
 
 const majorsSetMajorsGroups = (groupsMajor) => ({
-    type:types.majorsSetMajorsGroups,
-    payload:groupsMajor
+    type: types.majorsSetMajorsGroups,
+    payload: groupsMajor
 })
-const majorsSetMajors = (majors) => ({ type: types.majorsSetMajors, 
-    payload: majors })
+const majorsSetMajors = (majors) => ({
+    type: types.majorsSetMajors,
+    payload: majors
+})
 export const majorsSetSpecificMajor = (majors) => ({ type: types.majorsSetSpecificMajor, payload: majors })
