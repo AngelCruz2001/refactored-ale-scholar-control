@@ -14,7 +14,28 @@ export const isACoincidenceSearch = (data = [], wordToSearch) => {
 }
 
 export const isACoincidenceSpecificWord = (searchIn, wordToSearch) => {
+
+    console.log(wordToSearch)
     if (wordToSearch === '') return null;
     if (searchIn == undefined) return null;
-    return searchIn.toString().match(RegExp(wordToSearch, 'gi')) ? true : false;
+    let coincidence;
+    try {
+        coincidence = searchIn.toString().match(RegExp(wordToSearch, 'gi')) ? true : false;
+    } catch (error) {
+        coincidence = null;
+    }
+    return coincidence;
+}
+
+export const isACoincidenceAssing = (searchIn, wordToSearch) => {
+
+    if (wordToSearch === '') return true;
+    if (searchIn == undefined) return null;
+    let coincidence;
+    try {
+        coincidence = searchIn.toString().match(RegExp(wordToSearch, 'gi')) ? true : false;
+    } catch (error) {
+        coincidence = null;
+    }
+    return coincidence;
 }

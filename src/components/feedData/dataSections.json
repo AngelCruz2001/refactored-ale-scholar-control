@@ -295,7 +295,15 @@
                         "styles": {
                             "width": "25%"
                         },
-                        "value": ""
+                        "value": "",
+                        "validations": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "phone"
+                            }
+                        ]
                     }
                 ]
             ],
@@ -355,7 +363,7 @@
                             "major_name"
                         ],
                         "styles": {
-                            "width": "45%"
+                            "width": "30%"
                         },
                         "validations": [
                             {
@@ -370,13 +378,30 @@
                         "placeholder": "Nombre de la carrera",
                         "value": false,
                         "styles": {
-                            "width": "45%"
+                            "width": "30%"
                         },
                         "options": [
                             {
                                 "label": [
                                     "Sí, el estudiante es lider de grupo",
                                     "No, el estudiante no es lider de grupo"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "regular",
+                        "label": "¿El estudiante es irregular?",
+                        "type": "checkbox",
+                        "value": false,
+                        "styles": {
+                            "width": "30%"
+                        },
+                        "options": [
+                            {
+                                "label": [
+                                    "Sí, el estudiante es irregular",
+                                    "No, el estudiante no es irregular"
                                 ]
                             }
                         ]
@@ -450,7 +475,7 @@
             "Datos escolares": [
                 [
                     {
-                        "name": "name_group",
+                        "name": "group_name",
                         "label": "Nombre del grupo",
                         "type": "input",
                         "styles": {
@@ -488,12 +513,12 @@
                         "name": "id_campus",
                         "label": "Campus",
                         "type": "select",
-                        "placeholder": "Nombre del campus",
                         "dataName": [
                             "campus",
                             "id_campus",
                             "campus_name"
                         ],
+                        "placeholder": "Nombre del campus",
                         "styles": {
                             "width": "45%"
                         },
@@ -1414,7 +1439,7 @@
                 "textAlign": "center"
             },
             {
-                "title": "Estatus",
+                "title": "RFC",
                 "textAlign": "center"
             },
             {
@@ -1425,12 +1450,12 @@
         "titleForm": "Capturar datos de los docentes",
         "columsToSearch": [
             "teacher_name",
-            "active"
+            "rfc"
         ],
         "campusTable": [
             "teacher_name",
             "id_teacher",
-            "active",
+            "rfc",
             ""
         ],
         "orderTable": [
@@ -1583,11 +1608,11 @@
         ],
         "titleForm": "Capturar datos del curso extracurricular",
         "columsToSearch": [
-            "course_name",
+            "ext_cou_name",
             "major_name"
         ],
         "campusTable": [
-            "course_name",
+            "ext_cou_name",
             "major_name",
             ""
         ],
@@ -1607,6 +1632,7 @@
                         "name": "ext_cou_name",
                         "label": "Nombre del curso",
                         "type": "input",
+                        "maxlength": 15,
                         "placeholder": "Nombre del curso",
                         "styles": {
                             "width": "47.5%"
@@ -1615,6 +1641,9 @@
                         "validations": [
                             {
                                 "type": "required"
+                            },
+                            {
+                                "type": "name_course"
                             }
                         ]
                     },

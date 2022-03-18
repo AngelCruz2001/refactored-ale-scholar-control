@@ -1,21 +1,35 @@
 import React, { useState } from 'react'
 import { Searchbar } from '../ui/Searchbar'
+import { BackButton } from '../ui/BackButton'
+import { DataList } from './DataList'
 
-export const Assign = ({ handleBack, data, type = 'radio', title = "ASIGNAR GRUPO" }) => {
-    // Generete an array with 10 positions = [{value: "", label: ""}]
-    const dataList = Array(100).fill({}).map((_, i) => ({ value: i + 1, label: 'Nombre del grupo' }));
-    console.log(dataList)
+export const Assign = ({
+    handleBack,
+    type,
+    handleSubmit,
+    title,
+    dataList,
+    ExtraCampus,
+    allowToSubmit,
+    handleInputChange,
+    nameDataList
+}) => {
+
+    // const { section, title, dataList, dataSelects } = dataAssign;
+
     const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
+
+    const [values, setValues] = useState();
+
+
+
+
+
     return (
         <div className='assign__container'>
 
             <div className='assign__container__header'>
-                <div className='assign__container__header__button'>
-
-                    <button className="btn btn__back" onClick={handleBack}>
-                        <i className="fas fa-arrow-left"></i>
-                    </button>
-                </div>
+                <BackButton handleBack={handleBack} />
                 <h2 className='assign__container__header__title'>{title}</h2>
             </div>
 
@@ -23,23 +37,51 @@ export const Assign = ({ handleBack, data, type = 'radio', title = "ASIGNAR GRUP
                 <Searchbar placeholder="Buscar" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
 
                 <div className='assign__container__content__list scroll'>
-                    {
-                        dataList.map(item => (
-                            <div className='assign__container__content__list__item' key={item.value}>
-                                {type === 'radio' ?
-                                    <>
-                                        <input type='radio' name='group' id={item.value} />
-                                        <label htmlFor={item.value}>{item.label}</label>
-                                    </>
-                                    :
-                                    <>
-                                        <input type='checkbox' name='group' id={item.value} />
-                                        <label htmlFor={item.value}>{item.label}</label>
-                                    </>
-                                }
+                    <DataList
+                        handleInputChange={handleInputChange}
+                        data={dataList}
+                        type={type}
+                        valueSearchFilter={valueSearchFilter}
+                        nameDataList={nameDataList}
+                    />
+                </div>
+
+                <div className='assign__container__content__submit'>
+
+                    <ExtraCampus />
+                    {/* {section === 'assingGroup' &&
+                        <>
+                            <div className='assign__container__content__submit__select'>
+                                <label htmlFor="">Seleccionar un maestro</label>
+
+                                <select name={nameSelect} >
+                                    <option hidden defaultValue>Seleccione una opción</option>
+                                    {selectData.map(({ value, label }) =>
+                                        <option key={value} value={value}>
+                                            {label}
+                                        </option>)}
+                                </select>
+
+
                             </div>
-                        ))
+                            <div className='assign__container__content__submit__dateInput'>
+                                <label htmlFor="start_date">Fecha de inicio</label>
+                                <input onChange={handleInputChange} name='start_date' type="date" />
+                            </div>
+                            <div className='assign__container__content__submit__dateInput'>
+                                <label htmlFor="end_date">Fecha de termino</label>
+                                <input onChange={handleInputChange} name='end_date' type="date" />
+                            </div>
+                        </>
                     }
+
+                    {section === 'assignTest' &&
+                        <div className='assign__container__content__submit__dateInput'>
+                            <label htmlFor="end_date">Fecha de Aplicación</label>
+                            <input onChange={handleInputChange} name='application_date' type="date" />
+                        </div>
+                    } */}
+                    <button className={`btn btnAssignGroup ${allowToSubmit ? '' : 'disableGuide'}`} onClick={() => handleSubmit(values)}>Aceptar</button>
                 </div>
             </div>
         </div>

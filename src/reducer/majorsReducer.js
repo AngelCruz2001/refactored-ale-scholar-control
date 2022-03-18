@@ -3,6 +3,7 @@ import { types } from "../types/types";
 const initialState = {
     data: [],
     activeMajor: [],
+    groupsData: [],
 }
 
 export const majorsReducer = (state = initialState, action) => {
@@ -18,7 +19,12 @@ export const majorsReducer = (state = initialState, action) => {
                 ...state,
                 activeMajor: action.payload
             }
-     
+
+        case types.majorsSetMajorsGroups:
+            return {
+                ...state,
+                groupsData: action.payload
+            }
 
         default:
             return state;

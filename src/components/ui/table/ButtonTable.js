@@ -13,12 +13,14 @@ import { NavLink } from 'react-router-dom'
     * 2 : Delete. 
     * 
  */
+
 export const ButtonTable = ({
     type,
     onClick,
     title = '',
     title2 = '',
     id,
+    id2,
     onClick2,
 }) => {
 
@@ -72,7 +74,11 @@ export const ButtonTable = ({
 
             case 9:
                 return (
-                    <button className='btn btnTable edit btnBlue' onClick={() => onClick(id)} > {title} <i className="fa-solid fa-circle-chevron-right"></i></button>
+                    <button className='btn btnArrow btnBlue' onClick={() => onClick(id)} > {title} <i className="fa-solid fa-circle-chevron-right"></i></button>
+                )
+            case 10:
+                return (
+                    <button className='btn btnArrow btnBlue' onClick={() => onClick(id, id2)} > {title} <i className="fa-solid fa-circle-chevron-right"></i></button>
                 )
             default:
                 return (

@@ -47,17 +47,53 @@ export const buildDataStudents = (
     student_name,
     matricula,
     major_name,
+    id_major,
     handleClick,
+    handleClick2,
     coincidence
 ) => {
     return [
         { element: <SpanTable text={student_name} />, searched: coincidence[0] },
         { element: <SpanTable text={matricula} />, searched: coincidence[1] },
         { element: <SpanTable text={major_name} />, searched: coincidence[2] },
-        { element: <ButtonTable id = {matricula} title={"Asignar grupo"} type={9} onClick={handleClick}  />, searched: false },
-        { element: <ButtonTable title={"Asignar examen"} type={9} />,  searched: false },
+        { element: <ButtonTable id={matricula} id2={id_major} title={"Grupo"} type={10} onClick={handleClick} />, searched: false },
+        { element: <ButtonTable id={matricula} title={"Examen"} type={9} onClick={handleClick2} />, searched: false },
     ];
 }
+
+export const buildDataGroupOrganization = (
+    id_group,
+    group_name,
+    major_name,
+    campus_name,
+    handleClick,
+    coincidence
+) => {
+    return [
+        { element: <SpanTable text={group_name} />, searched: coincidence[0] },
+        { element: <SpanTable text={major_name} />, searched: coincidence[1] },
+        { element: <SpanTable text={campus_name} />, searched: coincidence[2] },
+        { element: <ButtonTable id={id_group} title={"Curso"} type={9} onClick={handleClick} />, searched: false },
+        { element: <ButtonTable title={"Docente"} type={9} />, searched: false },
+    ];
+}
+
+export const buildDataMajorsGroup = (
+    id,
+    student_name,
+    matricula,
+    major_name,
+    handleClick,
+    coincidence
+) => {
+    return [
+        { element: <SpanTable text={student_name} />, searched: false },
+        { element: <SpanTable text={matricula} />, searched: false },
+        { element: <SpanTable text={major_name} />, searched: false },
+
+    ];
+}
+
 
 export const buildDataExpenses = (
     id,
@@ -136,6 +172,8 @@ export const buildDataGroups = (id_group, group_name, major_name, campus_name, o
         { element: <ButtonTable type={8} id={id_group} onClick={onClick} />, searched: false },
     ];
 }
+
+
 
 export const buildDataGroupsDetails = (id_course, course_name, clave, teacher_name, handleClick) => {
     return [

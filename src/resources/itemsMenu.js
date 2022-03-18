@@ -9,15 +9,14 @@ import { RequestDocument } from '../components/requestDocument/RequestDocument'
 import { RequestGrades } from '../components/requestGrades/RequestGrades'
 import { RequestGradesAdmin } from '../components/requestGrades/RequestsGradesAdmin'
 import { MakeAPay } from '../components/makeAPay/MakeAPay'
+import { GroupsOrganization } from '../components/groupsOrganization/GroupsOrganization'
 
 
 
 export const itemsMenu = [
     {
         permissions: [
-            11,
-            14,
-            1
+
         ],
         text: "Solicitud de documento",
         icon: "fas fa-file",
@@ -31,8 +30,6 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            11,
-            14,
             1
         ],
         text: "Avances de grupos",
@@ -48,8 +45,6 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            11,
-            14,
             1
         ],
         text: "Alumnos irregulares",
@@ -57,7 +52,7 @@ export const itemsMenu = [
         css: {
             "transform": "rotate(90deg) scaleX(-1)"
         },
-        path: "/irregular_students",
+        path: "/estudiantes_irregulares",
         component: IrregularStudents,
 
         subMenu: [],
@@ -65,7 +60,22 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            11,
+            1
+        ],
+        text: "Organizacion de grupos",
+        icon: "fas fa-file",
+        css: {
+            "transform": "rotate(90deg) scaleX(-1)"
+        },
+        path: "/organizacion_grupos",
+        component: GroupsOrganization,
+
+        subMenu: [],
+        name: "groupsOrganization"
+    },
+    {
+        permissions: [
+
         ],
         text: "Consulta de calificaciones",
         icon: "fas fa-folder-open",
@@ -78,9 +88,6 @@ export const itemsMenu = [
     },
     { //ADMINISTRATIVO
         permissions: [
-            2,
-            3,
-            4,
             1
         ],
         text: "Consulta de calificaciones",
@@ -105,8 +112,7 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1,
-            2,
+            1
         ],
         text: "Realizar pago",
         icon: "fas fa-money-bill",
@@ -117,8 +123,7 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1,
-            2,
+            1
         ],
         text: "Abonos",
         icon: "fas fa-coins",
@@ -129,8 +134,7 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1,
-            2,
+            1
         ],
         text: "Generar documento",
         icon: "fas fa-file",
@@ -142,7 +146,6 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            20,
             1
         ],
         name: "feed",

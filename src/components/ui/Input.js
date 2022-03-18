@@ -4,10 +4,10 @@ import { Timetable } from './Timetable';
 import dataStates from '../../helpers/resources/dataStates.json';
 
 
-export const Input = ({ label, styles, values, dataSelects, setFieldValue, ...props }) => {
+export const Input = ({ label, styles, values, dataSelects, setFieldValue, active, activeIdName, ...props }) => {
 
     const [field, meta] = useField(props);
-
+    console.log(field.value);
     return (
         <div
             className={`form__container__body__section__row__inputContainer ${['radio', 'checkbox'].includes(props.type) ? 'radioContainer' : ''} ${(meta.touched && meta.error ? 'error' : '')}`}
@@ -67,9 +67,12 @@ export const Input = ({ label, styles, values, dataSelects, setFieldValue, ...pr
                         props.options.map(({ value, text }) => <option key={value} value={value} label={text} />)
                     }
                     {
-                        dataSelects && dataSelects.map((elementData, index) => (
-                            <option key={index} value={elementData[props.dataName[1]]} label={elementData[props.dataName[2]]} />
-                        ))
+                        dataSelects && dataSelects.map((elementData, index) =>
+                            active ?
+                                activeIdName !== props.dataName[1] && <option key={index} value={elementData[props.dataName[1]]} label={elementData[props.dataName[2]]} />
+                                :
+                                <option key={index} value={elementData[props.dataName[1]]} label={elementData[props.dataName[2]]} />
+                        )
                     }
                 </Field>
             }
@@ -98,11 +101,13 @@ export const Input = ({ label, styles, values, dataSelects, setFieldValue, ...pr
 
             }
             {
-                props.type === 'timetable' && <Field name={props.name} component={Timetable} />
+                props.type === 'timetable' && <>
+                    <Field name={props.name} component={Timetable} meta={meta} />
+                </>
             }
 
 
-            {meta.touched && meta.error && <span>{meta.error}</span>}
+            {props.type !== 'timetable' && meta.touched && meta.error && <span>{meta.error}</span>}
         </div >
     )
 }

@@ -30,6 +30,9 @@ export const feedStartGetData = (endpoint, name, nameId) => {
 
     }
 }
+
+
+
 export const feedStartDeleteData = (endpoint, id) => {
     return async (dispatch) => {
         dispatch(uiStartLoading());
@@ -37,6 +40,8 @@ export const feedStartDeleteData = (endpoint, id) => {
             const res = await fetchConToken(`${endpoint}/${id}`, {}, 'DELETE')
             const body = await res.json()
             if (body.ok) {
+                console.log(body.result)
+               
                 dispatch(feedDeleteData(id))
                 Swal.fire({
                     title: '¡Eliminado!',
@@ -93,6 +98,7 @@ export const feedStartPostData = (endpoint, data) => {
     return async (dispatch) => {
         try {
             // data["group_chief"] = 0;
+            
             data['edu_level'] && (data['edu_level'] = parseInt(data['edu_level']))
             data['group_chief'] && (data['group_chief'] = data['group_chief'] ? 1 : 0)
             const res = await fetchConToken(endpoint, data, 'POST')
@@ -104,7 +110,8 @@ export const feedStartPostData = (endpoint, data) => {
                     text: 'El registro se ha guardado correctamente',
                     icon: 'success',
                 })
-                dispatch(feedPost(data))
+                console.log(body.result)
+                dispatch(feedPost(body.result))
                 dispatch(feedSetIsAdding(false))
             } else {
                 console.log(body)
@@ -120,6 +127,43 @@ export const feedStartPostData = (endpoint, data) => {
         }
     }
 }
+
+
+
+export const feedStartEditData = (endpoint, data) => {
+    return async (dispatch, getState) => {
+        console.log("data chida", data)
+        const { feed } = getState();
+
+        try {
+            const res = await fetchConToken(`${endpoint}/${feed.active[feed.activeIdName]}`, data, 'PUT')
+            const body = await res.json()
+
+            if (body.ok) {
+                Swal.fire({
+                    title: '¡Guardado!',
+                    text: 'El registro se ha actualizado correctamente',
+                    icon: 'success',
+                })
+
+                console.log(body.result)
+                dispatch(feedPut(body.result))
+                dispatch(feedSetIsAdding(false))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+    }
+}
+
 
 
 export const feedSetActiveGroup = (id) => ({
@@ -166,6 +210,11 @@ const feedStartLoadingSelect = () => ({
 })
 const feedFinishLoadingSelects = () => ({
     type: types.feedFinishLoadingSelect
+})
+
+const feedPut = (data) => ({
+    type: types.feedPut,
+    payload: data
 })
 
 const feedPost = (data) => ({

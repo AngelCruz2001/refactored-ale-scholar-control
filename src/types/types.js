@@ -15,6 +15,7 @@ export const types = {
     uiFinishLoading: '[UI] Finish loading',
     uiSetCurrent: '[UI] Set current component',
     uiIsModalOpen: '[UI]Change modal open',
+    uiIsModalClose: '[UI]Change modal close',
     uiStartLoadingCards: '[UI] Start loading cards',
     uiFinishLoadingCards: '[UI] Finish loading cards',
     uiIsShowHistoryOpen: '[UI] Change show history open',
@@ -23,8 +24,10 @@ export const types = {
     uiIsSubMenuOpen: '[UI] Change show sub menu',
 
     studentSetActive: '[student] Set active',
-    studentSetStudents: '[student] Set students',
+    studentSetIrregularActive: '[student] Set irregular active',
+    studentSetIrregularStudents: '[student] Set irregular students',
     studentClearData: '[student] Clear data',
+    studentClearIrregularActive: '[student] Clear irregular active',
 
     groupsSetGroups: '[groups] Set groups',
     groupsSetSpecificCourses: '[groups] Set group active',
@@ -44,7 +47,8 @@ export const types = {
 
     majorsSetMajors: '[majors] Set majors',
     majorsSetSpecificMajor: '[majors] Set specific majors',
-    
+    majorsSetMajorsGroups: '[majors] Set groups of a major',
+
 
     documentSetDocument: '[document] Set Document',
     documentClearActive: '[document] Clear Active',
@@ -77,6 +81,7 @@ export const types = {
     feedGetData: '[feed] Get data',
     feedSetActiveNameById: '[feed] SetActiveNameById',
     feedSetActive: '[feed] Set active',
+    feedPut: '[feed] Put Edit data',
     feedSetActiveNameId: '[feed] Set active name id',
     feedDeleteData: '[feed] Delete data',
     feedClearActive: '[feed] Clear active',
@@ -86,6 +91,12 @@ export const types = {
     feedClearActive: '[feed] Clear active name id',
     feedSetIsAdding: '[feed] Set is adding',
     feedPost: '[feed] Post add data',
+
+    teacherSetData: '[teachers] Set data',
+    teacherSetActive: '[teachers] Teacher set active',
+    teacherClearData: '[teachers] Teacher clean data'
+
+
 }
 
 export const typesExpenses = [
@@ -108,7 +119,7 @@ export const typesDocuments = [
     "Credencial",
     "Certificado de maestría",
     "Certificado de licenciatura",
-    "Titulo de maestri",
+    "Titulo de maestria",
     "Titulo de licenciatura",
     "Acta de examen",
     "Constancia de titulo en progreso",

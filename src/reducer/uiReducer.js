@@ -62,7 +62,12 @@ export const uiReducer = (state = initialState, action) => {
         case types.uiIsModalOpen:
             return {
                 ...state,
-                isModalOpen: !state.isModalOpen,
+                isModalOpen: true,
+            }
+        case types.uiIsModalClose:
+            return {
+                ...state,
+                isModalOpen: false,
             }
 
         case types.uiIsShowHistoryOpen:

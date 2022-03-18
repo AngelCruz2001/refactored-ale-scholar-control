@@ -18,18 +18,18 @@ export const StudentInformation = ({
     }, [loading, dispatch])
 
     return (
-        <div className={`stuInfo son ${activeClassName}`}>
+        <div className={`stuInfo son`}>
             {isStudentShowed && <p className="general__titleSection">Información del alumno</p>}
 
             <div className="stuInfo__container son">
 
                 {loading ?
-                    <p>Cargando</p>
+                    <p>Cargando...</p>
                     :
                     (activeClassName === '') &&
                     <div className="stuInfo__container__containerTwo">
                         {
-                            headers.map((header, index) => (
+                            data.length > 0 && headers.map((header, index) => (
                                 <div className="stuInfo__container__containerTwo__row" key={index}>
                                     <div className="stuInfo__container__containerTwo__row__header">
                                         <p className="stuInfo__name">{header}:</p>

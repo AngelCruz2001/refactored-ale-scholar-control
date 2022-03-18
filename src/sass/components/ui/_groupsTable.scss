@@ -1,0 +1,90 @@
+.groups-table {
+    &__container {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        &__header {
+            display: flex;
+            height: 10%;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 2rem;
+            &__title {
+                font-size: 2.4rem;
+            }
+            &__button {
+                position: absolute;
+                left: 0.5rem;
+            }
+        }
+        &__table {
+
+            border: 1px solid black;
+            &__title {
+                height: 4rem;
+                font-size: 1.5rem;
+                display: flex;
+                color: white;
+                align-items: center;
+                justify-content: center;
+                background-color: #012e5a;
+                border-radius: 10px 10px 0 0;
+                width: 100%;
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            &__row {
+                width: 100%;
+                justify-content: space-between;
+                flex-direction: row;
+                display: flex;
+                align-items: center;
+                height: 8rem;
+                border: .1px solid #c4daf0;
+                &__header {
+                    height: 100%;
+                    background-color: #012e5a;
+                    &__item {
+                        font-size: 2rem;
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        padding: 3rem 5rem;
+                        width: 100%;
+                        color: white;
+                        border: .1px solid #c4daf0;
+                    }
+                }
+
+                &__body {
+                    display: flex;
+                    height: 100%;
+                    flex: 1;
+                    &__item {
+                        border: .1px solid #c4daf0;
+                        font-size: 2rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        padding: 3rem 5rem;
+                        width: 100%;
+                        color: #52718f;
+                        &.active {
+                            color: white;
+                            background-color:#c6b300 ;
+                        }
+                    }
+                }
+
+            }
+
+            
+            }
+        }
+    
+}
