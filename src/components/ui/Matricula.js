@@ -10,10 +10,6 @@ export const Matricula = ({
 }) => {
     const dispatch = useDispatch()
     const { matricula } = useSelector(state => state.student)
-<<<<<<< HEAD
-=======
-
->>>>>>> main
     useEffect(() => {
         setComponentMatricula(matricula)
     }, [matricula])

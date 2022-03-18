@@ -4,7 +4,7 @@ export const ButtonMakeAPay = ({ text, hasIcon = false, name, onClick, value, ty
 
     switch (type) {
         case 0:
-            handleClick = () => {
+            const handleClick = () => {
                 onClick(value)
             }
             break;
@@ -16,7 +16,6 @@ export const ButtonMakeAPay = ({ text, hasIcon = false, name, onClick, value, ty
 
 
     return (
-
         <button className='btn btn-makeAPay' name={name} onClick={onClick} value={value}>
             {text}
             {hasIcon && <i className="fa-solid fa-circle-chevron-right" />}
