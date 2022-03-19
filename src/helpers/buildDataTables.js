@@ -74,7 +74,6 @@ export const buildDataGroupOrganization = (
         { element: <SpanTable text={major_name} />, searched: coincidence[1] },
         { element: <SpanTable text={campus_name} />, searched: coincidence[2] },
         { element: <ButtonTable id={id_group} title={"Curso"} type={9} onClick={handleClick} />, searched: false },
-        { element: <ButtonTable title={"Docente"} type={9} />, searched: false },
     ];
 }
 

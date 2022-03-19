@@ -38,7 +38,7 @@ export const groupsStartGetCoursesByGroup = (id_group) => {
             const body = await res.json()
             if (body.ok) {
                 console.log(body)
-                dispatch(groupsSetSpecificCourses(body.group))
+                dispatch(groupsSetCourses(body.courses))
             } else {
                 console.log(body)
                 Swal.fire({
@@ -83,15 +83,16 @@ export const groupsStartUpdateGrade = (id, credits, type = 'regular') => {
     }
 }
 
-export const groupsStartPostGroupCourse= (id_group,id_course,data) => {
-    return async (dispatch) => {
+export const groupsStartRelateGroupCourse = (data) => {
+    return async (dispatch, getState) => {
         try {
             dispatch(uiStartLoading())
-            const res = await fetchConToken(`groups/${id_group}/courses/${id_course}`,data,'POST')
+            const res = await fetchConToken(`groups/${getState().groups.activeCourse}/courses/${data.id_course}`, data, 'POST')
             const body = await res.json()
 
             if (body.ok) {
                 console.log(body)
+                dispatch(groupsClearActiveCourse())
                 Swal.fire({
                     title: "Grupos",
                     text: "Curso asignado correctamente" + '.',
@@ -139,9 +140,25 @@ export const groupsGetStudentAndGradesGroup = (id_course, id_group) => {
     }
 }
 
+
+
+
+const groupsSetCourses = (courses) => ({
+    type: types.groupsSetCourses,
+    payload: courses
+})
+
+
 export const groupsSetActiveCourse = (course) => ({ type: types.groupsSetActiveCourse, payload: course })
+
+export const groupsClearActiveCourse = () => ({ type: types.groupsSetActiveCourse })
+
 export const groupsClearActiveGroup = () => ({ type: types.groupsClearActiveGroup })
+
 const groupsSetGroups = data => ({ type: types.groupsSetGroups, payload: data })
+
 const groupsSetSpecificCourses = (courses) => ({ type: types.groupsSetSpecificCourses, payload: courses })
+
 const groupsUpdateGrade = (id, grade) => ({ type: types.groupsUpdateGrade, payload: { id, grade } })
+
 const groupsSetStudentsAndGrades = (students, grades) => ({ type: types.groupsSetStudentsAndGrades, payload: { students, grades } })

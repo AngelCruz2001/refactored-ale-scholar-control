@@ -146,7 +146,8 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1, 
+            4
         ],
         name: "feed",
         text: "Captura de datos",

@@ -10,7 +10,8 @@ export const StudentInformation = ({
 }) => {
     const dispatch = useDispatch()
     const { headers, data } = studentInformation;
-
+    console.log( Object.keys(data))
+   
     useEffect(() => {
         if (!loading && activeClassName === 'activeGuide') {
             dispatch(uiSetCurrent(2));

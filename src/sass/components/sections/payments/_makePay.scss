@@ -108,7 +108,7 @@
 
             &__total {
                 margin: 4rem 0;
-
+                height: 5rem;
                 display: flex;
                 align-items: center;
 
@@ -162,6 +162,11 @@
                             border: 1px solid #00c621;
                         }
                     }
+                }
+
+
+                &.disabled {
+                    opacity: 0;
                 }
             }
 

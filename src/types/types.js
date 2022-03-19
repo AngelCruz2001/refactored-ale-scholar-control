@@ -35,6 +35,7 @@ export const types = {
     groupsUpdateGrade: '[groups] Update grade',
     groupsSetStudentsAndGrades: '[groups] Set students and grades',
     groupsClearActiveGroup: '[groups] Clear active group',
+    groupsSetCourses:'[groups] Set data courses' ,
 
     requestSetRequests: '[request] Set requests',
     requestDeleteRequest: '[request] Delete request',

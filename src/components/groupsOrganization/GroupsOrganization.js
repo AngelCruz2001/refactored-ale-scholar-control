@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { groupsStartGetAllGroups } from '../../actions/groups';
+import { groupsClearActiveCourse, groupsClearActiveGroup, groupsSetActiveCourse, groupsStartGetAllGroups, groupsStartGetCoursesByGroup, groupsStartRelateGroupCourse } from '../../actions/groups';
 import { teachersStartGetTeachers } from '../../actions/teachers';
 import { uiSetModalOpen } from '../../actions/ui';
 import { buildDataGroupOrganization, buildDataStudents } from '../../helpers/buildDataTables';
@@ -25,39 +25,46 @@ const headers = [{
     title: "Asignar",
     textAlign: 'center'
 },
-{
-    title: "",
-    textAlign: 'center'
-}
 ];
 export const GroupsOrganization = () => {
 
     const dispatch = useDispatch();
-    const [courses, setCourses] = useState(false)
+    const { groups: { data, courses, activeCourse }, ui: { loading, isModalOpen }, teachers: { teachers } } = useSelector(state => state)
+    const [dataList, setDataList] = useState([])
+    const [isActiveCourse, setIsActiveCourse] = useState(activeCourse ? true : false);
+    const [allowToSubmit, setAllowToSubmit] = useState(false)
 
     useEffect(() => {
         dispatch(groupsStartGetAllGroups())
         dispatch(teachersStartGetTeachers())
     }, [])
 
-    const handleClick = (id_group) => {
-        console.log(id_group)
-        dispatch(uiSetModalOpen());
-        setCourses(!courses)
+    useEffect(() => {
+        setIsActiveCourse(activeCourse ? true : false)
+    }, [activeCourse])
+
+    const handleAssignCourse = (id_group) => {
+        dispatch(groupsSetActiveCourse(id_group))
+        dispatch(groupsStartGetCoursesByGroup(id_group));
     }
 
-    const { groups: { data }, ui: { loading, isModalOpen } } = useSelector(state => state)
+    useEffect(() => {
+        setDataList(courses.map(({ id_course, course_name }) => ({ value: id_course, label: course_name })))
+    }, [courses]);
+
     const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
     const [dataShow, setDataShow] = useState([])
 
-
+    const handleBack = () => {
+        dispatch(groupsClearActiveGroup());
+    }
 
     const generateData = () => {
         const dataToShow = [];
         const { searchWord } = valueSearchFilter;
         data.forEach(({ id_group, group_name, major_name, campus_name }) => {
             const coincidence = isACoincidenceSearch([group_name, major_name, campus_name], searchWord)
-            const dataBuilded = buildDataGroupOrganization(id_group, group_name, major_name, campus_name, handleClick, coincidence)
+            const dataBuilded = buildDataGroupOrganization(id_group, group_name, major_name, campus_name, handleAssignCourse, coincidence)
             if (searchWord === '') {
                 dataToShow.push(dataBuilded)
             } else if (coincidence.includes(true)) {
@@ -70,20 +77,83 @@ export const GroupsOrganization = () => {
 
     useEffect(() => {
         generateData()
-    }, [loading, valueSearchFilter])
+    }, [data, loading, valueSearchFilter])
+
+    const initialData = {
+        id_teacher: '',
+        start_date: '',
+        end_date: ''
+    }
+
+
+    const [formData, setFormData] = useState(initialData)
+
+
+    const handleSubmit = (values) => {
+        console.log("🚀asdf", formData)
+        allowToSubmit && dispatch(groupsStartRelateGroupCourse(formData))
+    }
+
+
+    const handleInputChange = ({ target }) => {
+        const preValues = { ...formData, [target.name]: target.value }
+        setFormData(prev => ({ ...prev, [target.name]: target.value }))
+        console.log(preValues)
+        setAllowToSubmit(
+            preValues.start_date !== '' && preValues.end_date !== '' && preValues.id_teacher !== ''
+        )
+
+        console.log(preValues)
+    }
+
+
+
+    const ExtraCampus = () => (
+        <>
+            <div className='assign__container__content__submit__select'>
+                <label htmlFor="">Seleccionar un maestro</label>
+
+                <select name={'id_teacher'} onChange={handleInputChange} value={formData.id_teacher}>
+                    <option hidden defaultValue>Seleccione una opción</option>
+                    {teachers.map((teacher) => (
+                        <option key={teacher.id_teacher} value={teacher.id_teacher}>{teacher.teacher_name}</option>
+                    ))}
+                </select>
+            </div>
+            <div className='assign__container__content__submit__dateInput'>
+                <label htmlFor="start_date">Fecha de inicio</label>
+                <input onChange={handleInputChange} value={formData.start_date} name='start_date' type="date" />
+            </div>
+            <div className='assign__container__content__submit__dateInput'>
+                <label htmlFor="end_date">Fecha de termino</label>
+                <input onChange={handleInputChange} value={formData.end_date} name='end_date' type="date" />
+            </div>
+        </>
+    )
 
     return (
         <>
             {
-                (courses) ?
-                    <Assign handleBack={handleClick} />
+
+                (isActiveCourse) ?
+                    <Assign
+                        handleBack={handleBack}
+                        dataList={dataList}
+                        title={'Asignar curso'}
+                        allowToSubmit={allowToSubmit}
+                        handleInputChange={handleInputChange}
+                        nameDataList={'id_course'}
+                        ExtraCampus={ExtraCampus}
+                        handleSubmit={handleSubmit}
+                        type={'radio'}
+                    />
                     : <div className={`gra__container ${isModalOpen && 'modal-active'}`} >
                         <Searchbar placeholder="Buscar por nombre, carrera, campus" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
                         <h4 className="general__title-h4">Todos los grupos</h4>
                         <Table
                             headers={headers}
                             data={dataShow}
-                            sizesColumns={[25, 30, 20, 12.5, 12.5]}
+                            sizesColumns={[25, 35, 25, 15]}
                         />
                     </div>
             }

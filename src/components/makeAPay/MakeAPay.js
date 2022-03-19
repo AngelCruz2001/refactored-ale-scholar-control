@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
+import { useSelector } from 'react-redux'
 import { Date } from '../ui/Date'
 import { Matricula } from '../ui/Matricula'
 import { StudentInformation } from '../ui/StudentInformation'
@@ -7,10 +8,18 @@ import { ButtonMakeAPay } from './ButtonMakeAPay'
 export const MakeAPay = () => {
 
 
-    const studentInformation = {
-        headers: ["Nombre", "Grupo", "Campus"],
-        data: ['Angel Cruz', "2B", "Instituto de educación y cultura Alejandría"],
-    }
+    const student = useSelector(state => state.student)
+console.log(student)
+    const { loading } = useSelector(state => state.ui)
+
+   const [studentInfo, setStudentInfo] = useState({ headers: [], data: [] })
+
+    useEffect(() => {
+        setStudentInfo({
+            headers: ["Alumno", "Grupo", "Campus", "Carrera"],
+            data: [student.student_name, student.name_group, student.campus_name, student.major_name]
+        })
+    }, [student])
 
     const [dataPay, setDataPay] = useState({
         concept: '',
@@ -20,6 +29,8 @@ export const MakeAPay = () => {
         quantity: '',
         change: '',
     })
+
+    console.log(dataPay)
 
     const handleInputChange = (e) => {
         console.log("🚀 ~ file: MakeAPay.js ~ line 31 ~ handleInputChange ~ e", e.target)
@@ -43,7 +54,8 @@ export const MakeAPay = () => {
 
                     <div className='makeAPay__body__container__studentData'>
                         <StudentInformation
-                            studentInformation={studentInformation}
+                            studentInformation={studentInfo}
+                            loading={loading}
                         />
                     </div>
 
@@ -68,20 +80,21 @@ export const MakeAPay = () => {
                     <div className='makeAPay__body__container__concept'>
                         <p className="payTitle">Método de pago</p>
                         <div className="makeAPay__body__container__concept__buttons method">
-                            <ButtonMakeAPay text="Efectivo" name="method" />
-                            <ButtonMakeAPay text="Depósito" name="method" />
-                            <ButtonMakeAPay text="Tarjeta" name="method" />
+                            <ButtonMakeAPay onClick={handleInputChange} value={0} text="Efectivo" name="method" />
+                            <ButtonMakeAPay onClick={handleInputChange} value={2} text="Depósito" name="method" />
+                            <ButtonMakeAPay onClick={handleInputChange} value={1} text="Tarjeta" name="method" />
                         </div>
                     </div>
 
                     <div className="makeAPay__body__container__total ">
-                        <button className='btn btn-bluePay '>Total de pago</button>
+                      
+                        <p className="payTitle">Total de pago</p>
                         <div className='makeAPay__body__container__total__price'>
                             <p>$5,000</p>
                         </div>
                     </div>
                     {
-                        true && <div className="makeAPay__body__container__deposit">
+                        dataPay.method === "2" && <div className="makeAPay__body__container__deposit">
                             <select name="deposit" id="">
                                 <option value="0">Cuenta 1</option>
                                 <option value="1">Cuenta 2</option>
@@ -90,7 +103,7 @@ export const MakeAPay = () => {
                         </div>
                     }
                     {
-                        false && <div className="makeAPay__body__container__card">
+                        dataPay.method === "1" && <div className="makeAPay__body__container__card">
                             <p className='title'>Información bancaria</p>
                             <p>xxxxxxxxxxxxxxxxxxxx</p>
                             <p>xxxxxxxxxxxxxxxxxxxxx</p>
@@ -98,7 +111,7 @@ export const MakeAPay = () => {
 
                         </div>
                     }
-                    <div className="makeAPay__body__container__money">
+                    <div className={`makeAPay__body__container__money ${dataPay.method ? '': ''}`}>
                         <div>
                             <label htmlFor="quantity">Cantidad</label>
                             <input name='quantity' type="text" placeholder="$0.00" className='' />

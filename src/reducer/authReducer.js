@@ -10,9 +10,7 @@ const initialState = JSON.parse(localStorage.getItem('user')) || {
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
-
         case types.authLogin:
-           
             return {
                 ...state,
                 user: { ...action.payload },

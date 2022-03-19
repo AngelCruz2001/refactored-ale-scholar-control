@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { authStartLogout } from "../../actions/auth";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleClickLogout = (e) => {
     e.preventDefault();
+    dispatch(authStartLogout());
   }
 
   return (

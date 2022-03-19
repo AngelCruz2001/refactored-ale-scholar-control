@@ -19,11 +19,6 @@ export const Assign = ({
 
     const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
 
-    const [values, setValues] = useState();
-
-
-
-
 
     return (
         <div className='assign__container'>
@@ -81,7 +76,7 @@ export const Assign = ({
                             <input onChange={handleInputChange} name='application_date' type="date" />
                         </div>
                     } */}
-                    <button className={`btn btnAssignGroup ${allowToSubmit ? '' : 'disableGuide'}`} onClick={() => handleSubmit(values)}>Aceptar</button>
+                    <button className={`btn btnAssignGroup ${allowToSubmit ? '' : 'disableGuide'}`} onClick={() => handleSubmit()}>Aceptar</button>
                 </div>
             </div>
         </div>

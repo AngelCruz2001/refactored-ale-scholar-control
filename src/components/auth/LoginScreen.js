@@ -15,7 +15,7 @@ export const LoginScreen = () => {
             username: 'admin',
             password: 'jopi',
         },
-        
+
         onSubmit: (values) => {
             dispatch(authStartLogin(values.username, values.password))
             resetForm()
@@ -39,24 +39,18 @@ export const LoginScreen = () => {
                         <i className="auth__login-inputs-icon fas fa-user-alt"></i>
                     </div>
                     {touched.username && errors.username && <span>{errors.username}</span>}
-
                     <div className="auth__login-inputs">
-                      
-
-                        <input className="auth__login-inputs-input" placeholder="Contraseña" type="text" {...getFieldProps('password')} />
-
-
-
+                        <input className="auth__login-inputs-input" placeholder="Contraseña" type="password" {...getFieldProps('password')} />
                         <i className="auth__login-inputs-icon fas fa-key"></i>
                     </div>
-                        {touched.password && errors.password && <span>{errors.password}</span>}
-                   
+                    {touched.password && errors.password && <span>{errors.password}</span>}
+
 
                     <button
                         className="auth__login-submit btn"
                         type="submit"
                     >
-                       Ingresar
+                        Ingresar
                     </button>
                 </form>
                 {

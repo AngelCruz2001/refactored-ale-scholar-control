@@ -69,11 +69,12 @@ export const IrregularStudents = () => {
     const [formData, setFormData] = useState(initialData)
 
 
-    const handleSubmit = (values) => {
+    const handleSubmit = () => {
+        console.log("🚀asdf", formData.id_teacher && formData.application_date)
         if (isAssingingGroup) {
-            values.id_group && dispatch(studentStartMoveStudentGroup(values.id_group))
+            formData.id_group && dispatch(studentStartMoveStudentGroup(formData.id_group))
         } else {
-            values.id_teacher && values.application_date && dispatch(studentStartAssignATest(values.id_course, values.application_date))
+            formData.id_teacher && formData.application_date && dispatch(studentStartAssignATest(formData.id_course, formData.application_date))
         }
     }
 
@@ -83,7 +84,6 @@ export const IrregularStudents = () => {
 
 
     useEffect(() => {
-        console.log("🚀 ~ file: IrregularStudents.js ~ line 83 ~ useEffect ~ isActiveStudent", isActiveStudent)
         if (isActiveStudent) {
             dispatch(uiSetModalOpen())
             setIsActiveStudent(true)
@@ -100,27 +100,25 @@ export const IrregularStudents = () => {
         const currentStudent = data.find(student => student.matricula === matricula);
         dispatch(majorsStartGetgroupsFromAMajor(currentStudent.id_major));
         dispatch(studentSetIrregularActive(currentStudent));
-        // dispatch(uiSetModalOpen())
         setIsAssingingGroup(true)
     }
 
     const handleAssignTest = (matricula) => {
-        // dispatch(uiSetModalOpen())
         dispatch(studentSetIrregularActive(data.find(student => student.matricula === matricula)));
         setIsAssingingGroup(false)
-        console.log(data)
     }
 
     const handleBack = () => {
         dispatch(studentClearIrregularActive());
     }
 
-    const generateDataListGroups = () => groupsData.map(group => ({ value: group.id_group, label: group.group_name }))
 
     useEffect(() => {
-        !isAssingingGroup && setDataList(generateDataListGroups())
-        isAssingingGroup && setDataList(groupsData.map(group => ({ value: group.id_group, label: group.group_name })))
-    }, [isAssingingGroup])
+        isAssingingGroup
+            ? setDataList(groupsData.map(group => ({ value: group.id_group, label: group.group_name })))
+            : setDataList(groupsData.map(group => ({ value: group.id_group, label: group.group_name })))
+    }, [isAssingingGroup, groupsData])
+
 
 
 
@@ -142,6 +140,7 @@ export const IrregularStudents = () => {
     const handleInputChange = ({ target }) => {
         const preValues = { ...formData, [target.name]: target.value }
         setFormData(prev => ({ ...prev, [target.name]: target.value }))
+
         setAllowToSubmit(
             isAssingingGroup ?
                 preValues.id_group !== '' :
@@ -158,7 +157,7 @@ export const IrregularStudents = () => {
 
     useEffect(() => {
         generateData()
-    }, [loading, valueSearchFilter])
+    }, [data, loading, valueSearchFilter])
 
 
     const ExtraCampus = () => {
@@ -183,14 +182,7 @@ export const IrregularStudents = () => {
             //         </select>
             //     </div>
 
-            //     <div className='assign__container__content__submit__dateInput'>
-            //         <label htmlFor="start_date">Fecha de inicio</label>
-            //         <input onChange={handleInputChange} name='start_date' type="date" />
-            //     </div>
-            //     <div className='assign__container__content__submit__dateInput'>
-            //         <label htmlFor="end_date">Fecha de termino</label>
-            //         <input onChange={handleInputChange} name='end_date' type="date" />
-            //     </div>
+            
             // </>
 
         )
