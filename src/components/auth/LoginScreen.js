@@ -12,8 +12,8 @@ export const LoginScreen = () => {
 
     const { handleSubmit, errors, touched, getFieldProps, resetForm } = useFormik({
         initialValues: {
-            username: 'admin',
-            password: 'jopi',
+            username: '',
+            password: '',
         },
 
         onSubmit: (values) => {

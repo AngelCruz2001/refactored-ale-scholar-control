@@ -352,26 +352,6 @@
                 ],
                 [
                     {
-                        "name": "id_major",
-                        "label": "Carrera",
-                        "type": "select",
-                        "placeholder": "Nombre de la carrera",
-                        "value": "",
-                        "dataName": [
-                            "majors",
-                            "id_major",
-                            "major_name"
-                        ],
-                        "styles": {
-                            "width": "30%"
-                        },
-                        "validations": [
-                            {
-                                "type": "required"
-                            }
-                        ]
-                    },
-                    {
                         "name": "group_chief",
                         "label": "¿El estudiante es lider de grupo?",
                         "type": "checkbox",
@@ -854,7 +834,7 @@
                 "textAlign": "left"
             },
             {
-                "title": "RFC",
+                "title": "User",
                 "textAlign": "center"
             },
             {
@@ -873,13 +853,13 @@
         "titleForm": "Capturar datos del colaborador",
         "columsToSearch": [
             "name",
-            "rfc",
+            "id_employee",
             "department_name",
             "campus_name"
         ],
         "campusTable": [
             "name",
-            "rfc",
+            "id_employee",
             "department_name",
             "campus_name",
             ""
