@@ -2,25 +2,32 @@ import React from 'react'
 
 export const RadioButtonList = ({
     items,
-    onChangeValueDocument,
+    touched,
+    errors,
     activeClassName,
-    idValue,
+    handleChange,
     text
 }) => {
-
+    console.log(items)
     return (
         <div className={"radioButtonList son ".concat(activeClassName)}>
             <p className="general__titleSection">{text}</p>
-            <div className={"radioButtonList__container son"} onChange={onChangeValueDocument}>
+           
+            <div className={"radioButtonList__container son"} >
                 {items.map((item, index) => (
                     <div className="pretty-radio" key={index}>
-                        <input type="radio" className="radio" name="document" id={index} checked={idValue == index} onChange={onChangeValueDocument} />
+                        <input type="radio" className="radio" name="expense_type" id={index} 
+                        onChange={handleChange} value={index}
+                        />
+                        
                         <span className="radio-look"></span>
+                        {/* // checked={idValue == index} onChange={onChangeValueDocument} /> */}
                         <span>{item}</span>
                     </div>
                 ))
                 }
             </div>
+                {touched.expense_type && errors.expense_type && <span>{errors.expense_type}</span>}
         </div>
     )
 }
