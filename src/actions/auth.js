@@ -59,26 +59,21 @@ export const authStartChecking = () => {
     }
 }
 
-
 export const authStartLogout = () => {
     return (dispatch) => {
         localStorage.clear()
         dispatch(authLogout())
-
     }
 }
-
 
 const authLogin = (userData) => ({
     type: types.authLogin,
     payload: userData,
 })
 
-
 const authLogout = () => ({
     type: types.authLogout
 })
-
 
 const authCheckingStart = () => ({ type: types.authCheckingStart })
 const authCheckingFinish = () => ({ type: types.authCheckingFinish })

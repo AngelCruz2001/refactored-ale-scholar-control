@@ -11,6 +11,7 @@
 
 @import "./components/sections/documents";
 @import "./components/sections/expenseRecords";
+@import "./components/sections/expensesRecord"; //NEW
 @import "./components/sections/requestDocument";
 @import "./components/sections/requestGrades";
 
@@ -54,4 +55,4 @@
 @import "./components/sections/payments/makePay";
 @import "./components/sections/payments/checkStatePay";
 @import "./components/sections/payments/fertilizerPay";
-@import "./components/sections/advanceGroups/advanceGroups"
+@import "./components/sections/advanceGroups/advanceGroups";

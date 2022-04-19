@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { groupsClearActiveCourse, groupsClearActiveGroup, groupsSetActiveCourse, groupsStartGetAllGroups, groupsStartGetCoursesByGroup, groupsStartRelateGroupCourse } from '../../actions/groups';
 import { teachersStartGetTeachers } from '../../actions/teachers';
-import { uiSetModalOpen } from '../../actions/ui';
+import { uiSetModalClose, uiSetModalOpen } from '../../actions/ui';
 import { buildDataGroupOrganization, buildDataStudents } from '../../helpers/buildDataTables';
 import { isACoincidenceSearch } from '../../helpers/isACoincidence';
 import { Assign } from '../irregularStudents/Assign';
@@ -41,6 +41,15 @@ export const GroupsOrganization = () => {
 
     useEffect(() => {
         setIsActiveCourse(activeCourse ? true : false)
+        if (activeCourse) {
+            setIsActiveCourse(true)
+            dispatch(uiSetModalOpen())
+        } else {
+            dispatch(uiSetModalClose())
+            setIsActiveCourse(false)
+            setAllowToSubmit(false)
+
+        }
     }, [activeCourse])
 
     const handleAssignCourse = (id_group) => {

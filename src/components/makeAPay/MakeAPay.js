@@ -1,18 +1,20 @@
-import React, { useState, useEffect} from 'react'
+import { useFormik } from 'formik'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Date } from '../ui/Date'
 import { Matricula } from '../ui/Matricula'
 import { StudentInformation } from '../ui/StudentInformation'
 import { ButtonMakeAPay } from './ButtonMakeAPay'
+import * as Yup from 'yup';
 
 export const MakeAPay = () => {
 
 
     const student = useSelector(state => state.student)
-console.log(student)
+    console.log(student)
     const { loading } = useSelector(state => state.ui)
 
-   const [studentInfo, setStudentInfo] = useState({ headers: [], data: [] })
+    const [studentInfo, setStudentInfo] = useState({ headers: [], data: [] })
 
     useEffect(() => {
         setStudentInfo({
@@ -20,6 +22,44 @@ console.log(student)
             data: [student.student_name, student.name_group, student.campus_name, student.major_name]
         })
     }, [student])
+
+
+    const { handleSubmit, errors, touched, getFieldProps, resetForm, handleChange } = useFormik({
+        initialValues: null === null
+            ? {
+                matricula: '',
+                id_user: '',
+                payment_method: '',
+                payment_type: '',
+                amount: 0,
+                document_type: null,
+                id_card: null,
+                start_date: null,
+                id_ext_cou: null
+            }
+            : {
+                matricula: '',
+                id_user: '',
+                payment_method: '',
+                payment_type: '',
+                amount: 0,
+                document_type: null,
+                id_card: null,
+                start_date: null,
+                id_ext_cou: null
+            },
+        enableReinitialize: true,
+        onSubmit: (values) => {
+            console.log(values)
+            resetForm()
+        },
+        validationSchema: Yup.object({
+            matricula: Yup.string().required('Introduzca los datos correspondientes.'),
+            payment_method: Yup.number().required('Introduzca los datos correspondientes.')
+        })
+    });
+
+
 
     const [dataPay, setDataPay] = useState({
         concept: '',
@@ -48,7 +88,8 @@ console.log(student)
                 <Date />
             </div>
 
-            <div className="makeAPay__body">
+            <form className="makeAPay__body" onSubmit={handleSubmit}>
+
                 <div className="makeAPay__body__container">
                     <Matricula />
 
@@ -87,7 +128,7 @@ console.log(student)
                     </div>
 
                     <div className="makeAPay__body__container__total ">
-                      
+
                         <p className="payTitle">Total de pago</p>
                         <div className='makeAPay__body__container__total__price'>
                             <p>$5,000</p>
@@ -111,7 +152,7 @@ console.log(student)
 
                         </div>
                     }
-                    <div className={`makeAPay__body__container__money ${dataPay.method ? '': ''}`}>
+                    <div className={`makeAPay__body__container__money ${dataPay.method ? '' : ''}`}>
                         <div>
                             <label htmlFor="quantity">Cantidad</label>
                             <input name='quantity' type="text" placeholder="$0.00" className='' />
@@ -126,8 +167,7 @@ console.log(student)
                         <button className='btn btn-bluePay'>Pagar</button>
                     </div>
                 </div>
-
-            </div>
+            </form>
 
         </div>
     )

@@ -182,7 +182,7 @@ export const IrregularStudents = () => {
             //         </select>
             //     </div>
 
-            
+
             // </>
 
         )

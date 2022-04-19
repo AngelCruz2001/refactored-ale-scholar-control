@@ -11,7 +11,7 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
     const [initialValues, validationSchema] = validationsInputs(dataForm, active);
 
     const dispatch = useDispatch();
-    
+
     const handleBack = () => {
         handleIsAdding()
         dispatch(feedClearActive())

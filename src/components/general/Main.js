@@ -7,10 +7,10 @@ import { useSelector } from 'react-redux';
 
 
 export const Main = () => {
-  const { ui: { isModalOpen } } = useSelector(state => state);
+  const { ui: { isModalOpen, isModalOpenExpenses } } = useSelector(state => state);
   const [roles, componentsAccess] = useAccess();
   return (
-    <div className={`mainContainer ${isModalOpen && 'modal-active'} `}>
+    <div className={`mainContainer ${isModalOpen && 'modal-active'} ${isModalOpenExpenses && 'modal-active-expense'} `}>
       {/* Texture */}
       <div className="texture" />
 
@@ -20,11 +20,11 @@ export const Main = () => {
       {/* card and menu */}
       <div className="content">
         <Sidebar componentsAccess={componentsAccess} />
-        <div className="overtexture" >
+        <div className={`overtexture ${isModalOpenExpenses && 'modal-active-expense'}`} >
           <Switch>
             {
               componentsAccess.map((componentData, index) => (
-                <Route key={index} path={`${componentData.path}/:name?`} component={componentData.component}  />
+                <Route key={index} path={`${componentData.path}/:name?`} component={componentData.component} />
               ))
             }
           </Switch>

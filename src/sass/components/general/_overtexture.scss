@@ -10,8 +10,20 @@
     justify-content: center;
     position: relative;
     z-index: 70;
-    
+    width: 100%;
     padding: 3rem;
+    overflow: hidden;
+
+    &.modal-active-expense::after {
+        z-index: 20;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(27, 27, 27, 0.4);
+    }
     &__modalEdit {
         width: 75%;
         height: 90%;

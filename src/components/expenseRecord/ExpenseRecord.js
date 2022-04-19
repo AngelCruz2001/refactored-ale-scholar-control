@@ -11,30 +11,38 @@ import { RadioButtonList } from '../ui/RadioButtonList'
 import { HistoryExpenses } from './HistoryExpenses'
 
 export const ExpenseRecord = () => {
-    const { idExpenseType, expenses,  } = useSelector(state => state.expenses);
-    const { isShowHistoryOpen } = useSelector(state => state.ui)
-
+    const { expenses: { idExpenseType, expenses, activeExpense }, ui: { isShowHistoryOpen, isModalOpenExpenses } } = useSelector(state => state);
+    console.log(activeExpense != null ? true : false)
     const dispatch = useDispatch();
     //
     // jeje cruz si estas aqui, no le sabes a este formik we, no le muevas paro, ya funka
+    // Pues ya le entendí, voy a ver si puedo ponerlo en payments. 
     const { handleSubmit, errors, touched, getFieldProps, resetForm, handleChange } = useFormik({
-        initialValues: {
-            observation: '',
-            amount: '',
-            expense_type: ''
-        },
-
+        initialValues: activeExpense === null
+            ? {
+                observation: '',
+                amount: '',
+                expense_type: null
+            }
+            : {
+                observation: activeExpense.observation,
+                amount: activeExpense.amount,
+                expense_type: activeExpense.expense_type
+            },
+        enableReinitialize: true,
         onSubmit: (values) => {
             //aqui faltaria el dispatch pero tengo que ver que pez con retana porque no funka
+            // Pa agregar, no funciona porque la petición se queda pendiente, lo que me hizo pensar que nos falta un loading 
+            // pa cuando una petición se esta ejecutando
+
+            console.log(values)
+            dispatch(expenseStartCreateRequest(values))
             resetForm()
         },
         validationSchema: Yup.object({
-            observation: Yup.string()
-                .required('Requerido'),
-            amount: Yup.number('La cantidad tienen que ser numeros.')
-                .required('Requerido'),
-            expense_type: Yup.number()
-                .required('Requerido')
+            observation: Yup.string().required('Introduzca los datos correspondientes.'),
+            amount: Yup.number().typeError('Introduzca solo numeros.').required('Introduzca los datos correspondientes.'),
+            expense_type: Yup.number().required('Introduzca los datos correspondientes.')
         })
     });
 
@@ -54,6 +62,8 @@ export const ExpenseRecord = () => {
                 isShowHistoryOpen ?
                     <HistoryExpenses
                         expenses={expenses}
+                        isModalOpenExpenses={isModalOpenExpenses}
+
                     />
                     :
                     <>
@@ -61,51 +71,50 @@ export const ExpenseRecord = () => {
                             <Date />
                         </div>
 
-
                         <form onSubmit={handleSubmit} >
                             <div className="exp__container__body">
-
 
                                 <RadioButtonList
                                     touched={touched}
                                     errors={errors}
                                     items={typesExpenses}
                                     text="Razón de gasto"
+                                    getFieldProps={getFieldProps}
                                     handleChange={handleChange}
                                 />
 
                                 <div className="exp__container__body__quantity">
-                                    <div className="quan__container ">
+
+                                    <div className="quan__container inputContainer">
                                         <p className="general__titleSection quantity">Cantidad</p>
-                                        <input className="styledInput" placeholder='Cantidad' type="text" {...getFieldProps('amount')} />
-                                        {touched.amount && errors.amount && <span>{errors.amount}</span>}
+                                        <input className="styledInput " placeholder='Cantidad' type="text" {...getFieldProps('amount')} />
+                                        {touched.amount && errors.amount && <span className='errorMessage'>{errors.amount}</span>}
                                     </div>
-                                    <p className="general__titleSection description">Descripción</p>
-                                    <textarea
-                                        className="styledInput"
-                                        name="observation"
-                                        type="text"
-                                        rows={5}
-                                        cols={5}
-                                        wrap="hard"
-                                        {...getFieldProps('observation')}
-                                        placeholder="Escriba una breve descripción. Ej:&#10;Pago de transporte a la secretaria María Valenzuela."
-                                    
-                                    />
-                                    {touched.observation && errors.observation && <span>{errors.observation}</span>}
+
+                                    <div className='inputContainer descriptionContainer'>
+                                        <p className="general__titleSection description">Descripción</p>
+                                        <textarea
+                                            className={`styledInput ${errors.observation && touched.observation && 'error'}`}
+                                            name="observation"
+                                            type="text"
+                                            rows={5}
+                                            cols={5}
+                                            wrap="hard"
+                                            {...getFieldProps('observation')}
+                                            placeholder="Escriba una breve descripción. Ej:&#10;Pago de transporte a la secretaria María Valenzuela."
+                                        />
+                                        {touched.observation && errors.observation && <span className='errorMessage'>{errors.observation}</span>}
+
+                                    </div>
                                 </div>
                             </div>
                             <div className="exp__container__footer">
                                 <button className="btn req__footer__checkHistory active" onClick={handleOpenShowHistory}><i className="fas fa-history"></i><span>Ver Historial</span></button>
-                                <button className="btn btn-primary active" type='submit'>Guardar</button>
+                                <button className="btn btn-primary active btn-expenses" type='submit'>Guardar</button>
                             </div>
                         </form>
                     </>
-
             }
-
-
-
         </div>
 
     )

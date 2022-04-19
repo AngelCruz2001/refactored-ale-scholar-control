@@ -14,8 +14,10 @@ export const types = {
     uiStartLoading: '[UI] Start loading',
     uiFinishLoading: '[UI] Finish loading',
     uiSetCurrent: '[UI] Set current component',
-    uiIsModalOpen: '[UI]Change modal open',
-    uiIsModalClose: '[UI]Change modal close',
+    uiIsModalOpen: '[UI] hange modal open',
+    uiIsModalClose: '[UI] Change modal close',
+    uiIsModalOpenExpenses: '[UI] Change modal expenses open',
+    uiIsModalCloseExpenses: '[UI] Change modal expenses close',
     uiStartLoadingCards: '[UI] Start loading cards',
     uiFinishLoadingCards: '[UI] Finish loading cards',
     uiIsShowHistoryOpen: '[UI] Change show history open',
@@ -35,7 +37,7 @@ export const types = {
     groupsUpdateGrade: '[groups] Update grade',
     groupsSetStudentsAndGrades: '[groups] Set students and grades',
     groupsClearActiveGroup: '[groups] Clear active group',
-    groupsSetCourses:'[groups] Set data courses' ,
+    groupsSetCourses: '[groups] Set data courses',
 
     requestSetRequests: '[request] Set requests',
     requestDeleteRequest: '[request] Delete request',
@@ -62,6 +64,7 @@ export const types = {
     expensesSetDataInputs: '[expense] Set data inputs',
     expensesClearData: '[expense] Clear data',
     expensesSetActive: '[expense] Set active',
+    expensesClearActive: '[expense] Clear active',
     expensesDeleteExpense: '[expense] Delete expense',
 
 

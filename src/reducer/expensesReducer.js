@@ -7,7 +7,7 @@ const initialState = {
         observation: '',
         amount: 0,
     },
-    activeExpense: {},
+    activeExpense: null,
 };
 
 
@@ -38,12 +38,18 @@ export const expensesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeExpense: action.payload,
-                dataInputs: {
-                    observation: action.payload.observation,
-                    amount: action.payload.amount,
-                },
-                idExpenseType: typesExpenses.indexOf(action.payload.expenses_type),
+                // dataInputs: {
+                //     observation: action.payload.observation,
+                //     amount: action.payload.amount,
+                // },
+                // idExpenseType: typesExpenses.indexOf(action.payload.expenses_type),
             };
+
+        case types.expensesClearActive:
+            return {
+                ...state,
+                activeExpense: null,
+            }
 
         case types.expensesDeleteExpense:
             return {

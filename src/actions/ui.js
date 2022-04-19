@@ -34,6 +34,7 @@ export const uiSetModalOpen = () => ({
 export const uiSetModalClose = () => ({
     type: types.uiIsModalClose,
 })
+
 export const uiSetShowHistory = (isShowHistoryOpen) => ({
     type: types.uiIsShowHistoryOpen,
     payload: isShowHistoryOpen
@@ -45,3 +46,10 @@ export const uiIsSubMenuOpen = (name) => ({
 })
 
 
+export const uiSetModalOpenExpenses = () => ({
+    type: types.uiIsModalOpenExpenses,
+})
+
+export const uiSetModalCloseExpenses = () => ({
+    type: types.uiIsModalCloseExpenses,
+})

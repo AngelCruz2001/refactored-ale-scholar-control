@@ -8,6 +8,7 @@ const initialState = {
     current: 0,
     isModalOpen: false,
     isShowMenuOpen: { feed: false },
+    isModalOpenExpenses: false,
 }
 
 export const uiReducer = (state = initialState, action) => {
@@ -68,6 +69,17 @@ export const uiReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isModalOpen: false,
+            }
+        case types.uiIsModalOpenExpenses:
+            return {
+                ...state,
+                isModalOpenExpenses: true,
+            }
+            
+        case types.uiIsModalCloseExpenses:
+            return {
+                ...state,
+                isModalOpenExpenses: false,
             }
 
         case types.uiIsShowHistoryOpen:

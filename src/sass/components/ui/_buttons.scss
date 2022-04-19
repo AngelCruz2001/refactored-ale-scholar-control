@@ -110,6 +110,7 @@
         padding-right: 0.3rem;
         font-size: 0.8rem;
         color: initial;
+        font-size: 1.8rem;
     }
     i {
         font-size: 2rem;
@@ -203,4 +204,8 @@
     pointer-events: none;
     color: $white;
     background-color: $blue-button;
+}
+
+.btn-expenses {
+    height: 5rem;
 }

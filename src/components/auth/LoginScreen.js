@@ -45,7 +45,6 @@ export const LoginScreen = () => {
                     </div>
                     {touched.password && errors.password && <span>{errors.password}</span>}
 
-
                     <button
                         className="auth__login-submit btn"
                         type="submit"

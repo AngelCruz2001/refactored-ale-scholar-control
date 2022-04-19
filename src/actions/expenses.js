@@ -2,23 +2,22 @@ import Swal from "sweetalert2"
 import { fetchConToken } from "../helpers/fetch"
 import { types } from "../types/types"
 
-export const expenseStartCreateRequest = (dataForm) => {
+export const expenseStartCreateRequest = (data) => {
+
     return async (dispatch, getState) => {
         const { expenses } = getState();
-        console.log({
-            observation: dataForm.observation,
-            amount: dataForm.amount,
-            expense_type: expenses.idExpenseType,
-            id_user: getState().auth.user.id_user
-        })
+        console.log(data)
+        // console.log({
+        //     observation: dataForm.observation,
+        //     amount: dataForm.amount,
+        //     expense_type: expenses.idExpenseType,
+        //     id_user: getState().auth.user.id_user
+        // })
+
+        // data.id_user = getState().auth.user.id_user
+        // data.id_user = "1993"
         try {
-            const res = await fetchConToken(`expenses`,
-                {
-                    observation: dataForm.observation,
-                    amount: dataForm.amount,
-                    expense_type: expenses.idExpenseType,
-                    id_user: getState().auth.user.id_user
-                }, 'POST'
+            const res = await fetchConToken(`expenses`, data, 'POST'
             )
             const body = await res.json()
 
@@ -56,7 +55,40 @@ export const expensesStartGetExpenses = (filter = "all") => {
             const body = await res.json()
             if (body.ok) {
                 console.log(body)
-                dispatch(expensesSetExpenses(body.expenses))
+
+                // dispatch(expensesSetExpenses(body.expenses))
+                dispatch(expensesSetExpenses([
+                    {
+                        id_expense: 1, expenses_type: "asdf", date: "asdf",
+                        observation: "asdfasdfsadflkjsadfjlkñasdjflkdsajflkadsjflkdsajflkadsjflsdkajfdslakfjdsalkñfjadslñkfjasdlkñfjasdlñkfjasdlkf",
+                        amount: 100,
+                        expense_type: 0
+                    },
+                    {
+                        id_expense: 2, expenses_type: "asdf", date: "asdf",
+                        observation: "SADÑJFKLASDJFDLSÑKAJFDLSÑAKJFSDLAKFJLDSAJFKLASDJFLKDSAJFLKÑSA",
+                        amount: 100,
+                        expense_type: 0
+                    },
+                    {
+                        id_expense: 3, expenses_type: "asdf", date: "asdf",
+                        observation: "SADÑJFKLASDJFDLSÑKAJFDLSÑAKJFSDLAKFJLDSAJFKLASDJFLKDSAJFLKÑSA",
+                        amount: 100,
+                        expense_type: 0
+                    },
+                    {
+                        id_expense: 4, expenses_type: "asdf", date: "asdf",
+                        observation: "SADÑJFKLASDJFDLSÑKAJFDLSÑAKJFSDLAKFJLDSAJFKLASDJFLKDSAJFLKÑSA",
+                        amount: 100,
+                        expense_type: 0
+                    },
+                    {
+                        id_expense: 5, expenses_type: "qwer", date: "qwer",
+                        observation: "Este es el numero 5 funcionando asdfasdfsadflkjsadfjlkñasdjflkdsajflkadsjflkdsajflkadsjflsdkajfdslakfjdsalkñfjadslñkfjasdlkñfjasdlñkfjasdlkf.",
+                        amount: 500,
+                        expense_type: 5
+                    }
+                ]))
             } else {
                 console.log(body)
                 Swal.fire({
@@ -142,8 +174,15 @@ export const expenseStartUpdateexpense = (id_expense, dataForm) => {
     }
 }
 export const expensesSetDataInputs = (data) => ({ type: types.expensesSetDataInputs, payload: data })
+
 export const expenseSetTypeExpense = (idExpense) => ({ type: types.expenseSetTypeExpenses, payload: idExpense })
+
 export const expensesSetExpenses = (expenses) => ({ type: types.expensesSetExpenses, payload: expenses })
+
 export const expensesSetActiveExpense = (expenses) => ({ type: types.expensesSetActive, payload: expenses })
+
+export const expensesClearActive = () => ({ type: types.expensesClearActive })
+
 const expensesDeleteExpense = (id_expense) => ({ type: types.expensesDeleteExpense, payload: id_expense })
+
 export const expensesClearData = () => ({ type: types.expensesClearData })
