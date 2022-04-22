@@ -51,44 +51,11 @@ export const expensesStartGetExpenses = (filter = "all") => {
     return async (dispatch, getState) => {
         try {
 
-            const res = await fetchConToken(`expenses/?${filter}`, 'GET')
+            const res = await fetchConToken(`expenses`, 'GET')
             const body = await res.json()
             if (body.ok) {
                 console.log(body)
-
-                // dispatch(expensesSetExpenses(body.expenses))
-                dispatch(expensesSetExpenses([
-                    {
-                        id_expense: 1, expenses_type: "asdf", date: "asdf",
-                        observation: "asdfasdfsadflkjsadfjlkñasdjflkdsajflkadsjflkdsajflkadsjflsdkajfdslakfjdsalkñfjadslñkfjasdlkñfjasdlñkfjasdlkf",
-                        amount: 100,
-                        expense_type: 0
-                    },
-                    {
-                        id_expense: 2, expenses_type: "asdf", date: "asdf",
-                        observation: "SADÑJFKLASDJFDLSÑKAJFDLSÑAKJFSDLAKFJLDSAJFKLASDJFLKDSAJFLKÑSA",
-                        amount: 100,
-                        expense_type: 0
-                    },
-                    {
-                        id_expense: 3, expenses_type: "asdf", date: "asdf",
-                        observation: "SADÑJFKLASDJFDLSÑKAJFDLSÑAKJFSDLAKFJLDSAJFKLASDJFLKDSAJFLKÑSA",
-                        amount: 100,
-                        expense_type: 0
-                    },
-                    {
-                        id_expense: 4, expenses_type: "asdf", date: "asdf",
-                        observation: "SADÑJFKLASDJFDLSÑKAJFDLSÑAKJFSDLAKFJLDSAJFKLASDJFLKDSAJFLKÑSA",
-                        amount: 100,
-                        expense_type: 0
-                    },
-                    {
-                        id_expense: 5, expenses_type: "qwer", date: "qwer",
-                        observation: "Este es el numero 5 funcionando asdfasdfsadflkjsadfjlkñasdjflkdsajflkadsjflkdsajflkadsjflsdkajfdslakfjdsalkñfjadslñkfjasdlkñfjasdlñkfjasdlkf.",
-                        amount: 500,
-                        expense_type: 5
-                    }
-                ]))
+                dispatch(expensesSetExpenses(body.expenses))
             } else {
                 console.log(body)
                 Swal.fire({

@@ -40,6 +40,40 @@ export const requestStartRequestDocument = () => {
     }
 }
 
+
+export const requestStartCompleteRequestDocument = (id) => {
+    return async (dispatch) => {
+        try {
+            const res = await fetchConToken(`requests/${id}`, {}, 'POST')
+            const body = await res.json()
+            if (body.ok) {
+                console.log(body)
+                Swal.fire({
+                    title: "Solicitudes",
+                    text: body.msg,
+                    icon: 'success',
+                })
+                dispatch(requestDeleteRequest(id))
+            } else {
+                console.log(body)
+
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+            dispatch(studentClearData())
+            dispatch(documentClearData())
+            dispatch(uiSetCurrent(0))
+
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+    }
+}
+
 export const requestStartGetRequests = () => {
     return async (dispatch) => {
         try {
@@ -92,5 +126,6 @@ export const requestStartDeleteRequests = (id) => {
 
     }
 }
-const requestSetRequests = (requests) => ({ type: types.requestSetRequests, payload: requests })
+export const requestSetRequests = (requests) => ({ type: types.requestSetRequests, payload: requests })
+export const requestSetActiveId = (id) => ({ type: types.requestSetActiveRequest, payload: id })
 const requestDeleteRequest = (id) => ({ type: types.requestDeleteRequest, payload: id })

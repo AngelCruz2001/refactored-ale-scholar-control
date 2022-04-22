@@ -5,11 +5,10 @@ import { uiSetCurrent } from '../../actions/ui'
 
 export const RadioButtonListDocument = ({
     activeClassName,
-    text,
+    text = "Documentos",
     currentNumber,
 }) => {
     const { ui, document } = useSelector(state => state)
-    // documentsAvailable.length > 0 ?  
     const { idDocument, documentsAvailable } = document;
     const { loading } = ui;
     const dispatch = useDispatch();

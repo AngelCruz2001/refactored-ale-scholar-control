@@ -34,95 +34,7 @@
                     padding-bottom: 4rem;
                 }
 
-                .modalExpense {
-                    width: 75%;
-                    height: 90%;
-                    z-index: 150;
-                    background: #ffffff 0% 0% no-repeat padding-box;
-                    box-shadow: 0px 3px 6px #6b8aa854;
-                    border-radius: 10px;
-                    display: flex;
-                    position: absolute;
-                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-
-                    &__content {
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        padding: 3rem;
-                        &::before {
-                            content: "";
-                            display: block;
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            width: 100%;
-                            height: 100%;
-                            z-index: -1;
-                            background-image: url("../../../../public/images/logoAleNoText.png");
-                            background-size: 70%;
-                            background-repeat: no-repeat;
-                            background-position: 80%;
-                            opacity: 0.2;
-                        }
-                     
-
-                        &__title {
-                            width: 100%;
-                            height: 10%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: flex-end;
-                        }
-                        &__body {
-                            width: 100%;
-                            height: 75%;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: space-between;
-                            padding: 1rem;
-                            z-index: 75;
-
-                            .title {
-                                width: 40%;
-                                display: flex;
-                                font-size: calc(0.55rem + 1vw);
-                                font-weight: bold;
-                            }
-
-                            .noTitle {
-                                width: 70%;
-                                display: flex;
-                                height: auto;
-                                word-break: break-word;
-                                font-size: calc(0.3rem + 1vw);
-                            }
-                        }
-                        //Here is going to be the footer
-                        &__footer {
-                            width: 100%;
-                            height: 15%;
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: flex-end;
-                            align-items: flex-end;
-                            button {
-                                margin-left: 2rem;
-                            }
-                            button span {
-                                font-size: calc(0.25rem + 1vw) !important;
-                            }
-                            button i {
-                                font-size: calc(0.7rem + 1vw) !important;
-                            }
-                        }
-                    }
-                }
+                
             }
         }
 
@@ -152,10 +64,7 @@
                 .errorMessage {
                     position: absolute;
                     align-self: flex-start;
-                    // top: 4.6rem;
                     top: 103%;
-                    width: 100%;
-                    height: 100%;
                     color: red;
                     font-size: 1.5rem;
                     font-weight: 600;
@@ -190,6 +99,9 @@
                 padding: 0.5em;
                 font-size: 2rem;
                 position: relative;
+                &.error {
+                    border: 1px solid red;
+                }
             }
             textarea {
                 // Description
@@ -197,10 +109,6 @@
                 resize: none;
                 &:focus {
                     outline: none;
-                }
-
-                &.error {
-                    border: 1px solid red;
                 }
             }
         }
@@ -220,6 +128,97 @@
                 span {
                     margin-left: 0.5rem;
                 }
+            }
+        }
+    }
+}
+
+
+
+.modalExpense {
+    width: 75%;
+    height: 90%;
+    z-index: 150;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #6b8aa854;
+    border-radius: 10px;
+    display: flex;
+    position: absolute;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem;
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url("../../../../public/images/logoAleNoText.png");
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-position: 80%;
+            opacity: 0.2;
+        }
+
+        &__title {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        &__body {
+            width: 100%;
+            height: 75%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            z-index: 75;
+
+            .title {
+                width: 40%;
+                display: flex;
+                font-size: calc(0.55rem + 1vw);
+                font-weight: bold;
+            }
+
+            .noTitle {
+                width: 70%;
+                display: flex;
+                height: auto;
+                word-break: break-word;
+                font-size: calc(0.3rem + 1vw);
+            }
+        }
+        //Here is going to be the footer
+        &__footer {
+            width: 100%;
+            height: 15%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+            button {
+                margin-left: 2rem;
+            }
+            button span {
+                font-size: calc(0.25rem + 1vw) !important;
+            }
+            button i {
+                font-size: calc(0.7rem + 1vw) !important;
             }
         }
     }

@@ -26,6 +26,8 @@ const headers = [{
     textAlign: 'center'
 },
 ];
+
+
 export const GroupsOrganization = () => {
 
     const dispatch = useDispatch();
@@ -48,7 +50,6 @@ export const GroupsOrganization = () => {
             dispatch(uiSetModalClose())
             setIsActiveCourse(false)
             setAllowToSubmit(false)
-
         }
     }, [activeCourse])
 
@@ -109,7 +110,7 @@ export const GroupsOrganization = () => {
         setFormData(prev => ({ ...prev, [target.name]: target.value }))
         console.log(preValues)
         setAllowToSubmit(
-            preValues.start_date !== '' && preValues.end_date !== '' && preValues.id_teacher !== ''
+            preValues.start_date !== '' && preValues.end_date !== '' && preValues.id_teacher !== '' && preValues.id_course !== ''
         )
 
         console.log(preValues)
@@ -145,6 +146,7 @@ export const GroupsOrganization = () => {
             {
 
                 (isActiveCourse) ?
+
                     <Assign
                         handleBack={handleBack}
                         dataList={dataList}
@@ -156,6 +158,7 @@ export const GroupsOrganization = () => {
                         handleSubmit={handleSubmit}
                         type={'radio'}
                     />
+
                     : <div className={`gra__container ${isModalOpen && 'modal-active'}`} >
                         <Searchbar placeholder="Buscar por nombre, carrera, campus" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
                         <h4 className="general__title-h4">Todos los grupos</h4>

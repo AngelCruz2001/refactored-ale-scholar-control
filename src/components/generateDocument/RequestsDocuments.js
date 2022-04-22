@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { requestStartGetRequests } from '../../actions/requests';
+import { requestSetActiveId, requestSetRequests, requestStartGetRequests } from '../../actions/requests';
+import { studentStartGetStudentByMatricula } from '../../actions/student';
+import { uiSetModalOpen, uiSetModalOpenExpenses } from '../../actions/ui';
 import { buildDataRequestsDocuments } from '../../helpers/buildDataTables';
+import { ModalRequest } from '../ui/ModalRequest';
 import { Table } from '../ui/Table';
 
 const headers = [
@@ -18,23 +21,25 @@ const headers = [
 export const RequestsDocuments = () => {
     const dispatch = useDispatch()
 
-    const { data } = useSelector(state => state.requests)
+    const { requests: { data }, ui: { isModalOpenExpenses } } = useSelector(state => state)
     const [dataToShow, setdataToShow] = useState([])
+
     useEffect(() => {
         dispatch(requestStartGetRequests())
     }, [])
-    // const generateData = (data) => {
+
     useEffect(() => {
-        if (data) {
-            buildData(data)
-        }
+        buildData()
     }, [data])
 
-    const handleClick = (id) => {
-        console.log(id)
+    const handleClick = (id, id2) => {
+        dispatch(requestSetActiveId(id))
+        dispatch(studentStartGetStudentByMatricula(id2))
+        dispatch(uiSetModalOpenExpenses())
     }
 
     const buildData = () => {
+        console.log('data', data)
         const dataToShowBefore = data.map(request => buildDataRequestsDocuments(
             request.id_request,
             request.student_name,
@@ -49,6 +54,10 @@ export const RequestsDocuments = () => {
 
     return (
         <>
+            {
+                isModalOpenExpenses &&
+                <ModalRequest />
+            }
             <div className="gen__body__request__title requests">
                 <h4 className='general__title-h4'>Nuevas solicitudes</h4>
             </div>

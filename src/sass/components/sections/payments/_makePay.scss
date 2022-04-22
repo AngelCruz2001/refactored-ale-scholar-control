@@ -16,13 +16,14 @@
         display: flex;
         justify-content: space-between;
         position: relative;
+        overflow: hidden;
         &__container {
             width: 45%;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
+            position: relative;
             &.right {
                 justify-content: initial;
             }
@@ -38,6 +39,77 @@
 
                 .stuInfo {
                     margin: 0 !important;
+                }
+            }
+
+            &__cosaAPagar {
+                position: absolute;
+                top: 35%;
+                left: 0;
+                display: flex;
+                width: 100%;
+                height: 65%;
+                background-color: $blue-sky3;
+                display: flex;
+                flex-direction: column;
+                border-radius: 1rem;
+                margin-top: auto;
+                padding: 1rem;
+                z-index: 10;
+
+                &__searchBar {
+                    background-color: white;
+                    height: 10%;
+                    border-radius: 1rem;
+                    font-size: 2rem;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 1rem;
+                    box-shadow: 0px 3px 6px #00000017;
+                    &__input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        background-color: transparent;
+                        font-size: 1.8rem;
+                        outline: none;
+                        padding: 0 1rem;
+                    }
+                }
+
+                &__items {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: white;
+                    margin-top: auto;
+                    border-radius: 1rem;
+                    padding: 1rem;
+                    font-size: 2rem;
+                    height: 85%;
+                    gap: 0.5rem;
+                    overflow-y: auto;
+                    &__item {
+                        height: 4.5rem;
+                        border-radius: 1rem;
+                        border: 1px solid $blue-sky3;
+                        padding: 1rem;
+                        display: flex;
+                        align-items: center;
+                        transition: all 0.3s;
+
+                        input {
+                            visibility: hidden;
+                        }
+
+                        &:hover {
+                            background-color: lighten($blue-sky3, 3%);
+                        }
+
+                        &.selected {
+                            background-color: $blue-sky3;
+                        }
+                    }
                 }
             }
 
@@ -146,24 +218,25 @@
                     flex-direction: column;
                     label {
                         text-align: left;
-                        text-transform: uppercase;
+                        // text-transform: uppercase;
                         opacity: 1;
                         font-weight: 700;
+                        font-size: 2rem;
                     }
                     input {
                         padding: 1rem;
                         background-color: $white;
                         border: 1px solid $gray-bars;
                         border-radius: 10px;
+                        font-size: 1.8rem;
                         &::placeholder {
-                            font-size: 1.6rem;
+                            font-size: 1.8rem;
                         }
                         &:focus {
                             border: 1px solid #00c621;
                         }
                     }
                 }
-
 
                 &.disabled {
                     opacity: 0;
@@ -197,7 +270,12 @@
     display: flex;
     justify-content: space-between;
     margin-top: 1rem;
+    cursor: pointer;
 
+    input {
+        visibility: hidden;
+        display: none;
+    }
     i {
         display: flex;
         align-items: center;
@@ -205,6 +283,10 @@
         margin: auto;
         color: darken($color: $white, $amount: 45);
         margin-left: 1rem;
+    }
+
+    &.active {
+        background-color: $yellow-radius;
     }
 }
 

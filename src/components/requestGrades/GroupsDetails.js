@@ -28,14 +28,16 @@ const headers = [
         title: "Ver",
         textAlign: 'center'
     }];
+
+    
 export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
 
     const dispatch = useDispatch();
-    const { groups, ui } = useSelector(state => state)
-    const { loading } = ui;
-    const { activeGroup, activeCourse } = groups;
+    const { groups: { activeGroup, activeCourse }, ui: { loading } } = useSelector(state => state)
     const [isActiveCourse, setIsActiveCourse] = useState(false)
     const [dataShow, setDataShow] = useState([]);
+
+    console.log('activeGroup', activeGroup)
 
     const handleClickSeeCourses = (id_course) => {
         // const data = activeGroup.coursesTaken.filter(course => course.id_course === id_course);
@@ -127,7 +129,6 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                         <button className="btn btn__back" onClick={handleBack}>
                             <i className="fas fa-arrow-left"></i>
                         </button>
-
                     </div>
                 </div>
                 <div className="gra__container__details__informationStudent">

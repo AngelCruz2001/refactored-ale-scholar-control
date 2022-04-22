@@ -4,6 +4,7 @@ import { types } from '../types/types';
 
 const initialState = {
     data: [],
+    active: null
 };
 
 export const requestsReducer = (state = initialState, action) => {
@@ -19,6 +20,12 @@ export const requestsReducer = (state = initialState, action) => {
                 ...state,
                 data: state.data.filter(request => request.id_request !== action.payload),
             };
+        case types.requestSetActiveRequest:
+            return {
+                ...state,
+                active:action.payload
+
+            }
 
         default:
             return state;

@@ -80,6 +80,15 @@ export const ButtonTable = ({
                 return (
                     <button className='btn btnArrow btnBlue' onClick={() => onClick(id, id2)} > {title} <i className="fa-solid fa-circle-chevron-right"></i></button>
                 )
+
+            case 11:
+                return (
+                    <button className="btn btnTable btnBlue" onClick={() => onClick(id, id2)}> <span>{title}</span> <i className="fas fa-eye"> </i> </button>
+                )
+            case 12:
+                return (
+                    <button className="btn btnTable btnBlue" onClick={() => onClick(id)}> <span className="btnBlue">Generar</span> </button>
+                )
             default:
                 return (
                     <></>

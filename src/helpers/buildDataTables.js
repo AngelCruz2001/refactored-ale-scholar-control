@@ -213,6 +213,6 @@ export const buildDataRequestsDocuments = (
         { element: <SpanTable text={matricula} />, searched: false },
         { element: <SpanTable text={date} />, searched: false },
         { element: <SpanTable text={document_name} />, searched: false },
-        { element: <ButtonTable id={id_request} onClick={handleClick} type={8} />, searched: false },
+        { element: <ButtonTable id={id_request} id2={matricula} onClick={handleClick} type={11} />, searched: false },
     ];
 }

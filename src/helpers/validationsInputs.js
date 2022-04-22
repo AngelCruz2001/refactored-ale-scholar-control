@@ -17,6 +17,7 @@ export const validationsInputs = (dataForm, active) => {
 
                             const yupsSchema = {
                                 'required': Yup.string().required('Introduzca los datos correspondientes.'),
+                                'requiredBoolean': Yup.boolean().required('Introduzca los datos correspondientes.'),
                                 'radioSex': Yup.string().required().oneOf(["M", "F"], 'Introduzca los datos correspondientes.'),
                                 'email': Yup.string().email('Introduzca una dirección de correo electrónico válida.'),
                                 'number': Yup.string().matches(typesRegexInputs.numbers, 'Solo números son permitidos.'),

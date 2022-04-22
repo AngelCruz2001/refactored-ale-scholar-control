@@ -1,24 +1,13 @@
+import { Field } from 'formik'
 import React from 'react'
 
-export const ButtonMakeAPay = ({ text, hasIcon = false, name, onClick, value, type }) => {
-
-    switch (type) {
-        case 0:
-            const handleClick = () => {
-                onClick(value)
-            }
-            break;
-
-        default:
-            break;
-    }
-
-
+export const ButtonMakeAPay = ({ payment_type, name, onClickFunction, icon }) => {
 
     return (
-        <button className='btn btn-makeAPay' name={name} onClick={onClick} value={value}>
-            {text}
-            {hasIcon && <i className="fa-solid fa-circle-chevron-right" />}
-        </button >
+        <label onClick={onClickFunction} className={`btn btn-makeAPay ${payment_type == name ? 'active' : ''}`}>
+            <Field type="radio" name="payment_type" value={name} />
+            {name}
+            {icon && <i className="fa-solid fa-circle-chevron-right" />}
+        </label>
     )
 }

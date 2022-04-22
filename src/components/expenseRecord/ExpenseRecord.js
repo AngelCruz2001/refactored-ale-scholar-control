@@ -40,9 +40,9 @@ export const ExpenseRecord = () => {
             resetForm()
         },
         validationSchema: Yup.object({
+            expense_type: Yup.number('Introduzca los datos correspondientes.').typeError('Introduzca los datos correspondientes.').required('Introduzca los datos correspondientes.'),
             observation: Yup.string().required('Introduzca los datos correspondientes.'),
             amount: Yup.number().typeError('Introduzca solo numeros.').required('Introduzca los datos correspondientes.'),
-            expense_type: Yup.number().required('Introduzca los datos correspondientes.')
         })
     });
 
@@ -63,7 +63,6 @@ export const ExpenseRecord = () => {
                     <HistoryExpenses
                         expenses={expenses}
                         isModalOpenExpenses={isModalOpenExpenses}
-
                     />
                     :
                     <>
@@ -87,7 +86,7 @@ export const ExpenseRecord = () => {
 
                                     <div className="quan__container inputContainer">
                                         <p className="general__titleSection quantity">Cantidad</p>
-                                        <input className="styledInput " placeholder='Cantidad' type="text" {...getFieldProps('amount')} />
+                                        <input className={`styledInput ${errors.amount && touched.amount && 'error'}`} placeholder='Cantidad' type="number" {...getFieldProps('amount')} />
                                         {touched.amount && errors.amount && <span className='errorMessage'>{errors.amount}</span>}
                                     </div>
 

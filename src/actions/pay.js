@@ -51,22 +51,23 @@ export const payStartGetCards = () => {
     }
 
 }
-export const payStartGetPrice = () => {
+export const payStartGetPrice = (payment_type, thingToPay) => {
     return async (dispatch, getState) => {
         try {
-            const { concept, thingToPay } = getState().pay;
-            console.log(getState().pay)
             const dataToSend = {
-                payment_type: concept, //¿Qué andas pagando? 
-                document_type: concept === "Documento" ? thingToPay.id : null, //Id document == i
-                start_date: concept === "Materia" ? thingToPay.id : null //Mes que se esta pagando == i
+                payment_type, // ¿Qué andas pagando? 
+                document_type: payment_type === "Documento" ? thingToPay : null, //Id document == i
+                start_date: payment_type === "Materia" ? thingToPay : null //Mes que se esta pagando == i
             }
+
             const res = await fetchConToken(`payments/students/${getState().student.matricula}/check`, dataToSend, 'POST')
             const body = await res.json();
             console.log(dataToSend)
             if (body.ok) {
+
                 console.log(body)
                 dispatch(paySetPrice(body.total_to_pay));
+
             } else {
                 console.log(body)
                 Swal.fire({
@@ -85,8 +86,8 @@ export const payStartGetPrice = () => {
 export const payStartMakePay = () => {
     return async (dispatch, getState) => {
         try {
-            const { concept, thingToPay,  method, amountToPay, activeAccount } = getState().pay;
-            const {matricula} = getState().student;
+            const { concept, thingToPay, method, amountToPay, activeAccount } = getState().pay;
+            const { matricula } = getState().student;
             const { user: { id_user } } = getState().auth;
             console.log(getState().pay)
             console.log(method === 'Efectivo' ? null : activeAccount)

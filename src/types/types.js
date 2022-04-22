@@ -41,6 +41,7 @@ export const types = {
 
     requestSetRequests: '[request] Set requests',
     requestDeleteRequest: '[request] Delete request',
+    requestSetActiveRequest: '[request] Set active request',
 
     gradesSetGrades: '[grades] Set grades',
     gradesSetSpecificGrades: '[grades] Set specific grades',

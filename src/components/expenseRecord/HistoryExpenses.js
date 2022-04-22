@@ -41,7 +41,7 @@ export const HistoryExpenses = ({
     }, [])
 
     const handleClickSee = (id) => {
-        dispatch(uiSetModalOpenExpenses(true))
+        dispatch(uiSetModalOpenExpenses())
         dispatch(expensesSetActiveExpense(expenses.filter(expense => expense.id_expense === id)[0]))
     }
 

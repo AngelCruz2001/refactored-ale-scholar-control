@@ -1,86 +1,28 @@
-import { useFormik } from 'formik'
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import * as Yup from 'yup';
+import { Formik, Form, Field } from 'formik'
 import { Date } from '../ui/Date'
 import { Matricula } from '../ui/Matricula'
-import { StudentInformation } from '../ui/StudentInformation'
-import { ButtonMakeAPay } from './ButtonMakeAPay'
-import * as Yup from 'yup';
+import { ItemsToPay } from './ItemsToPay'
+import { usePayments } from '../../hooks/usePayments'
+import { StudentData } from './StudentData';
+import { ConceptPay } from './ConceptPay';
+import { PayMethod } from './PayMethod';
+import { PayTotal } from './PayTotal';
+import { MethodDetails } from './MethodDetails';
+import { PayQuantity } from './PayQuantity';
+import { PaySubmit } from './PaySubmit';
+import { useEffect } from 'react';
+
+
 
 export const MakeAPay = () => {
 
 
-    const student = useSelector(state => state.student)
-    console.log(student)
-    const { loading } = useSelector(state => state.ui)
+    const { matricula, studentInfo, loading, id_user, cards, totalPayMoney } = usePayments();
 
-    const [studentInfo, setStudentInfo] = useState({ headers: [], data: [] })
+    const handleGetTotal = () => {
 
-    useEffect(() => {
-        setStudentInfo({
-            headers: ["Alumno", "Grupo", "Campus", "Carrera"],
-            data: [student.student_name, student.name_group, student.campus_name, student.major_name]
-        })
-    }, [student])
-
-
-    const { handleSubmit, errors, touched, getFieldProps, resetForm, handleChange } = useFormik({
-        initialValues: null === null
-            ? {
-                matricula: '',
-                id_user: '',
-                payment_method: '',
-                payment_type: '',
-                amount: 0,
-                document_type: null,
-                id_card: null,
-                start_date: null,
-                id_ext_cou: null
-            }
-            : {
-                matricula: '',
-                id_user: '',
-                payment_method: '',
-                payment_type: '',
-                amount: 0,
-                document_type: null,
-                id_card: null,
-                start_date: null,
-                id_ext_cou: null
-            },
-        enableReinitialize: true,
-        onSubmit: (values) => {
-            console.log(values)
-            resetForm()
-        },
-        validationSchema: Yup.object({
-            matricula: Yup.string().required('Introduzca los datos correspondientes.'),
-            payment_method: Yup.number().required('Introduzca los datos correspondientes.')
-        })
-    });
-
-
-
-    const [dataPay, setDataPay] = useState({
-        concept: '',
-        type: '',
-        method: 0, // 0: cash, 1: card, 2: deposit
-        account: '',
-        quantity: '',
-        change: '',
-    })
-
-    console.log(dataPay)
-
-    const handleInputChange = (e) => {
-        console.log("🚀 ~ file: MakeAPay.js ~ line 31 ~ handleInputChange ~ e", e.target)
-
-        setDataPay(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }))
     }
-
 
     return (
         <div className='makeAPay'>
@@ -88,87 +30,71 @@ export const MakeAPay = () => {
                 <Date />
             </div>
 
-            <form className="makeAPay__body" onSubmit={handleSubmit}>
-
-                <div className="makeAPay__body__container">
-                    <Matricula />
-
-                    <div className='makeAPay__body__container__studentData'>
-                        <StudentInformation
-                            studentInformation={studentInfo}
-                            loading={loading}
-                        />
-                    </div>
-
-                    <div className="makeAPay__body__container__concept">
-                        <p className='payTitle'>Concepto de pago</p>
-                        <div className='makeAPay__body__container__concept__buttons'>
-                            <ButtonMakeAPay onClick={handleInputChange} value={'Inscripción'} name="concept" text="Inscripción" />
-                            <ButtonMakeAPay onClick={handleInputChange} value={'Materia'} name="concept" text="Materia" hasIcon={true} />
-                            <ButtonMakeAPay onClick={handleInputChange} value={'Documento'} name="concept" text="Documento" hasIcon={true} />
-                            <ButtonMakeAPay onClick={handleInputChange} value={'Extra'} name="concept" text="Extra-curricular" hasIcon={true} />
-                        </div>
-                    </div>
-
-                    <div className="makeAPay__body__container__conceptToPay">
-                        <p className='payTitle'>Concepto a pagar</p>
-                        <span>{dataPay.concept}</span>
-                    </div>
-
-                </div>
-
-                <div className="makeAPay__body__container right">
-                    <div className='makeAPay__body__container__concept'>
-                        <p className="payTitle">Método de pago</p>
-                        <div className="makeAPay__body__container__concept__buttons method">
-                            <ButtonMakeAPay onClick={handleInputChange} value={0} text="Efectivo" name="method" />
-                            <ButtonMakeAPay onClick={handleInputChange} value={2} text="Depósito" name="method" />
-                            <ButtonMakeAPay onClick={handleInputChange} value={1} text="Tarjeta" name="method" />
-                        </div>
-                    </div>
-
-                    <div className="makeAPay__body__container__total ">
-
-                        <p className="payTitle">Total de pago</p>
-                        <div className='makeAPay__body__container__total__price'>
-                            <p>$5,000</p>
-                        </div>
-                    </div>
+            <Formik
+                initialValues={
                     {
-                        dataPay.method === "2" && <div className="makeAPay__body__container__deposit">
-                            <select name="deposit" id="">
-                                <option value="0">Cuenta 1</option>
-                                <option value="1">Cuenta 2</option>
-                                <option value="2">Cuenta 3</option>
-                            </select>
-                        </div>
+                        matricula: matricula ? matricula : '',
+                        id_user,
+                        payment_method: '',
+                        payment_type: null,
+                        thingToPay: null,
+                        amount: 0,
+                        document_type: null,
+                        id_card: 0,
+                        start_date: null,
+                        id_ext_cou: null,
+                        search: ''
                     }
-                    {
-                        dataPay.method === "1" && <div className="makeAPay__body__container__card">
-                            <p className='title'>Información bancaria</p>
-                            <p>xxxxxxxxxxxxxxxxxxxx</p>
-                            <p>xxxxxxxxxxxxxxxxxxxxx</p>
-                            <p>xxxxxxxxxxxxxxxxxxxxxx</p>
+                }
+                enableReinitialize={true}
+
+                validationSchema={Yup.object({
+                    matricula: Yup.string().required('La matricula es requerida'),
+                    payment_method: Yup.string().required('El metodo de pago es requerido'),
+                    id_card: Yup.string().when('payment_method', { is: 'Tarjeta', then: Yup.string().required('La tarjeta es requerida') }),
+                    payment_type: Yup.string().required('El tipo de pago es requerido'),
+                    thingToPay: Yup.string().when('payment_method', {
+                        is: 'Inscripción',
+                        then: Yup.string().nullable(true),
+                        otherwise: Yup.string().required('El tipo de pago es requerido')
+                    }),
+                    amount: Yup.number().required('La cantidad es requerida'),
+                })}
+                onSubmit={(values) => {
+                    console.log(values)
+                }}
+
+            >
+
+                {({ values, setFieldValue, resetForm }) => (
+                    <Form className="makeAPay__body">
+
+                        <div className="makeAPay__body__container">
+                            <Matricula />
+
+                            <StudentData studentInfo={studentInfo} loading={loading} />
+
+                            <ConceptPay payment_type={values.payment_type} setFieldValue={setFieldValue} />
 
                         </div>
-                    }
-                    <div className={`makeAPay__body__container__money ${dataPay.method ? '' : ''}`}>
-                        <div>
-                            <label htmlFor="quantity">Cantidad</label>
-                            <input name='quantity' type="text" placeholder="$0.00" className='' />
-                        </div>
-                        <div>
-                            <label htmlFor="change">Restante</label>
-                            <input name='change' type="text" placeholder="$0.00" className='' />
-                        </div>
-                    </div>
 
-                    <div className="makeAPay__body__container__pay">
-                        <button className='btn btn-bluePay'>Pagar</button>
-                    </div>
-                </div>
-            </form>
+                        <div className="makeAPay__body__container right">
 
-        </div>
+                            <ItemsToPay payment_type={values.payment_type} search={values.search} thingToPay={values.thingToPay} matricula={matricula} />
+
+                            <PayMethod payment_method={values.payment_method} handleGetTotal={handleGetTotal} />
+
+                            <PayTotal total={`$${totalPayMoney}`} />
+
+                            <MethodDetails payment_method={values.payment_method} cards={cards} />
+
+                            <PayQuantity total={totalPayMoney} amount={values.amount} />
+
+                            <PaySubmit />
+                        </div>
+                    </Form>
+                )}
+            </Formik>
+        </div >
     )
 }

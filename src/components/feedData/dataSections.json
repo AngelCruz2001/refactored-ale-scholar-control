@@ -94,7 +94,7 @@
                                 "type": "required"
                             }
                         ]
-                    }, 
+                    },
                     {
                         "name": "surname_f",
                         "label": "Apellido materno",
@@ -354,21 +354,25 @@
                     {
                         "name": "group_chief",
                         "label": "¿El estudiante es lider de grupo?",
-                        "type": "checkbox",
-                        "placeholder": "Nombre de la carrera",
-                        "value": false,
+                        "type": "radio",
+                        "placeholder": "",
+                        "value": 0,
                         "styles": {
                             "width": "30%"
                         },
                         "options": [
                             {
-                                "label": [
-                                    "Sí, el estudiante es lider de grupo",
-                                    "No, el estudiante no es lider de grupo"
-                                ]
+                                "value": 1,
+                                "label": "Sí, el estudiante es lider de grupo"
+                            },
+                            {
+                                "value": 0,
+                                "label": "No, el estudiante no es lider de grupo"
                             }
                         ]
+                       
                     },
+                  
                     {
                         "name": "regular",
                         "label": "¿El estudiante es irregular?",
@@ -907,7 +911,7 @@
                                 "type": "required"
                             }
                         ]
-                    }, 
+                    },
                     {
                         "name": "surname_f",
                         "label": "Apellido materno",

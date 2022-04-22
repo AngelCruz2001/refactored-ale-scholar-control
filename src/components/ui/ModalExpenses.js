@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { expensesSetActiveExpense, expensesStartDeleteExpense } from '../../actions/expenses'
+import { expensesClearActive, expensesSetActiveExpense, expensesStartDeleteExpense } from '../../actions/expenses'
 import { uiSetModalCloseExpenses, uiSetShowHistory } from '../../actions/ui'
 import { numberToText } from '../../helpers/numberToText'
 import { InformationModal } from '../expenseRecord/InformationModal'
@@ -11,6 +11,7 @@ export const ModalExpenses = () => {
     const { activeExpense } = useSelector(state => state.expenses)
     const { id_expense, date, amount, observation, expenses_type } = activeExpense;
     const handleCloseModal = () => {
+        dispatch(expensesClearActive())
         dispatch(uiSetModalCloseExpenses());
     }
     const handleClickDelete = (id) => {

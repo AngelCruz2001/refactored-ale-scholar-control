@@ -12,7 +12,7 @@ export const RadioButtonList = ({
     return (
         <div className={"radioButtonList son ".concat(activeClassName)}>
             <p className="general__titleSection">{text}</p>
-            <div className={"radioButtonList__container son"} >
+            <div className={`radioButtonList__container son ${touched.expense_type && errors.expense_type && 'error'}`} >
                 {items.map((item, index) => (
                     <div className="pretty-radio" key={index}>
                         <input
@@ -31,8 +31,8 @@ export const RadioButtonList = ({
                     </div>
                 ))
                 }
+                {touched.expense_type && errors.expense_type && <span className='errorMessage'>{errors.expense_type}</span>}
             </div>
-            {touched.expense_type && errors.expense_type && <span>{errors.expense_type}</span>}
         </div>
     )
 }

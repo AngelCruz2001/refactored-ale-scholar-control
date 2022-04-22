@@ -13,5 +13,21 @@
         font-weight: 600;
         justify-content: space-evenly;
         background-color: $blue-sky3;
+        position: relative;
+
+        &.error {
+            border: 1px solid red;
+        }
+        .errorMessage {
+            position: absolute;
+            align-self: flex-start;
+            // top: 4.6rem;
+            top: 102%;
+            color: red;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: none;
+            background-color: transparent;
+        }
     }
 }
