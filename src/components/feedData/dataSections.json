@@ -356,18 +356,23 @@
                         "label": "¿El estudiante es lider de grupo?",
                         "type": "radio",
                         "placeholder": "",
-                        "value": 0,
+                        "value": "",
                         "styles": {
                             "width": "30%"
                         },
                         "options": [
                             {
-                                "value": 1,
-                                "label": "Sí, el estudiante es lider de grupo"
+                                "value": "1",
+                                "label": "Sí"
                             },
                             {
-                                "value": 0,
-                                "label": "No, el estudiante no es lider de grupo"
+                                "value": "0",
+                                "label": "No"
+                            }
+                        ],
+                        "validations": [
+                            {
+                                "type": "required"
                             }
                         ]
                        
@@ -376,17 +381,24 @@
                     {
                         "name": "regular",
                         "label": "¿El estudiante es irregular?",
-                        "type": "checkbox",
-                        "value": false,
+                        "type": "radio",
+                        "value": "",
                         "styles": {
                             "width": "30%"
                         },
                         "options": [
                             {
-                                "label": [
-                                    "Sí, el estudiante es irregular",
-                                    "No, el estudiante no es irregular"
-                                ]
+                                "value": "1",
+                                "label": "Sí"
+                            },
+                            {
+                                "value": "0",
+                                "label": "No"
+                            }
+                        ],
+                        "validations": [
+                            {
+                                "type": "required"
                             }
                         ]
                     }
