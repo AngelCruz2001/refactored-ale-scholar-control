@@ -5,7 +5,8 @@ const initialState = {
     activeGroup: [],
     activeCourse: null,
     activeCourseData: null,
-    courses: []
+    courses: [], 
+    coursesByGroup: null,
 }
 
 export const groupsReducer = (state = initialState, action) => {
@@ -44,6 +45,12 @@ export const groupsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeCourseData: action.payload
+            }
+
+        case types.groupsSetCoursesTaken:
+            return {
+                ...state,
+                coursesByGroup: action.payload
             }
 
         case types.groupsClearActiveGroup:

@@ -12,6 +12,8 @@ import { MethodDetails } from './MethodDetails';
 import { PayQuantity } from './PayQuantity';
 import { PaySubmit } from './PaySubmit';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { payStartMakePay } from '../../actions/pay';
 
 
 
@@ -19,7 +21,7 @@ export const MakeAPay = () => {
 
 
     const { matricula, studentInfo, loading, id_user, cards, totalPayMoney } = usePayments();
-
+    const dispatch = useDispatch()
     const handleGetTotal = () => {
 
     }
@@ -40,7 +42,7 @@ export const MakeAPay = () => {
                         thingToPay: null,
                         amount: 0,
                         document_type: null,
-                        id_card: 0,
+                        id_card: null,
                         start_date: null,
                         id_ext_cou: null,
                         search: ''
@@ -51,7 +53,10 @@ export const MakeAPay = () => {
                 validationSchema={Yup.object({
                     matricula: Yup.string().required('La matricula es requerida'),
                     payment_method: Yup.string().required('El metodo de pago es requerido'),
-                    id_card: Yup.string().when('payment_method', { is: 'Tarjeta', then: Yup.string().required('La tarjeta es requerida') }),
+                    id_card: Yup.string().when('payment_method', {
+                        is: 'Tarjeta', then: Yup.string().required('La tarjeta es requerida'),
+                        otherwise: Yup.string().nullable()
+                    }),
                     payment_type: Yup.string().required('El tipo de pago es requerido'),
                     thingToPay: Yup.string().when('payment_method', {
                         is: 'Inscripción',
@@ -62,6 +67,7 @@ export const MakeAPay = () => {
                 })}
                 onSubmit={(values) => {
                     console.log(values)
+                    dispatch(payStartMakePay(values))
                 }}
 
             >

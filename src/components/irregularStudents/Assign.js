@@ -14,9 +14,6 @@ export const Assign = ({
     handleInputChange,
     nameDataList
 }) => {
-
-    // const { section, title, dataList, dataSelects } = dataAssign;
-
     const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
 
 
@@ -44,7 +41,7 @@ export const Assign = ({
                 <div className='assign__container__content__submit'>
 
                     <ExtraCampus />
-                    
+
                     <button className={`btn btnAssignGroup ${allowToSubmit ? '' : 'disableGuide'}`} onClick={() => handleSubmit()}>Aceptar</button>
                 </div>
             </div>

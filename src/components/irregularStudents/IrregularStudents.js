@@ -146,12 +146,6 @@ export const IrregularStudents = () => {
                 preValues.id_group !== '' :
                 preValues.id_teacher !== '' && preValues.application_date !== ''
         )
-        console.log(
-            isAssingingGroup ?
-                preValues.id_group !== '' :
-                preValues.id_teacher !== '' && preValues.application_date !== ''
-        )
-        console.log(preValues)
     }
 
 

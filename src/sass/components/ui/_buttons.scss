@@ -4,7 +4,7 @@
     background: none;
     &-primary {
         color: $white;
-        background-color: $blue-button;
+        background-color: $blue-btn-text;
         border-radius: 10px;
         font-size: 2rem;
         font-weight: 500;
@@ -13,6 +13,7 @@
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         box-shadow: none;
         border: none;
+        cursor: pointer;
     }
 
     &-primary.active {
@@ -195,10 +196,10 @@
     border-radius: 10px;
 }
 
-.activeGuide {
-    background-color: $blue-btn-text;
-    color: $white;
-}
+// .activeGuide {
+//     background-color: $blue-btn-text;
+//     color: $white;
+// }
 
 .disableGuide {
     pointer-events: none;

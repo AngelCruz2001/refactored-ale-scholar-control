@@ -5,13 +5,13 @@ import { documentClearData } from "./document"
 import { studentClearData } from "./student"
 import { uiFinishLoading, uiSetCurrent, uiStartLoading } from "./ui"
 
-export const requestStartRequestDocument = () => {
+export const requestStartRequestDocument = (data) => {
     return async (dispatch, getState) => {
+
+        data.document_type = parseInt(data.document_type)
+
         try {
-            const res = await fetchConToken(`requests`, {
-                matricula: getState().student.matricula,
-                document_type: getState().document.idDocument
-            }, 'POST')
+            const res = await fetchConToken(`requests`, data, 'POST')
             const body = await res.json()
             if (body.ok) {
                 console.log(body)
@@ -106,11 +106,11 @@ export const requestStartDeleteRequests = (id) => {
             const body = await res.json();
             if (body.ok) {
                 dispatch(requestDeleteRequest(id))
-                // Swal.fire({
-                //     title: 'Todo bien',
-                //     text: body.msg,
-                //     icon: 'success',
-                // })
+                Swal.fire({
+                    title: 'Genial',
+                    text: body.msg,
+                    icon: 'success',
+                })
             } else {
                 Swal.fire({
                     title: '¡Oops!',

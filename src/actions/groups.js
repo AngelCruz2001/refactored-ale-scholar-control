@@ -56,6 +56,33 @@ export const groupsStartGetCoursesByGroup = (id_group) => {
     }
 }
 
+export const groupsStartGetCoursesAGroupHasTaken = (id_group) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+            const res = await fetchConToken(`groups/${id_group}/courses/taken`)
+            const body = await res.json()
+            if (body.ok) {
+                console.log(body)
+                dispatch(groupsSetCoursesTaken(body.courses))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+    }
+}
+
+
+
 export const groupsStartUpdateGrade = (id, credits, type = 'regular') => {
     return async (dispatch) => {
         try {
@@ -162,3 +189,5 @@ const groupsSetSpecificCourses = (courses) => ({ type: types.groupsSetSpecificCo
 const groupsUpdateGrade = (id, grade) => ({ type: types.groupsUpdateGrade, payload: { id, grade } })
 
 const groupsSetStudentsAndGrades = (students, grades) => ({ type: types.groupsSetStudentsAndGrades, payload: { students, grades } })
+
+const groupsSetCoursesTaken = (courses) => ({ type: types.groupsSetCoursesTaken, payload: courses })

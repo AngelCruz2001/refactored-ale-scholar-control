@@ -33,7 +33,7 @@ const headers = [
 export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
 
     const dispatch = useDispatch();
-    const { groups: { activeGroup, activeCourse }, ui: { loading } } = useSelector(state => state)
+    const { groups: { activeGroup, activeCourse, coursesByGroup }, ui: { loading } } = useSelector(state => state)
     const [isActiveCourse, setIsActiveCourse] = useState(false)
     const [dataShow, setDataShow] = useState([]);
 
@@ -75,7 +75,7 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                 handleEditGrade
             ))
         } else {
-            dataToShow = activeGroup.coursesTaken.map(({ id_course, course_name, clave, teacher_name }) => buildDataGroupsDetails(
+            dataToShow = coursesByGroup?.map(({ id_course, course_name, clave, teacher_name }) => buildDataGroupsDetails(
                 id_course,
                 course_name,
                 clave,

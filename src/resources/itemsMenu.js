@@ -16,7 +16,7 @@ import { GroupsOrganization } from '../components/groupsOrganization/GroupsOrgan
 export const itemsMenu = [
     {
         permissions: [
-
+            1
         ],
         text: "Solicitud de documento",
         icon: "fas fa-file",
@@ -113,7 +113,8 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1, 
+            4
         ],
         text: "Realizar pago",
         icon: "fas fa-money-bill",

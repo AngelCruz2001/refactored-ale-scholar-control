@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { documentSetDocument } from '../../actions/document'
+import { documentSetDocument, documentStartGetDocuments } from '../../actions/document'
 import { requestStartRequestDocument } from '../../actions/requests'
 import { uiSetCurrent } from '../../actions/ui'
 import { activeDisabled } from '../../helpers/activeDisabled'
@@ -12,12 +12,15 @@ import { RadioButtonListDocument } from '../ui/RadioButtonListDocument'
 import { StudentInformation } from '../ui/StudentInformation'
 import { HistoryReqDocument } from './HistoryReqDocument'
 
-export const RequestDocument = () => {
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
+import { RadioButtonListUniversal } from '../ui/RadioButtonListUniversal'
+
+export const RequestDocument = () => { //reception
     const dispatch = useDispatch()
     const [studentInfo, setStudentInfo] = useState({ headers: [], data: [] })
     const { ui, student, document, requests } = useSelector(state => state)
-
-    const [readyRequest, setReadyRequest] = useState(false)
+    const { documentsAvailable } = document;
 
     useEffect(() => {
         setStudentInfo({
@@ -26,27 +29,35 @@ export const RequestDocument = () => {
         })
     }, [student])
 
+    useEffect(() => {
+        documentStartGetDocuments(student.Date)
+    }, [student])
+
+    const { handleSubmit, errors, touched, getFieldProps, resetForm, handleChange } = useFormik({
+
+        initialValues: {
+            matricula: student.matricula ? student.matricula : '',
+            document_type: null,
+        },
+        enableReinitialize: true,
+        onSubmit: (values) => {
+            dispatch(requestStartRequestDocument(values))
+            console.log(values)
+            // resetForm()
+        },
+        validationSchema: Yup.object({
+            matricula: Yup.string('Introduzca los datos correspondientes.').required('Introduzca los datos correspondientes.'),
+            document_type: Yup.number().typeError('Introduzca los datos correspondientes.').required('Introduzca los datos correspondientes.'),
+        })
+    });
+
+
+
     const [showHistory, setShowHistory] = useState(false)
 
     const { current, loading } = ui;
-
-    useEffect(() => {
-        console.log(student, document)
-        student.matricula !== "" &&
-            document.idDocument !== null &&
-            setReadyRequest(true)
-    }, [student, document])
-
-
-    const onChangeValueDocument = ({ target }) => {
-        dispatch(uiSetCurrent(3))
-        dispatch(documentSetDocument(parseInt(target.id)))
-    }
-
-    const handleSubmitRequestDocument = () => readyRequest && dispatch(requestStartRequestDocument())
-
     return (
-        <div className="req__container">
+        <form className="req__container" onSubmit={handleSubmit}>
 
             {showHistory ?
 
@@ -57,9 +68,11 @@ export const RequestDocument = () => {
                 />
                 :
                 <>
+
                     <div className="req__header">
                         <Date />
                     </div>
+                   
                     <div className="req__body">
                         <div className="req__body__student">
                             <div className='req__body__student__matricula'>
@@ -68,28 +81,34 @@ export const RequestDocument = () => {
                                     matricula={student.matricula}
                                 />
                             </div>
+                                {touched.matricula && errors.matricula && <span className='errorMessage'>{errors.matricula}</span>}
+
 
                             <StudentInformation
-                                // activeClassName={activeDisabled(1, current)}
                                 loading={loading}
                                 studentInformation={studentInfo}
                             />
 
                         </div>
 
-                        <RadioButtonListDocument
-                            text="Documento a solicitar"
+                        <RadioButtonListUniversal
+                            touched={touched}
+                            errors={errors}
+                            items={documentsAvailable}
+                            text="Documentos"
+                            getFieldProps={getFieldProps}
+                            handleChange={handleChange}
                         />
-
                     </div>
                     <div className="req__footer">
                         <button className="btn req__footer__checkHistory" onClick={() => setShowHistory(true)}><i className="fas fa-history"></i><span>Ver Historial</span></button>
-                        <button className={`btn btn-primary ${readyRequest ? 'activeGuide' : 'disableGuide'}`} onClick={handleSubmitRequestDocument}>Solicitar</button>
+                        <button className={`btn-primary`} type='submit' >Solicitar</button>
                     </div>
+                 
                 </>
             }
 
 
-        </div >
+        </form >
     )
 }

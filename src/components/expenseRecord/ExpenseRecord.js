@@ -1,22 +1,22 @@
 import { useFormik } from 'formik'
+import * as Yup from 'yup';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { expenseSetTypeExpense, expensesStartGetExpenses, expenseStartCreateRequest, expenseStartUpdateexpense } from '../../actions/expenses'
 import { uiSetShowHistory } from '../../actions/ui'
 import { typesExpenses } from '../../types/types'
 import { Date } from '../ui/Date'
-import * as Yup from 'yup';
 import { Quantity } from '../ui/Quantity'
 import { RadioButtonList } from '../ui/RadioButtonList'
 import { HistoryExpenses } from './HistoryExpenses'
 
 export const ExpenseRecord = () => {
     const { expenses: { idExpenseType, expenses, activeExpense }, ui: { isShowHistoryOpen, isModalOpenExpenses } } = useSelector(state => state);
-    // console.log(activeExpense != null ? true : false)
+
     const dispatch = useDispatch();
-    //
+
     // jeje cruz si estas aqui, no le sabes a este formik we, no le muevas paro, ya funka
-    // Pues ya le entendí, voy a ver si puedo ponerlo en payments. 
+    // Pues ya le entendí, voy a ver si puedo ponerlo en payments.  ¿Se pudo? 
     const { handleSubmit, errors, touched, getFieldProps, resetForm, handleChange } = useFormik({
         initialValues: activeExpense === null
             ? {
@@ -27,7 +27,7 @@ export const ExpenseRecord = () => {
             : {
                 observation: activeExpense.observation,
                 amount: activeExpense.amount,
-                expense_type: activeExpense.expense_type
+                expense_type: activeExpense.id_expense
             },
         enableReinitialize: true,
         onSubmit: (values) => {

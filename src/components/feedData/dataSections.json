@@ -375,11 +375,9 @@
                                 "type": "required"
                             }
                         ]
-                       
                     },
-                  
                     {
-                        "name": "regular",
+                        "name": "irregular",
                         "label": "¿El estudiante es irregular?",
                         "type": "radio",
                         "value": "",

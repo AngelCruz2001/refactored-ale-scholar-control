@@ -92,6 +92,7 @@ export const GroupsOrganization = () => {
     const initialData = {
         id_teacher: '',
         start_date: '',
+        id_course: '',
         end_date: ''
     }
 

@@ -68,8 +68,10 @@ export const studentStartGetIrregularStudents = () => {
     return async (dispatch) => {
         dispatch(uiStartLoading())
         try {
-            const res = await fetchConToken(`students?regular=false`, 'GET')
+            const res = await fetchConToken(`students?irregular=true`, 'GET')
             const body = await res.json()
+
+            
 
             if (body.ok) {
                 dispatch(studentIrregularSetStudents(body.students));
