@@ -7,15 +7,7 @@ export const expenseStartCreateRequest = (data) => {
     return async (dispatch, getState) => {
         const { expenses } = getState();
         console.log(data)
-        // console.log({
-        //     observation: dataForm.observation,
-        //     amount: dataForm.amount,
-        //     expense_type: expenses.idExpenseType,
-        //     id_user: getState().auth.user.id_user
-        // })
 
-        // data.id_user = getState().auth.user.id_user
-        // data.id_user = "1993"
         try {
             const res = await fetchConToken(`expenses`, data, 'POST'
             )

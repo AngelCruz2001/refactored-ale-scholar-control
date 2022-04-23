@@ -100,7 +100,8 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1, 
+            4
         ],
         text: "Registro de gastos",
         icon: "fas fa-ticket-alt",

@@ -14,7 +14,7 @@ export const ItemsToPay = ({ payment_type, search, thingToPay, matricula }) => {
         // TODO: Charge the result that is in the state to the map below. 
         // TODO: Manage the months too. 
         // TODO: Create submit action.
-        
+
     }, [])
 
     const [dataExample, setDataExample] = useState(

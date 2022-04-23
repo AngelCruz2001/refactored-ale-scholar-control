@@ -12,7 +12,7 @@ import { HistoryExpenses } from './HistoryExpenses'
 
 export const ExpenseRecord = () => {
     const { expenses: { idExpenseType, expenses, activeExpense }, ui: { isShowHistoryOpen, isModalOpenExpenses } } = useSelector(state => state);
-    console.log(activeExpense != null ? true : false)
+    // console.log(activeExpense != null ? true : false)
     const dispatch = useDispatch();
     //
     // jeje cruz si estas aqui, no le sabes a este formik we, no le muevas paro, ya funka

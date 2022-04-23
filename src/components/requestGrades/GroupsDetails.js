@@ -29,7 +29,7 @@ const headers = [
         textAlign: 'center'
     }];
 
-    
+
 export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
 
     const dispatch = useDispatch();
