@@ -35,6 +35,11 @@ export const groupsReducer = (state = initialState, action) => {
                 activeCourse: action.payload
             }
 
+        case types.gradesModifyGradeGroup:
+            return {
+                ...state,
+            }
+
         case types.groupsUpdateGrade:
             return {
                 ...state,

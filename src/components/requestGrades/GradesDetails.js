@@ -62,7 +62,9 @@ export const GradesDetails = ({ dataStudent, setIsAStudentActive, allowEdit }) =
                 autocapitalize: 'off'
             },
             showCancelButton: true,
-            confirmButtonText: 'Look up',
+            confirmButtonText: 'Actualizar',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#d33',
             allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
             if (result.isConfirmed) {

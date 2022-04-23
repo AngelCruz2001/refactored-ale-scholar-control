@@ -38,12 +38,12 @@ export const LoginScreen = () => {
                         <input className="auth__login-inputs-input" placeholder="Usuario" type="text" {...getFieldProps('username')} />
                         <i className="auth__login-inputs-icon fas fa-user-alt"></i>
                     </div>
-                    {touched.username && errors.username && <span>{errors.username}</span>}
+                    {touched.username && errors.username && <span className='errorMessage'>{errors.username}</span>}
                     <div className="auth__login-inputs">
                         <input className="auth__login-inputs-input" placeholder="Contraseña" type="password" {...getFieldProps('password')} />
                         <i className="auth__login-inputs-icon fas fa-key"></i>
                     </div>
-                    {touched.password && errors.password && <span>{errors.password}</span>}
+                    {touched.password && errors.password && <span className='errorMessage'>{errors.password}</span>}
 
                     <button
                         className="auth__login-submit btn"

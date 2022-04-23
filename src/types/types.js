@@ -49,6 +49,8 @@ export const types = {
     gradesModifyGrade: '[grades] Modify grade',
     gradesDeleteGrade: '[grades] Delete grade',
 
+    gradesModifyGradeGroup: '[grades] Modify grade group',
+
 
     majorsSetMajors: '[majors] Set majors',
     majorsSetSpecificMajor: '[majors] Set specific majors',

@@ -64,6 +64,10 @@ export const gradesStartUpdateGrade = (id, credits, type = 'regular') => {
             const body = await res.json()
             if (body.ok) {
                 console.log(body)
+                console.log(id, credits)
+
+                
+                dispatch(gradesModifyGrade(id, credits))
                 dispatch(gradesModifyGrade(id, credits))
             } else {
                 console.log(body)
