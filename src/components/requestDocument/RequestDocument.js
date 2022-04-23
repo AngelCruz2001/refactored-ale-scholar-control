@@ -72,7 +72,7 @@ export const RequestDocument = () => { //reception
                     <div className="req__header">
                         <Date />
                     </div>
-                   
+
                     <div className="req__body">
                         <div className="req__body__student">
                             <div className='req__body__student__matricula'>
@@ -81,7 +81,7 @@ export const RequestDocument = () => { //reception
                                     matricula={student.matricula}
                                 />
                             </div>
-                                {touched.matricula && errors.matricula && <span className='errorMessage'>{errors.matricula}</span>}
+                            {touched.matricula && errors.matricula && <span className='errorMessage'>{errors.matricula}</span>}
 
 
                             <StudentInformation
@@ -104,7 +104,7 @@ export const RequestDocument = () => { //reception
                         <button className="btn req__footer__checkHistory" onClick={() => setShowHistory(true)}><i className="fas fa-history"></i><span>Ver Historial</span></button>
                         <button className={`btn-primary`} type='submit' >Solicitar</button>
                     </div>
-                 
+
                 </>
             }
 

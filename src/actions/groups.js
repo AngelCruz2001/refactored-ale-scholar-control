@@ -29,7 +29,8 @@ export const groupsStartGetAllGroups = () => {
 }
 
 
-export const groupsStartGetCoursesByGroup = (id_group) => {
+
+export const groupsStartGetCoursesCouldTakeByGroup = (id_group) => {
     return async (dispatch) => {
         try {
             dispatch(uiStartLoading())
@@ -37,8 +38,34 @@ export const groupsStartGetCoursesByGroup = (id_group) => {
             const res = await fetchConToken(`groups/${id_group}/courses`)
             const body = await res.json()
             if (body.ok) {
-                console.log(body)
+                console.log("materias que puede tomar el grupo", body)
                 dispatch(groupsSetCourses(body.courses))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+
+    }
+}
+export const groupsStartGetCoursesByGroup = (id_group) => {
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())
+
+            const res = await fetchConToken(`groups/${id_group}/courses/taken`)
+            const body = await res.json()
+            if (body.ok) {
+                console.log("materias que ha tomado", body.group.courses_taken)
+                dispatch(groupsSetCourses(body.group.courses_taken))
             } else {
                 console.log(body)
                 Swal.fire({
@@ -114,6 +141,7 @@ export const groupsStartRelateGroupCourse = (data) => {
     return async (dispatch, getState) => {
         try {
             dispatch(uiStartLoading())
+            data.id_course = parseInt(data.id_course)
             const res = await fetchConToken(`groups/${getState().groups.activeCourse}/courses/${data.id_course}`, data, 'POST')
             const body = await res.json()
 
@@ -150,6 +178,7 @@ export const groupsGetStudentAndGradesGroup = (id_course, id_group) => {
             const body = await res.json()
 
             if (body.ok) {
+                console.log(body)
                 dispatch(groupsSetActiveCourse(body))
             } else {
                 console.log(body)
@@ -170,11 +199,7 @@ export const groupsGetStudentAndGradesGroup = (id_course, id_group) => {
 
 
 
-const groupsSetCourses = (courses) => ({
-    type: types.groupsSetCourses,
-    payload: courses
-})
-
+const groupsSetCourses = (courses) => ({ type: types.groupsSetCourses, payload: courses})
 
 export const groupsSetActiveCourse = (course) => ({ type: types.groupsSetActiveCourse, payload: course })
 

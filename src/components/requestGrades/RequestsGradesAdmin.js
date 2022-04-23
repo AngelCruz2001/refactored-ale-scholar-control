@@ -87,10 +87,10 @@ export const RequestGradesAdmin = () => {
         setDataStudent(data);
         // dispatch(gradesStartGetGrades)
     }
-    const handleClickSetActiveGroup = (id_group) => {
-        setActiveGroupData(groups.data.find(({ id_group }) => id_group === id_group));
-        console.log('activeGroupData', activeGroupData, id_group, groups)
-        dispatch(groupsStartGetCoursesByGroup(id_group));
+    const handleClickSetActiveGroup = (id_groupDataShowed) => {
+        setActiveGroupData(groups.data.find(({ id_group }) => id_group === id_groupDataShowed));
+        console.log('activeGroupData', activeGroupData, id_groupDataShowed, groups)
+        dispatch(groupsStartGetCoursesByGroup(id_groupDataShowed));
         setIsGroupActive(true);
         // dispatch(gradesStartGetGrades)
     }

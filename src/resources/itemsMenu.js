@@ -60,7 +60,8 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1, 
+            4
         ],
         text: "Organizacion de grupos",
         icon: "fas fa-file",
@@ -88,7 +89,8 @@ export const itemsMenu = [
     },
     { //ADMINISTRATIVO
         permissions: [
-            1
+            1,
+            4
         ],
         text: "Consulta de calificaciones",
         icon: "fas fa-folder-open",
@@ -100,8 +102,7 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1, 
-            4
+            1,
         ],
         text: "Registro de gastos",
         icon: "fas fa-ticket-alt",
@@ -113,8 +114,7 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1, 
-            4
+            1,
         ],
         text: "Realizar pago",
         icon: "fas fa-money-bill",
@@ -136,7 +136,8 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1, 
+            4
         ],
         text: "Generar documento",
         icon: "fas fa-file",
@@ -148,7 +149,7 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1, 
+            1,
             4
         ],
         name: "feed",

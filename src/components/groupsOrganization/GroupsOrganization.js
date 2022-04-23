@@ -1,6 +1,7 @@
+import { Field, Form, Formik, useFormik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { groupsClearActiveCourse, groupsClearActiveGroup, groupsSetActiveCourse, groupsStartGetAllGroups, groupsStartGetCoursesByGroup, groupsStartRelateGroupCourse } from '../../actions/groups';
+import { groupsClearActiveCourse, groupsClearActiveGroup, groupsSetActiveCourse, groupsStartGetAllGroups, groupsStartGetCoursesByGroup, groupsStartGetCoursesCouldTakeByGroup, groupsStartRelateGroupCourse } from '../../actions/groups';
 import { teachersStartGetTeachers } from '../../actions/teachers';
 import { uiSetModalClose, uiSetModalOpen } from '../../actions/ui';
 import { buildDataGroupOrganization, buildDataStudents } from '../../helpers/buildDataTables';
@@ -8,6 +9,11 @@ import { isACoincidenceSearch } from '../../helpers/isACoincidence';
 import { Assign } from '../irregularStudents/Assign';
 import { Searchbar } from '../ui/Searchbar';
 import { Table } from '../ui/Table';
+import * as Yup from 'yup';
+import { DataList } from '../irregularStudents/DataList';
+import { BackButton } from '../ui/BackButton';
+
+
 
 const headers = [{
     title: "Nombre del grupo",
@@ -55,7 +61,7 @@ export const GroupsOrganization = () => {
 
     const handleAssignCourse = (id_group) => {
         dispatch(groupsSetActiveCourse(id_group))
-        dispatch(groupsStartGetCoursesByGroup(id_group));
+        dispatch(groupsStartGetCoursesCouldTakeByGroup(id_group));
     }
 
     useEffect(() => {
@@ -100,46 +106,91 @@ export const GroupsOrganization = () => {
     const [formData, setFormData] = useState(initialData)
 
 
-    const handleSubmit = (values) => {
-        console.log("🚀asdf", formData)
-        allowToSubmit && dispatch(groupsStartRelateGroupCourse(formData))
-    }
 
-
-    const handleInputChange = ({ target }) => {
-        const preValues = { ...formData, [target.name]: target.value }
-        setFormData(prev => ({ ...prev, [target.name]: target.value }))
-        console.log(preValues)
-        setAllowToSubmit(
-            preValues.start_date !== '' && preValues.end_date !== '' && preValues.id_teacher !== '' && preValues.id_course !== ''
-        )
-
-        console.log(preValues)
-    }
-
+    console.log(dataList)
 
 
     const ExtraCampus = () => (
-        <>
-            <div className='assign__container__content__submit__select'>
-                <label htmlFor="">Seleccionar un maestro</label>
 
-                <select name={'id_teacher'} onChange={handleInputChange} value={formData.id_teacher}>
-                    <option hidden defaultValue>Seleccione una opción</option>
-                    {teachers.map((teacher) => (
-                        <option key={teacher.id_teacher} value={teacher.id_teacher}>{teacher.teacher_name}</option>
-                    ))}
-                </select>
-            </div>
-            <div className='assign__container__content__submit__dateInput'>
-                <label htmlFor="start_date">Fecha de inicio</label>
-                <input onChange={handleInputChange} value={formData.start_date} name='start_date' type="date" />
-            </div>
-            <div className='assign__container__content__submit__dateInput'>
-                <label htmlFor="end_date">Fecha de termino</label>
-                <input onChange={handleInputChange} value={formData.end_date} name='end_date' type="date" />
-            </div>
-        </>
+        <Formik
+            initialValues={{
+                id_teacher: '',
+                start_date: '',
+                id_course: '',
+                end_date: ''
+            }}
+            enableReinitialize={true}
+            validationSchema={
+                Yup.object({
+                    id_teacher: Yup.string().required('El profesor es requerido'),
+                    id_course: Yup.number().required('El curso es requerido'),
+                    start_date: Yup.date().required('La fecha de inicio es requerida'),
+                    end_date: Yup.date().required('La fecha de finalización es requerida')
+
+                })}
+            onSubmit={(values, { resetForm }) => {
+                dispatch(groupsStartRelateGroupCourse(values))
+                // resetForm()
+            }
+            }
+        >
+
+            {({ handleReset, values, setFieldValue, isValid }) => (
+                <Form
+                    style={{ display: 'flex', justifyContent: 'space-between', width: '100%', height: '100%' }}
+                >
+
+                    <div className='assign__container'>
+
+                        <div className='assign__container__header'>
+                            <BackButton handleBack={handleBack} />
+                            <h2 className='assign__container__header__title'>Asignar curso</h2>
+                        </div>
+
+                        <div className='assign__container__content'>
+                            <Searchbar placeholder="Buscar" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
+
+                            <div className='assign__container__content__list scroll'>
+                                <DataList
+                                    data={dataList}
+                                    type='radio'
+                                    valueSearchFilter={valueSearchFilter}
+                                    nameDataList={'id_course'}
+                                />
+                            </div>
+
+                            <div className='assign__container__content__submit'>
+                                <div className='assign__container__content__submit__select'>
+                                    <label htmlFor="">Seleccionar un maestro</label>
+
+                                    <Field name='id_teacher' as='select'>
+                                        <option hidden defaultValue>Seleccione una opción</option>
+                                        {teachers.map((teacher) => (
+                                            <option key={teacher.id_teacher} value={teacher.id_teacher}>{teacher.teacher_name}</option>
+                                        ))}
+                                    </Field>
+
+                                </div>
+                                <div className='assign__container__content__submit__dateInput'>
+                                    <label htmlFor="start_date">Fecha de inicio</label>
+                                    <Field name='start_date' type="date" />
+                                </div>
+
+                                <div className='assign__container__content__submit__dateInput'>
+                                    <label htmlFor="end_date">Fecha de termino</label>
+                                    <Field name='end_date' type="date" />
+                                </div>
+
+                                <button className={`btn btnAssignGroup `} type='submit'>Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </Form>
+            )}
+
+        </Formik>
+
     )
 
     return (
@@ -148,17 +199,18 @@ export const GroupsOrganization = () => {
 
                 (isActiveCourse) ?
 
-                    <Assign
-                        handleBack={handleBack}
-                        dataList={dataList}
-                        title={'Asignar curso'}
-                        allowToSubmit={allowToSubmit}
-                        handleInputChange={handleInputChange}
-                        nameDataList={'id_course'}
-                        ExtraCampus={ExtraCampus}
-                        handleSubmit={handleSubmit}
-                        type={'radio'}
-                    />
+                    // <Assign
+                    //     handleBack={handleBack}
+                    //     dataList={dataList}
+                    //     title={'Asignar curso'}
+                    //     allowToSubmit={allowToSubmit}
+                    //     // handleInputChange={handleInputChange}
+                    //     nameDataList={'id_course'}
+                    //     ExtraCampus={ExtraCampus}
+
+                    //     type={'radio'}
+                    // />
+                    <ExtraCampus />
 
                     : <div className={`gra__container ${isModalOpen && 'modal-active'}`} >
                         <Searchbar placeholder="Buscar por nombre, carrera, campus" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />

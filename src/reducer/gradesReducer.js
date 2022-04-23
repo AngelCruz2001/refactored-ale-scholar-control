@@ -19,7 +19,6 @@ export const gradesReducer = (state = initialState, action) => {
                 activeStudentGrade: action.payload
             }
         case types.gradesModifyGrade:
-            // Action.payload = { id, credits }
             console.log(action.payload)
             return {
                 ...state,

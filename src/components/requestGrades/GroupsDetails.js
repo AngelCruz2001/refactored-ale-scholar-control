@@ -4,9 +4,6 @@ import Swal from 'sweetalert2'
 import { gradesStartUpdateGrade } from '../../actions/grades'
 import { groupsClearActiveGroup, groupsGetStudentAndGradesGroup, groupsSetActiveCourse } from '../../actions/groups'
 import { buildDataCoursesStudents, buildDataGroupsDetails } from '../../helpers/buildDataTables'
-// import { isACoincidenceDate, isACoincidenceSearch } from '../../helpers/isACoincidence'
-// import { Filters } from '../ui/Filters'
-// import { Searchbar } from '../ui/Searchbar'
 import { StudentInformation } from '../ui/StudentInformation'
 import { Table } from '../ui/Table'
 
@@ -16,14 +13,14 @@ const headers = [
         textAlign: 'left'
     },
     {
-        title: "Clave",
+        title: "Docente",
         textAlign: 'left'
     },
-
     {
-        title: "Docente",
+        title: "Clave",
         textAlign: 'center'
     },
+
     {
         title: "Ver",
         textAlign: 'center'
@@ -33,16 +30,17 @@ const headers = [
 export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
 
     const dispatch = useDispatch();
-    const { groups: { activeGroup, activeCourse, coursesByGroup }, ui: { loading } } = useSelector(state => state)
+    const { groups: { activeGroup, activeCourse, coursesByGroup, courses }, ui: { loading } } = useSelector(state => state)
     const [isActiveCourse, setIsActiveCourse] = useState(false)
     const [dataShow, setDataShow] = useState([]);
 
-    console.log('activeGroup', activeGroup)
+    // console.log('activeGroup', dataGroup)
 
-    const handleClickSeeCourses = (id_course) => {
-        // const data = activeGroup.coursesTaken.filter(course => course.id_course === id_course);
-        dispatch(groupsGetStudentAndGradesGroup(id_course, activeGroup.id_group))
+    const handleClickSeeCourse = (id_course) => {
         setIsActiveCourse(true)
+        console.log(courses.find(course => course.id_course === id_course))
+        dispatch(groupsSetActiveCourse(courses.find(course => course.id_course === id_course)))
+        dispatch(groupsGetStudentAndGradesGroup(id_course, dataGroup.id_group))
     }
 
     const handleEditGrade = (id) => {
@@ -75,12 +73,12 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                 handleEditGrade
             ))
         } else {
-            dataToShow = coursesByGroup?.map(({ id_course, course_name, clave, teacher_name }) => buildDataGroupsDetails(
+            dataToShow = courses?.map(({ id_course, course_name, clave, teacher_name }) => buildDataGroupsDetails(
                 id_course,
                 course_name,
-                clave,
                 teacher_name,
-                handleClickSeeCourses))
+                clave,
+                handleClickSeeCourse))
         }
         setDataShow(
             dataToShow
@@ -101,9 +99,9 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
             data: [
                 activeCourse.course_name,
                 activeCourse.clave,
-                activeGroup.group_name,
-                activeGroup.campus_name,
-                activeGroup.major_name,
+                dataGroup.group_name,
+                dataGroup.campus_name,
+                dataGroup.major_name,
             ]
         }
         : {
@@ -118,9 +116,7 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
         setIsGroupActive(false)
         dispatch(groupsClearActiveGroup())
     }
-    // if (activeCourseData.length > 0) {
-    //     return <h1>Hola a todos</h1>
-    // }
+
     return (
         <>
             <div className='gra__container__details'>
@@ -133,6 +129,7 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                 </div>
                 <div className="gra__container__details__informationStudent">
                     <StudentInformation
+                        title='Información del grupo'
                         studentInformation={dataInformation}
                     />
                 </div>
@@ -140,7 +137,7 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                     <Table
                         headers={headers}
                         data={dataShow}
-                        sizesColumns={[35, 35, 20, 10]}
+                        sizesColumns={[40, 40, 10, 10]}
                     />
                 </div>
             </div>

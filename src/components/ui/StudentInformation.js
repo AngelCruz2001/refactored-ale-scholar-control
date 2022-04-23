@@ -5,12 +5,13 @@ import { uiSetCurrent } from '../../actions/ui';
 export const StudentInformation = ({
     activeClassName = '',
     loading = false,
+    title = 'Información del alumno',
     studentInformation = { headers: [], data: [] },
     isStudentShowed = true,
 }) => {
     const dispatch = useDispatch()
     const { headers, data } = studentInformation;
-   
+
     useEffect(() => {
         if (!loading && activeClassName === 'activeGuide') {
             dispatch(uiSetCurrent(2));
@@ -19,7 +20,7 @@ export const StudentInformation = ({
 
     return (
         <div className={`stuInfo son`}>
-            {isStudentShowed && <p className="general__titleSection">Información del alumno</p>}
+            {isStudentShowed && <p className="general__titleSection">{title}</p>}
 
             <div className="stuInfo__container son">
 

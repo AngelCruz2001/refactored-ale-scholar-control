@@ -6,11 +6,9 @@ import { DataList } from './DataList'
 export const Assign = ({
     handleBack,
     type,
-    handleSubmit,
     title,
     dataList,
     ExtraCampus,
-    allowToSubmit,
     handleInputChange,
     nameDataList
 }) => {
@@ -42,7 +40,6 @@ export const Assign = ({
 
                     <ExtraCampus />
 
-                    <button className={`btn btnAssignGroup ${allowToSubmit ? '' : 'disableGuide'}`} onClick={() => handleSubmit()}>Aceptar</button>
                 </div>
             </div>
         </div>

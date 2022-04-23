@@ -1,0 +1,22 @@
+Imagenes menos de 4000px (title)
+
+Añadir imagenes a la barra de arriba. 
+
+Cambiar calificaciones locales con redux. 
+
+Revisar: (TODO) 
+    Organización de grupos. 
+    Consulta de calificaciones. 
+    Generar documento. 
+    Captura de datos. 
+
+Subir el commit. 
+
+Merge con master
+
+Merge con main.
+
+Subir todo al url.
+
+
+

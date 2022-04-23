@@ -5,6 +5,9 @@ export const GroupsTable = ({ handleBack, majorName }) => {
 
     const { groupsData: data } = useSelector(state => state.majors)
 
+
+    console.log(data)
+
     return (
         
         <div className='groups-table'>

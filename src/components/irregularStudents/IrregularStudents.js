@@ -104,6 +104,8 @@ export const IrregularStudents = () => {
     }
 
     const handleAssignTest = (matricula) => {
+        // dispatch TODO: Saber para que era el dispatch. Ah, era para cargar los examenes en el irregular. 
+        //Hacerlo.
         dispatch(studentSetIrregularActive(data.find(student => student.matricula === matricula)));
         setIsAssingingGroup(false)
     }
