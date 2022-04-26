@@ -966,15 +966,8 @@
                         "styles": {
                             "width": "28%"
                         },
-                        "value": "",
-                        "validations": [
-                            {
-                                "type": "required"
-                            },
-                            {
-                                "type": "rfc"
-                            }
-                        ]
+                        "value": ""
+                       
                     },
                     {
                         "name": "mobile_number",
