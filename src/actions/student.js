@@ -31,12 +31,12 @@ export const studentStartGetStudentByMatricula = (matricula) => {
 }
 
 
-export const studentStartMoveStudentGroup = (id_group) => {
+export const studentStartMoveStudentGroup = (matricula, id_group) => {
     return async (dispatch, getState) => {
         dispatch(uiStartLoading())
-        const { irregularStudents } = getState().student;
+
         try {
-            const res = await fetchConToken(`students/${irregularStudents.active.matricula}/groups/${id_group}`, {}, 'PUT')
+            const res = await fetchConToken(`students/${matricula}/groups/${id_group}`, {}, 'PUT')
             const body = await res.json()
             if (body.ok) {
                 console.log(body)
@@ -71,7 +71,7 @@ export const studentStartGetIrregularStudents = () => {
             const res = await fetchConToken(`students?irregular=true`, 'GET')
             const body = await res.json()
 
-            
+
 
             if (body.ok) {
                 dispatch(studentIrregularSetStudents(body.students));
@@ -91,20 +91,22 @@ export const studentStartGetIrregularStudents = () => {
     }
 }
 
-export const studentStartAssignATest = (id_course, application_date) => {
-    // "matricula":"MADU202203001",
-    // "id_course":12,
-    // "application_date":"2021-12-31"
+export const studentStartAssignATest = (data) => {
+
     return async (dispatch, getState) => {
         dispatch(uiStartLoading())
-        const { irregularStudents } = getState().student;
-        const matricula = irregularStudents.active.matricula
         try {
-            const res = await fetchConToken(`test`, { matricula, id_course, application_date }, 'POST')
+            console.log(data)
+            const res = await fetchConToken(`tests`, data, 'POST')
             const body = await res.json()
 
             if (body.ok) {
-                dispatch(studentIrregularSetStudents(body.students));
+                // dispatch(studentIrregularSetStudents(body.students));
+                Swal.fire({
+                    title: "Examen asignado correctamente",
+                    text: `Fecha de aplicación: ${data.application_date}` + '.',
+                    icon: 'success',
+                })
             } else {
                 console.log(body)
                 Swal.fire({
@@ -120,6 +122,35 @@ export const studentStartAssignATest = (id_course, application_date) => {
         }
     }
 }
+
+
+export const studentsStartGetTestsStudent = (matricula) => {
+    return async (dispatch, getState) => {
+        dispatch(uiStartLoading())
+        try {
+            const res = await fetchConToken(`tests/student/${matricula}`)
+            const body = await res.json()
+
+            if (body.ok) {
+                dispatch(studentSetDataTest(body.tests));
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+            dispatch(uiFinishLoading())
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+    }
+}
+
+
+const studentSetDataTest = data => ({ type: types.studentSetTestIrregular, payload: data })
 
 const studentIrregularSetStudents = students => ({ type: types.studentSetIrregularStudents, payload: students })
 export const studentSetActive = data => ({ type: types.studentSetActive, payload: data })

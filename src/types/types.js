@@ -30,6 +30,7 @@ export const types = {
     studentSetIrregularStudents: '[student] Set irregular students',
     studentClearData: '[student] Clear data',
     studentClearIrregularActive: '[student] Clear irregular active',
+    studentSetTestIrregular: '[student] Set test irregular',
 
     groupsSetGroups: '[groups] Set groups',
     groupsSetSpecificCourses: '[groups] Set group active',

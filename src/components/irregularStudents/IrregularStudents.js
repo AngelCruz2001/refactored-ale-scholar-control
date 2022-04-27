@@ -1,204 +1,115 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { majorsStartGetgroupsFromAMajor } from '../../actions/majors';
-import { studentClearIrregularActive, studentSetActive, studentSetIrregularActive, studentStartAssignATest, studentStartGetIrregularStudents, studentStartMoveStudentGroup } from '../../actions/student';
-import { teachersStartGetTeachers } from '../../actions/teachers';
-import { uiSetModalClose, uiSetModalOpen } from '../../actions/ui';
-import { buildDataStudents } from '../../helpers/buildDataTables';
-import { isACoincidenceSearch } from '../../helpers/isACoincidence';
+import React from 'react'
 import { Searchbar } from '../ui/Searchbar';
 import { Table } from '../ui/Table';
-import { Assign } from './Assign';
+import * as Yup from 'yup';
+import { Field, Form, Formik, useFormik } from 'formik';
+import { DataList } from './DataList';
+import { BackButton } from '../ui/BackButton';
+import { useIrregularStudents } from '../../hooks/useIrregularStudents';
+import { useDispatch } from 'react-redux';
+import { studentStartAssignATest, studentStartMoveStudentGroup } from '../../actions/student';
 
-const headers = [{
-    title: "Nombre del alumno",
-    textAlign: 'left'
-},
-{
-    title: "Matricula",
-    textAlign: 'center'
-},
-{
-    title: "Carrera",
-    textAlign: 'left'
-},
-{
-    title: "Asignar",
-    textAlign: 'center'
-},
-{
-    title: "",
-    textAlign: 'center'
-}
+const headers = [
+    {
+        title: "Nombre del alumno",
+        textAlign: 'left'
+    },
+    {
+        title: "Matricula",
+        textAlign: 'center'
+    },
+    {
+        title: "Carrera",
+        textAlign: 'left'
+    },
+    {
+        title: "Asignar",
+        textAlign: 'center'
+    },
+    {
+        title: "",
+        textAlign: 'center'
+    }
 ];
+
 export const IrregularStudents = () => {
+
+
+
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(studentStartGetIrregularStudents())
-        dispatch(teachersStartGetTeachers())
-    }, [])
-
     const {
-        student: { irregularStudents },
-        ui: { loading, isModalOpen },
-        majors: { groupsData },
-        teachers: { teachers }
-    } = useSelector(state => state);
-
-    const { data, active } = irregularStudents;
-    const [isActiveStudent, setIsActiveStudent] = useState(active ? true : false);
-
-    const [valueSearchFilter, setValueSearchFilter] = useState({ searchWord: '' })
-
-    const [dataShow, setDataShow] = useState([])
-
-    const [dataList, setDataList] = useState([])
-
-    const [isAssingingGroup, setIsAssingingGroup] = useState([])
-
-    const initialData = isAssingingGroup ? {
-        id_group: '',
-    } : {
-        id_teacher: '',
-        application_date: '',
-    }
-
-    const [allowToSubmit, setAllowToSubmit] = useState(false)
-
-    const [formData, setFormData] = useState(initialData)
-
-
-    const handleSubmit = () => {
-        console.log("🚀asdf", formData.id_teacher && formData.application_date)
-        if (isAssingingGroup) {
-            formData.id_group && dispatch(studentStartMoveStudentGroup(formData.id_group))
-        } else {
-            formData.id_teacher && formData.application_date && dispatch(studentStartAssignATest(formData.id_course, formData.application_date))
-        }
-    }
-
-    useEffect(() => {
-        setIsActiveStudent(active ? true : false)
-    }, [active])
-
-
-    useEffect(() => {
-        if (isActiveStudent) {
-            dispatch(uiSetModalOpen())
-            setIsActiveStudent(true)
-        } else {
-            dispatch(uiSetModalClose())
-            setIsActiveStudent(false)
-            setFormData(initialData)
-            setAllowToSubmit(false)
-        }
-    }, [isActiveStudent])
-
-
-    const handleAssignGroup = (matricula) => {
-        const currentStudent = data.find(student => student.matricula === matricula);
-        dispatch(majorsStartGetgroupsFromAMajor(currentStudent.id_major));
-        dispatch(studentSetIrregularActive(currentStudent));
-        setIsAssingingGroup(true)
-    }
-
-    const handleAssignTest = (matricula) => {
-        // dispatch TODO: Saber para que era el dispatch. Ah, era para cargar los examenes en el irregular. 
-        //Hacerlo.
-        dispatch(studentSetIrregularActive(data.find(student => student.matricula === matricula)));
-        setIsAssingingGroup(false)
-    }
-
-    const handleBack = () => {
-        dispatch(studentClearIrregularActive());
-    }
-
-
-    useEffect(() => {
-        isAssingingGroup
-            ? setDataList(groupsData.map(group => ({ value: group.id_group, label: group.group_name })))
-            : setDataList(groupsData.map(group => ({ value: group.id_group, label: group.group_name })))
-    }, [isAssingingGroup, groupsData])
-
-
-
-
-    const generateData = () => {
-        const dataToShow = [];
-        const { searchWord } = valueSearchFilter;
-        data.forEach(({ id_student, student_name, matricula, major_name, id_major }) => {
-            const coincidence = isACoincidenceSearch([student_name, matricula, major_name], searchWord)
-            const dataBuilded = buildDataStudents(id_student, student_name, matricula, major_name, id_major, handleAssignGroup, handleAssignTest, coincidence)
-            if (searchWord === '') {
-                dataToShow.push(dataBuilded)
-            } else if (coincidence.includes(true)) {
-                dataToShow.push(dataBuilded)
-            }
-        });
-        setDataShow(dataToShow);
-    }
-
-    const handleInputChange = ({ target }) => {
-        const preValues = { ...formData, [target.name]: target.value }
-        setFormData(prev => ({ ...prev, [target.name]: target.value }))
-
-        setAllowToSubmit(
-            isAssingingGroup ?
-                preValues.id_group !== '' :
-                preValues.id_teacher !== '' && preValues.application_date !== ''
-        )
-    }
-
-
-    useEffect(() => {
-        generateData()
-    }, [data, loading, valueSearchFilter])
-
-
-    const ExtraCampus = () => {
-        return (
-            <>
-                {!isAssingingGroup &&
-                    <div className='assign__container__content__submit__dateInput'>
-                        <label htmlFor="application_date">Fecha de Aplicación</label>
-                        <input onChange={handleInputChange} name='application_date' type="date" value={formData.application_date} />
-                    </div>}
-            </>
-
-            // <>
-            //     <div className='assign__container__content__submit__select'>
-            //         <label htmlFor="">Seleccionar un maestro</label>
-
-            //         <select name={'id_teacher'} >
-            //             <option hidden defaultValue>Seleccione una opción</option>
-            //             {teachers.map((teacher) => (
-            //                 <option key={teacher.id_teacher} value={teacher.id_teacher}>{teacher.teacher_name}</option>
-            //             ))}
-            //         </select>
-            //     </div>
-
-
-            // </>
-
-        )
-    }
+        dataShow,
+        dataList,
+        formData,
+        valueSearchFilter,
+        setValueSearchFilter,
+        handleBack,
+        isModalOpen,
+        active,
+        isAssingingGroup } = useIrregularStudents();
 
     return (
         <>
             {
                 (active) ?
-                    <Assign
-                        handleBack={handleBack}
-                        handleSubmit={handleSubmit}
-                        ExtraCampus={ExtraCampus}
-                        dataList={dataList}
-                        title={isAssingingGroup ? 'Asignar grupo' : 'Asignar examen'}
-                        type="radio"
-                        handleInputChange={handleInputChange}
-                        allowToSubmit={allowToSubmit}
-                        nameDataList={isAssingingGroup ? 'id_group' : 'id_course'}
-                    />
+                    <Formik
+                        {...formData}
+                        enableReinitialize={true}
+                        onSubmit={(values, { resetForm }) => {
+                            isAssingingGroup ?
+                                dispatch(studentStartMoveStudentGroup(active.matricula, values.id_group))
+                                :
+                                dispatch(studentStartAssignATest({ matricula: active.matricula, ...values }))
+                            resetForm()
+                        }}
+
+                    >
+
+                        {({ handleReset, values, setFieldValue, isValid, dirty }) => (
+
+                            <Form
+                                style={{ display: 'flex', justifyContent: 'space-between', width: '100%', height: '100%' }}
+                            >
+                                {JSON.stringify(values, null, 2)}
+
+                                <div className='assign__container'>
+
+                                    <div className='assign__container__header'>
+                                        <BackButton handleBack={handleBack} />
+                                        <h2 className='assign__container__header__title'>{`${isAssingingGroup ? 'Asignar grupo' : 'Asignar examen'} `}</h2>
+                                    </div>
+
+                                    <div className='assign__container__content'>
+                                        <Searchbar placeholder="Buscar" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />
+
+                                        <div className='assign__container__content__list scroll'>
+                                            <DataList
+                                                data={dataList}
+                                                type='radio'
+                                                valueSearchFilter={valueSearchFilter}
+                                                nameDataList={isAssingingGroup ? 'id_group' : 'id_course'}
+                                            />
+                                        </div>
+
+                                        <div className='assign__container__content__submit'>
+                                            {!isAssingingGroup &&
+                                                <div className='assign__container__content__submit__dateInput'>
+                                                    <label htmlFor="end_date">Fecha de aplicación</label>
+                                                    <Field name='application_date' type="date" />
+                                                </div>
+                                            }
+
+                                            <button disabled={!isValid || !dirty} className={`btn btnAssignGroup ${(isValid && dirty) ? '' : 'disableGuide'}`} type='submit'>Aceptar</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </Form>
+                        )}
+
+                    </Formik >
                     :
                     <div className={`gra__container ${isModalOpen && 'modal-active'}`} >
                         <Searchbar placeholder="Buscar por nombre, matrícula o grupo del estudiante" setValueSearchFilter={setValueSearchFilter} valueSearchFilter={valueSearchFilter} />

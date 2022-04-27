@@ -10,11 +10,11 @@ const initialValue = {
     major_name: '',
     ins_date: '',
     course_name: '',
-
     irregularStudents: {
         data: [],
         active: null,
-    }
+        availableTests: [],
+    }, 
 
 }
 
@@ -43,6 +43,13 @@ export const studentReducer = (state = initialValue, action) => {
                 ...state,
                 irregularStudents: { ...state.irregularStudents, active: null }
             }
+        
+        case types.studentSetTestIrregular:
+            return {
+                ...state,
+                irregularStudents: { ...state.irregularStudents, availableTests: [...action.payload] }
+            }
+
 
         default:
             return state;
