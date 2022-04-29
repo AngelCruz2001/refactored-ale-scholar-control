@@ -73,7 +73,7 @@ export const RequestGradesAdmin = () => {
     const [isGroupActive, setIsGroupActive] = useState(false)
     const [activeGroupData, setActiveGroupData] = useState([])
     const { name } = useParams();
-
+     
     useEffect(() => {
         setHeadersToShow(headers[(name === 'grupos') ? 1 : 0]);
         setShowGroups(name === 'grupos');
