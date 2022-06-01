@@ -5,7 +5,7 @@ const initialState = {
     activeGroup: [],
     activeCourse: null,
     activeCourseData: null,
-    courses: [], 
+    courses: [],
     coursesByGroup: null,
 }
 
@@ -43,7 +43,14 @@ export const groupsReducer = (state = initialState, action) => {
         case types.groupsUpdateGrade:
             return {
                 ...state,
-                activeCourse: action.payload
+                activeCourse: {
+                    ...state.activeCourse, grades: state.activeCourse.grades.map(grade => {
+                        if (grade.id_grade === action.payload.id) {
+                            grade.grade = action.payload.grade
+                        }
+                        return grade
+                    })
+                }
             }
 
         case types.groupsSetStudentsAndGrades:

@@ -13,7 +13,6 @@ export const AppRouter = ({ history }) => {
 
     const dispatch = useDispatch();
     const { logged } = useSelector(state => state.auth)
-    // const logged = true;
     useEffect(() => {
         dispatch(authStartChecking())
     }, [dispatch])

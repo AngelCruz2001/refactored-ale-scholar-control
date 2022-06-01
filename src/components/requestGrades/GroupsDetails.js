@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { gradesStartUpdateGrade } from '../../actions/grades'
-import { groupsClearActiveGroup, groupsGetStudentAndGradesGroup, groupsSetActiveCourse } from '../../actions/groups'
+import { groupsClearActiveGroup, groupsGetStudentAndGradesGroup, groupsSetActiveCourse, groupsStartUpdateGrade } from '../../actions/groups'
 import { buildDataCoursesStudents, buildDataGroupsDetails } from '../../helpers/buildDataTables'
 import { StudentInformation } from '../ui/StudentInformation'
 import { Table } from '../ui/Table'
@@ -52,12 +52,18 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                 autocapitalize: 'off'
             },
             showCancelButton: true,
-            confirmButtonText: 'Look up',
+            confirmButtonText: 'Actualizar',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#d33',
             allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(gradesStartUpdateGrade(id, result.value))
+                dispatch(groupsStartUpdateGrade(id, result.value))
+                // YA ES GRUPOS. 
+                console.log("caca")
             }
+
+            
         })
     }
 

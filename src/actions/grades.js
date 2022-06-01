@@ -67,7 +67,7 @@ export const gradesStartUpdateGrade = (id, credits, type = 'regular') => {
                 console.log(id, credits)
 
                 
-                dispatch(gradesModifyGrade(id, credits))
+                // dispatch(gradesModifyGrade(id, credits))
                 dispatch(gradesModifyGrade(id, credits))
             } else {
                 console.log(body)
