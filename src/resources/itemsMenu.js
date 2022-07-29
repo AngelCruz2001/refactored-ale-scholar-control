@@ -45,7 +45,8 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1, 
+            4
         ],
         text: "Alumnos irregulares",
         icon: "fas fa-file",

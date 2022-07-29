@@ -103,16 +103,15 @@ export const useIrregularStudents = () => {
     }, [data, loading, valueSearchFilter])
 
 
-    const handleBack = () => {
+    const handleBack = () => { 
         dispatch(studentClearIrregularActive());
     }
 
     useEffect(() => {
-        // setDataList([])
         isAssingingGroup
             ? setDataList(groupsData.map(group => ({ value: group.id_group, label: group.group_name })))
             : setDataList(availableTests.map(test => ({ value: test.id_course, label: test.course_name })))
-    }, [isAssingingGroup, groupsData])
+    }, [isAssingingGroup, groupsData, availableTests])
 
     return ({
         dataShow,

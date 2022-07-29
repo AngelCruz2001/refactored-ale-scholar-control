@@ -71,8 +71,6 @@ export const studentStartGetIrregularStudents = () => {
             const res = await fetchConToken(`students?irregular=true`, 'GET')
             const body = await res.json()
 
-
-
             if (body.ok) {
                 dispatch(studentIrregularSetStudents(body.students));
             } else {

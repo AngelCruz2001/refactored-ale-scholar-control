@@ -8,6 +8,8 @@ import { BackButton } from '../ui/BackButton';
 import { useIrregularStudents } from '../../hooks/useIrregularStudents';
 import { useDispatch } from 'react-redux';
 import { studentStartAssignATest, studentStartMoveStudentGroup } from '../../actions/student';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const headers = [
     {
@@ -37,7 +39,7 @@ export const IrregularStudents = () => {
 
 
     const dispatch = useDispatch();
-
+    
     const {
         dataShow,
         dataList,
@@ -49,6 +51,7 @@ export const IrregularStudents = () => {
         active,
         isAssingingGroup } = useIrregularStudents();
 
+    
     return (
         <>
             {
@@ -63,18 +66,15 @@ export const IrregularStudents = () => {
                                 dispatch(studentStartAssignATest({ matricula: active.matricula, ...values }))
                             resetForm()
                         }}
-
                     >
-
                         {({ handleReset, values, setFieldValue, isValid, dirty }) => (
 
                             <Form
                                 style={{ display: 'flex', justifyContent: 'space-between', width: '100%', height: '100%' }}
                             >
-                                {JSON.stringify(values, null, 2)}
+
 
                                 <div className='assign__container'>
-
                                     <div className='assign__container__header'>
                                         <BackButton handleBack={handleBack} />
                                         <h2 className='assign__container__header__title'>{`${isAssingingGroup ? 'Asignar grupo' : 'Asignar examen'} `}</h2>
@@ -85,6 +85,7 @@ export const IrregularStudents = () => {
 
                                         <div className='assign__container__content__list scroll'>
                                             <DataList
+                                                key={isAssingingGroup ? 'assignGroup' : 'assignTest'}
                                                 data={dataList}
                                                 type='radio'
                                                 valueSearchFilter={valueSearchFilter}

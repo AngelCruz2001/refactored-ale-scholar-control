@@ -1,8 +1,10 @@
 import { Field } from 'formik';
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { isACoincidenceAssing } from '../../helpers/isACoincidence';
 
-export const DataList = ({ data = [], valueSearchFilter, type, nameDataList }) => {
+export const DataList = ({data, valueSearchFilter, type, nameDataList}) => {
+
+    console.log('first', data);
     return (
         <>
             {
