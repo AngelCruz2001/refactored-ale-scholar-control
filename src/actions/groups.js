@@ -196,10 +196,43 @@ export const groupsGetStudentAndGradesGroup = (id_course, id_group) => {
     }
 }
 
+export const groupsStartDeleteGroupCourse = (id_course, id_group) => {
+    return async (dispatch) => {
+        try {
+            const res = await fetchConToken(`groups/${id_group}/courses/${id_course}`, {}, 'DELETE')
+            const body = await res.json()
+
+            if (body.ok) {
+                console.log(body)
+                Swal.fire({
+                    title: "Grupos",
+                    text: "Curso borrado correctamente" + '.',
+                    icon: 'success',
+                })
+                dispatch(groupsDeleteGroupCourse(id_course))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+    }
+}
 
 
+const groupsDeleteGroupCourse = (id_course) => ({
+    type: types.groupsDeleteGroupCourse,
+    payload: id_course
+})
 
-const groupsSetCourses = (courses) => ({ type: types.groupsSetCourses, payload: courses})
+const groupsSetCourses = (courses) => ({ type: types.groupsSetCourses, payload: courses })
 
 export const groupsSetActiveCourse = (course) => ({ type: types.groupsSetActiveCourse, payload: course })
 

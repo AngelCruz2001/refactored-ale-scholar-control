@@ -40,7 +40,9 @@ export const types = {
     groupsClearActiveGroup: '[groups] Clear active group',
     groupsSetCourses: '[groups] Set data courses',
     groupsSetCoursesTaken : '[groups] Set data courses taken',
-    
+    groupsDeleteGroupCourse: '[groups] Delete group course',
+
+
     requestSetRequests: '[request] Set requests',
     requestDeleteRequest: '[request] Delete request',
     requestSetActiveRequest: '[request] Set active request',

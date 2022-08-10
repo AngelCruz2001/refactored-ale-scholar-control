@@ -174,12 +174,13 @@ export const buildDataGroups = (id_group, group_name, major_name, campus_name, o
 
 
 
-export const buildDataGroupsDetails = (id_course, course_name, clave, teacher_name, handleClick) => {
+export const buildDataGroupsDetails = (id_course, course_name, clave, teacher_name, handleClick, handleClick2) => {
     return [
         { element: <SpanTable text={course_name} />, searched: false },
         { element: <SpanTable text={clave} />, searched: false },
         { element: <SpanTable text={teacher_name} />, searched: false },
         { element: <ButtonTable onClick={handleClick} type={8} id={id_course} />, searched: false },
+        { element: <ButtonTable onClick={handleClick2} type={2} id={id_course} />, searched: false },
     ];
 }
 
@@ -188,7 +189,7 @@ export const buildDataCoursesStudents = (id_course, student_name, matricula, gra
         { element: <SpanTable text={student_name} />, searched: false },
         { element: <SpanTable text={matricula} />, searched: false },
         { element: <SpanTable text={grade} />, searched: false },
-        { element: <ButtonTable onClick={handleClick} type={7} id={id_course} />, searched: false },
+        { element: <ButtonTable onClick={handleClick} type={1} id={id_course} />, searched: false },
     ];
 }
 export const buildDataCourses = (id_course, student_name, matricula, grade, handleClick) => {

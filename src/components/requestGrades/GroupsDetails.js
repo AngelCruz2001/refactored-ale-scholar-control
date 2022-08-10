@@ -1,13 +1,12 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import { gradesStartUpdateGrade } from '../../actions/grades'
-import { groupsClearActiveGroup, groupsGetStudentAndGradesGroup, groupsSetActiveCourse, groupsStartUpdateGrade } from '../../actions/groups'
+import { groupsClearActiveGroup, groupsGetStudentAndGradesGroup, groupsSetActiveCourse, groupsStartDeleteGroupCourse, groupsStartUpdateGrade } from '../../actions/groups'
 import { buildDataCoursesStudents, buildDataGroupsDetails } from '../../helpers/buildDataTables'
 import { StudentInformation } from '../ui/StudentInformation'
 import { Table } from '../ui/Table'
 
-const headers = [
+let headers = [
     {
         title: "Materias",
         textAlign: 'left'
@@ -24,7 +23,12 @@ const headers = [
     {
         title: "Ver",
         textAlign: 'center'
-    }];
+    },
+    {
+        title: "Eliminar",
+        textAlign: 'center'
+    }
+];
 
 
 export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
@@ -35,6 +39,10 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
     const [dataShow, setDataShow] = useState([]);
 
     // console.log('activeGroup', dataGroup)
+
+    const handleDelete = (id_course) => {
+        dispatch(groupsStartDeleteGroupCourse(id_course, dataGroup.id_group))
+    }
 
     const handleClickSeeCourse = (id_course) => {
         setIsActiveCourse(true)
@@ -63,7 +71,7 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                 console.log("caca")
             }
 
-            
+
         })
     }
 
@@ -84,7 +92,8 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                 course_name,
                 teacher_name,
                 clave,
-                handleClickSeeCourse))
+                handleClickSeeCourse,
+                handleDelete))
         }
         setDataShow(
             dataToShow
@@ -93,11 +102,9 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
 
     useLayoutEffect(() => {
         !loading && generateData()
-    }, [loading])
+    }, [loading,courses])
 
-    // useEffect(() => {
-    //     isActiveCourse && dispatch(groupsGetStudentAndGradesGroup(activeCourse.id_course, activeGroup.id_group))
-    // }, [activeCourse])
+
 
     const dataInformation = isActiveCourse
         ? {
@@ -141,9 +148,31 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                 </div>
                 <div className="gra__container__details__table">
                     <Table
-                        headers={headers}
+                        headers={!isActiveCourse ? headers : [
+                            {
+                                title: "Estudiante",
+                                textAlign: "center",
+                            },
+                            {
+                                title: "Matricula",
+                                textAlign: "center",
+                            },
+                            {
+                                title: "Promedio",
+                                textAlign: "center",
+                            },
+                            {
+                                title: "Editar",
+                                textAlign: "center",
+                            },
+                            {
+                                title: "",
+                                textAlign: "center",
+                            },
+
+                        ]}
                         data={dataShow}
-                        sizesColumns={[40, 40, 10, 10]}
+                        sizesColumns={isActiveCourse ? [40, 40,  10, 10] : [40, 30, 10, 10, 10]}
                     />
                 </div>
             </div>

@@ -23,6 +23,13 @@ export const groupsReducer = (state = initialState, action) => {
                 courses: action.payload
             }
 
+        case types.groupsDeleteGroupCourse:
+            return {
+                ...state,
+                courses: state.courses.filter(course =>
+                    course.id_course !== action.payload)
+            }
+
         case types.groupsSetSpecificCourses:
             return {
                 ...state,
