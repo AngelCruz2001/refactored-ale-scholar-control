@@ -736,9 +736,6 @@
                         "validations": [
                             {
                                 "type": "required"
-                            },
-                            {
-                                "type": "number"
                             }
                         ]
                     }
