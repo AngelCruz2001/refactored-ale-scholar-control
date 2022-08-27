@@ -1,46 +1,64 @@
 import { Field } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { documentStartGetDocuments } from '../../actions/document';
 import { payStartGetPrice } from '../../actions/pay';
 import { isACoincidenceAssing } from '../../helpers/isACoincidence';
 
-export const ItemsToPay = ({ payment_type, search, thingToPay, matricula }) => {
+export const ItemsToPay = ({ payment_type, search, thingToPay, matricula, setFieldValue }) => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        payment_type == 'Documento' && dispatch(documentStartGetDocuments(matricula));
-        // TODO: Charge the result that is in the state to the map below. 
-        // TODO: Manage the months too. 
-        // TODO: Create submit action.
+    const { documentsAvailable } = useSelector(state => state.document)
 
-    }, [])
-
-    const [dataExample, setDataExample] = useState(
-        [
-            { name: 'Enero', value: '0' },
-            { name: 'Febrero', value: '1' },
-            { name: 'Marzo', value: '2' },
-            { name: 'Abril', value: '3' },
-            { name: 'Mayo', value: '4' },
-            { name: 'Junio', value: '5' },
-            { name: 'Julio', value: '6' },
-            { name: 'Agosto', value: '7' },
-            { name: 'Septiembre', value: '8' },
-            { name: 'Octubre', value: '9' },
-            { name: 'Noviembre', value: '10' },
-            { name: 'Diciembre', value: '11' },
-        ]
-    );
+    const [dataExample, setDataExample] = useState([]);
 
     useEffect(() => {
-        if (payment_type !== null) {
-            if (thingToPay !== null || payment_type === 'Inscripción') {
-                dispatch(payStartGetPrice(payment_type, thingToPay));
-            }
+        if (payment_type == 'Documento') {
+            dispatch(documentStartGetDocuments(matricula));
+
+            setDataExample(documentsAvailable.map(doc => (
+                {
+                    name: doc.name,
+                    value: doc.id
+                }
+            )))
         }
-    }, [payment_type, thingToPay]);
+
+        if (payment_type == 'Materia') {
+            setDataExample(
+                [{ name: 'Enero', value: '0' },
+                { name: 'Febrero', value: '1' },
+                { name: 'Marzo', value: '2' },
+                { name: 'Abril', value: '3' },
+                { name: 'Mayo', value: '4' },
+                { name: 'Junio', value: '5' },
+                { name: 'Julio', value: '6' },
+                { name: 'Agosto', value: '7' },
+                { name: 'Septiembre', value: '8' },
+                { name: 'Octubre', value: '9' },
+                { name: 'Noviembre', value: '10' },
+                { name: 'Diciembre', value: '11' }]
+            )
+        }
+    }, [payment_type])
+
+    // useEffect(() => {
+    //     if (payment_type !== null) {
+    //         if (thingToPay !== null ) {
+    //             console.log("caca", thingToPay)
+    //             dispatch(payStartGetPrice(payment_type, thingToPay.value));
+    //         }
+    //     }
+    // }, [ thingToPay]);
+
+    const getPrice = (value) => {
+        console.log("caca", value)
+        payment_type == "Materia" && setFieldValue('start_date', value)
+        payment_type == "Documento" && setFieldValue('document_type', value)
+        dispatch(payStartGetPrice(payment_type, value))
+
+    }
 
 
     return (
@@ -64,7 +82,7 @@ export const ItemsToPay = ({ payment_type, search, thingToPay, matricula }) => {
                                 <label
                                     key={item.value}
                                     className={`makeAPay__body__container__cosaAPagar__items__item ${thingToPay == item.value ? 'selected' : ''}`}>
-                                    <Field type="radio" name="thingToPay" value={item.value} />
+                                    <Field type="radio" name="thingToPay" value={item.name} onClick={() => getPrice(item.value)} />
                                     {item.name}
                                 </label>
                             ))

@@ -49,7 +49,7 @@ export const ButtonTable = ({
             case 5:
                 return (
                     <NavLink className="btn btnTable" to={`/realizar_pago/${id}`}>
-                        <p>LIQUIDAR O ABONAR</p>
+                        <p>Liquidar o abonar</p>
                         <i className={`fas fa-chevron-circle-right`}></i>
                     </NavLink>
                 )

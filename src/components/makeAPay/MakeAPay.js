@@ -11,20 +11,30 @@ import { PayTotal } from './PayTotal';
 import { MethodDetails } from './MethodDetails';
 import { PayQuantity } from './PayQuantity';
 import { PaySubmit } from './PaySubmit';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { payStartMakePay } from '../../actions/pay';
-
+import { payStartFertilizer, payStartMakePay } from '../../actions/pay';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from "react-router-dom";
 
 
 export const MakeAPay = () => {
 
+    const history = useHistory();
+    const { name } = useParams();
+    const { matricula, studentInfo, loading, id_user, cards, totalPayMoney, activeFertilizer } = usePayments(name);
 
-    const { matricula, studentInfo, loading, id_user, cards, totalPayMoney } = usePayments();
+    const [isAFer, setIsAFer] = useState(false)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setIsAFer(activeFertilizer != null)
+    }, [activeFertilizer])
+
     const handleGetTotal = () => {
 
     }
+
 
     return (
         <div className='makeAPay'>
@@ -38,8 +48,8 @@ export const MakeAPay = () => {
                         matricula: matricula ? matricula : '',
                         id_user,
                         payment_method: '',
-                        payment_type: null,
-                        thingToPay: null,
+                        payment_type: isAFer ? activeFertilizer.payment_type : null,
+                        thingToPay: isAFer ? activeFertilizer.name : null,
                         amount: 0,
                         document_type: null,
                         id_card: null,
@@ -50,29 +60,22 @@ export const MakeAPay = () => {
                 }
                 enableReinitialize={true}
 
+
                 validationSchema={Yup.object({
-                    matricula: Yup.string().required('La matricula es requerida'),
-                    payment_method: Yup.string().required('El metodo de pago es requerido'),
-                    id_card: Yup.string().when('payment_method', {
-                        is: 'Tarjeta', then: Yup.string().required('La tarjeta es requerida'),
-                        otherwise: Yup.string().nullable()
-                    }),
-                    payment_type: Yup.string().required('El tipo de pago es requerido'),
-                    thingToPay: Yup.string().when('payment_method', {
-                        is: 'Inscripción',
-                        then: Yup.string().nullable(true),
-                        otherwise: Yup.string().required('El tipo de pago es requerido')
-                    }),
-                    amount: Yup.number().required('La cantidad es requerida'),
+
                 })}
-                onSubmit={(values) => {
-                    console.log(values)
-                    dispatch(payStartMakePay(values))
+
+                onSubmit={(values, { resetForm }) => {
+                    isAFer ? dispatch(payStartFertilizer(values, activeFertilizer.id_payment)) : dispatch(payStartMakePay(values))
+                    history.goBack();
+
                 }}
+
 
             >
 
-                {({ values, setFieldValue, resetForm }) => (
+                {({ values, setFieldValue, resetForm, handleSubmit }) => (
+
                     <Form className="makeAPay__body">
 
                         <div className="makeAPay__body__container">
@@ -80,23 +83,23 @@ export const MakeAPay = () => {
 
                             <StudentData studentInfo={studentInfo} loading={loading} />
 
-                            <ConceptPay payment_type={values.payment_type} setFieldValue={setFieldValue} />
+                            <ConceptPay payment_type={values.payment_type} setFieldValue={setFieldValue} thingToPay={values.thingToPay} />
 
                         </div>
 
                         <div className="makeAPay__body__container right">
 
-                            <ItemsToPay payment_type={values.payment_type} search={values.search} thingToPay={values.thingToPay} matricula={matricula} />
+                            <ItemsToPay payment_type={values.payment_type} search={values.search} thingToPay={values.thingToPay} matricula={matricula} setFieldValue={setFieldValue} />
 
                             <PayMethod payment_method={values.payment_method} handleGetTotal={handleGetTotal} />
 
-                            <PayTotal total={`$${totalPayMoney}`} />
+                            <PayTotal total={`$${isAFer ? activeFertilizer.missing : totalPayMoney}`} />
 
                             <MethodDetails payment_method={values.payment_method} cards={cards} />
 
-                            <PayQuantity total={totalPayMoney} amount={values.amount} />
+                            <PayQuantity total={isAFer ? activeFertilizer.missing : totalPayMoney} amount={values.amount} />
 
-                            <PaySubmit />
+                            <PaySubmit handleSubmit={handleSubmit} />
                         </div>
                     </Form>
                 )}

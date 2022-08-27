@@ -27,7 +27,7 @@ export const ExpenseRecord = () => {
             : {
                 observation: activeExpense.observation,
                 amount: activeExpense.amount,
-                expense_type: activeExpense.id_expense
+                expense_type: typesExpenses.findIndex((caca) => caca == activeExpense.expenses_type)
             },
         enableReinitialize: true,
         onSubmit: (values) => {
@@ -36,7 +36,8 @@ export const ExpenseRecord = () => {
             // pa cuando una petición se esta ejecutando
 
             console.log(values)
-            dispatch(expenseStartCreateRequest(values))
+            activeExpense === null ? dispatch(expenseStartCreateRequest(values)) : dispatch(expenseStartUpdateexpense(activeExpense.id_expense, values))
+
             resetForm()
         },
         validationSchema: Yup.object({

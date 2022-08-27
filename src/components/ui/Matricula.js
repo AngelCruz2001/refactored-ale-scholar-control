@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { documentClearData } from '../../actions/document';
 import { studentStartGetStudentByMatricula } from '../../actions/student';
 import { uiSetCurrent } from '../../actions/ui';
 import { typesRegex } from '../../types/typesValidators';
@@ -18,7 +19,7 @@ export const Matricula = ({
 
     const handleMatriculaChange = ({ target }) => {
         setComponentMatricula(target.value);
-
+        !target.value.match(typesRegex.matricula) && dispatch(documentClearData());
         if (target.value.match(typesRegex.matricula)) {
             dispatch(uiSetCurrent(1))
             dispatch(studentStartGetStudentByMatricula(target.value))

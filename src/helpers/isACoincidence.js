@@ -7,8 +7,14 @@ export const isACoincidenceDate = (creationDateSplit, { day, month, year }) => {
 export const isACoincidenceSearch = (data = [], wordToSearch) => {
     const coincidence = [];
     for (let i = 0; i < data.length; i++) {
-        if ((data[i]).toString().match(RegExp(wordToSearch, 'gi')) && wordToSearch !== '') coincidence.push(true)
-        else coincidence.push(false)
+        try {
+            if ((data[i]).toString().match(RegExp(wordToSearch, 'gi')) && wordToSearch !== '') coincidence.push(true)
+            else coincidence.push(false)
+        } catch (error) {
+            console.log(error)
+            console.log(data)
+        }
+
     }
     return coincidence;
 }

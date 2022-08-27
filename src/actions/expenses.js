@@ -1,6 +1,6 @@
 import Swal from "sweetalert2"
 import { fetchConToken } from "../helpers/fetch"
-import { types } from "../types/types"
+import { types, typesExpenses } from "../types/types"
 
 export const expenseStartCreateRequest = (data) => {
 
@@ -9,8 +9,7 @@ export const expenseStartCreateRequest = (data) => {
         console.log(data)
 
         try {
-            const res = await fetchConToken(`expenses`, data, 'POST'
-            )
+            const res = await fetchConToken(`expenses`, data, 'POST')
             const body = await res.json()
 
             if (body.ok) {
@@ -99,11 +98,13 @@ export const expenseStartUpdateexpense = (id_expense, dataForm) => {
         const { expenses } = getState();
 
         try {
+            console.log("dATAfORM: ", dataForm)
+            console.log(parseInt(dataForm.expense_type))
             const res = await fetchConToken(`expenses/${id_expense}`,
                 {
                     observation: dataForm.observation,
                     amount: dataForm.amount,
-                    expense_type: expenses.idExpenseType
+                    expense_type: parseInt(dataForm.expense_type)
                 }, 'PUT'
             )
             const body = await res.json()

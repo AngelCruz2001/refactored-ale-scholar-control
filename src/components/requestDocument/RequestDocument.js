@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { documentSetDocument, documentStartGetDocuments } from '../../actions/document'
+import { documentClearData, documentSetDocument, documentStartGetDocuments } from '../../actions/document'
 import { requestStartRequestDocument } from '../../actions/requests'
 import { uiSetCurrent } from '../../actions/ui'
 import { activeDisabled } from '../../helpers/activeDisabled'
@@ -30,6 +30,7 @@ export const RequestDocument = () => { //reception
     }, [student])
 
     useEffect(() => {
+        
         documentStartGetDocuments(student.Date)
     }, [student])
 

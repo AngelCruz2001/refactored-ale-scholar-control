@@ -16,7 +16,9 @@ import { GroupsOrganization } from '../components/groupsOrganization/GroupsOrgan
 export const itemsMenu = [
     {
         permissions: [
-            1
+            1,
+            2, 
+            7
         ],
         text: "Solicitud de documento",
         icon: "fas fa-file",
@@ -30,7 +32,9 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1,
+            2, 
+            3
         ],
         text: "Avances de grupos",
         icon: "fas fa-file",
@@ -45,8 +49,10 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1, 
-            4
+            1,
+            4,
+            2, 
+            3
         ],
         text: "Alumnos irregulares",
         icon: "fas fa-file",
@@ -61,8 +67,10 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1, 
-            4
+            1,
+            4,
+            2, 
+            3
         ],
         text: "Organizacion de grupos",
         icon: "fas fa-file",
@@ -77,7 +85,6 @@ export const itemsMenu = [
     },
     {
         permissions: [
-
         ],
         text: "Consulta de calificaciones",
         icon: "fas fa-folder-open",
@@ -91,7 +98,10 @@ export const itemsMenu = [
     { //ADMINISTRATIVO
         permissions: [
             1,
-            4
+            4,
+            2, 
+            3,
+            7
         ],
         text: "Consulta de calificaciones",
         icon: "fas fa-folder-open",
@@ -104,6 +114,8 @@ export const itemsMenu = [
     {
         permissions: [
             1,
+            2, 
+            7
         ],
         text: "Registro de gastos",
         icon: "fas fa-ticket-alt",
@@ -116,6 +128,8 @@ export const itemsMenu = [
     {
         permissions: [
             1,
+            2, 
+            5
         ],
         text: "Realizar pago",
         icon: "fas fa-money-bill",
@@ -126,7 +140,9 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1
+            1,
+            2, 
+            5
         ],
         text: "Abonos",
         icon: "fas fa-coins",
@@ -137,8 +153,9 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1, 
-            4
+            1,
+            4, 
+            2
         ],
         text: "Generar documento",
         icon: "fas fa-file",
@@ -151,7 +168,8 @@ export const itemsMenu = [
     {
         permissions: [
             1,
-            4
+            4, 
+            2
         ],
         name: "feed",
         text: "Captura de datos",

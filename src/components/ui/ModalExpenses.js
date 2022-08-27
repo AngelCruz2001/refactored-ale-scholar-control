@@ -40,8 +40,8 @@ export const ModalExpenses = () => {
                     <InformationModal title="Descripción" text={observation} />
                 </div>
                 <div className="modalExpense__content__footer">
-                    <ButtonTable type={1} title="Editar" onClick={() => handleClickEdit(0)} />
-                    <ButtonTable type={2} title="Borrar" onClick={() => handleClickDelete(0)} />
+                    <ButtonTable type={1} title="Editar" onClick={() => handleClickEdit(id_expense)} />
+                    <ButtonTable type={2} title="Borrar" onClick={() => handleClickDelete(id_expense)} />
                 </div>
 
 

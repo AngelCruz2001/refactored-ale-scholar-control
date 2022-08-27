@@ -152,14 +152,14 @@ export const buildDataGroupsDetail = (course, teacher, date, credits, coincidenc
     ];
 }
 
-export const buildDataFertilizer = (id, date, concept, cost, anticipo, restante) => {
+export const buildDataFertilizer = (id_payment, last_payment_date, name, expected, current, missing) => {
     return [
-        { element: <SpanTable text={date} />, searched: false },
-        { element: <SpanTable text={concept} />, searched: false },
-        { element: <SpanTable text={cost} />, searched: false },
-        { element: <SpanTable text={anticipo} />, searched: false },
-        { element: <SpanTable text={restante} />, searched: false },
-        { element: <ButtonTable type={5} id={id} />, searched: false },
+        { element: <SpanTable text={last_payment_date} />, searched: false },
+        { element: <SpanTable text={name} />, searched: false },
+        { element: <SpanTable text={expected} />, searched: false },
+        { element: <SpanTable text={current} />, searched: false },
+        { element: <SpanTable text={missing} />, searched: false },
+        { element: <ButtonTable type={5} id={id_payment} />, searched: false },
     ];
 }
 

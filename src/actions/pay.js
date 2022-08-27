@@ -2,6 +2,7 @@ import { types } from "../types/types";
 import Swal from 'sweetalert2';
 import { uiFinishLoading, uiFinishLoadingCards, uiStartLoading, uiStartLoadingCards } from "./ui";
 import { fetchConToken } from "../helpers/fetch";
+import { studentClearData } from "./student";
 export const payStartGetStudentByMatricula = (matricula) => {
     return async (dispatch) => {
         dispatch(uiStartLoading())
@@ -56,13 +57,13 @@ export const payStartGetPrice = (payment_type, thingToPay) => {
         try {
             const dataToSend = {
                 payment_type, // ¿Qué andas pagando? 
-                document_type: payment_type === "Documento" ? thingToPay : null, //Id document == i
-                start_date: payment_type === "Materia" ? thingToPay : null //Mes que se esta pagando == i
+                document_type: payment_type === "Documento" ? parseInt(thingToPay) : null, //Id document == i
+                start_date: payment_type === "Materia" ? parseInt(thingToPay) : null //Mes que se esta pagando == i
             }
 
             const res = await fetchConToken(`payments/students/${getState().student.matricula}/check`, dataToSend, 'POST')
             const body = await res.json();
-            console.log(dataToSend)
+            console.log("cacaDataToSend", dataToSend)
             if (body.ok) {
 
                 console.log(body)
@@ -87,7 +88,7 @@ export const payStartMakePay = (values) => {
     return async (dispatch, getState) => {
         try {
 
-            console.log('values')
+            console.log('values', values)
 
             // const dataToSend = {
             //     matricula,
@@ -98,9 +99,6 @@ export const payStartMakePay = (values) => {
             //     payment_type: concept, //¿Qué andas pagando? 
 
             // }
-
-            values.document_type = values.payment_type === "Documento" ? values.thingToPay : null;
-            values.start_date = values.payment_type === "Materia" ? values.thingToPay : null;
 
             const res = await fetchConToken("payments", values, 'POST')
             const body = await res.json();
@@ -128,21 +126,19 @@ export const payStartMakePay = (values) => {
         }
     }
 }
-export const payStartFertilizer = () => {
-    return async (dispatch, getState) => {
+export const payStartFertilizer = (values, idPayment) => {
+    return async (dispatch) => {
         try {
-            const { user: { id_user } } = getState().auth;
-            const { amountToPay, activeAccount, idPayment, method } = getState().pay;
-
+            console.log(values)
             const dataToSend = {
-                pay_amount: amountToPay,
-                payment_method: method,
-                id_card: activeAccount
+                pay_amount: values.amount,
+                payment_method: values.payment_method,
+                id_card: values.id_card
             }
-            console.log(dataToSend)
-            console.log(getState().pay)
+
             const res = await fetchConToken(`payments/${idPayment}/payFor`, dataToSend, 'POST')
             const body = await res.json();
+
             console.log(dataToSend)
             if (body.ok) {
                 console.log(body)
@@ -150,7 +146,7 @@ export const payStartFertilizer = () => {
                 dispatch(payClearActivePay())
                 Swal.fire({
                     title: "Pagos",
-                    text: "Pago realizado con exito" + '.',
+                    text: body.msg,
                     icon: 'success',
                 })
             } else {

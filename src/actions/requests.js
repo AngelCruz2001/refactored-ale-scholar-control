@@ -1,3 +1,4 @@
+import download from "downloadjs"
 import Swal from "sweetalert2"
 import { fetchConToken } from "../helpers/fetch"
 import { types } from "../types/types"
@@ -45,21 +46,21 @@ export const requestStartCompleteRequestDocument = (id) => {
     return async (dispatch) => {
         try {
             const res = await fetchConToken(`requests/${id}`, {}, 'POST')
-            const body = await res.json()
-            if (body.ok) {
-                console.log(body)
+            const blob = await res.blob();
+            const statusDocument = download(blob, "test.pdf");
+            if (statusDocument) {
+                console.log(statusDocument)
                 Swal.fire({
                     title: "Solicitudes",
-                    text: body.msg,
+                    text: "Se ha generado el documento",
                     icon: 'success',
                 })
                 dispatch(requestDeleteRequest(id))
             } else {
-                console.log(body)
-
+                console.log(blob)
                 Swal.fire({
                     title: '¡Oops!',
-                    text: body.msg,
+                    text: blob.msg,
                     icon: 'question',
                 })
             }
@@ -78,7 +79,7 @@ export const requestStartGetRequests = () => {
     return async (dispatch) => {
         try {
             dispatch(uiStartLoading())
-            const res = await fetchConToken(`requests/?date=all`);
+            const res = await fetchConToken(`requests/?date=all&status=0`);
             const body = await res.json();
             if (body.ok) {
                 dispatch(requestSetRequests(body.requests))

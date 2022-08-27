@@ -9,7 +9,6 @@ export const Table = ({
 }) => {
     const { loading } = useSelector(state => state.ui);
 
-    console.log('headers !!!!',headers)
     return (
         <div className="table ">
             {loading ?

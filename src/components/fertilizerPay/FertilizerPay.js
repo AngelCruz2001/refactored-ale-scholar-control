@@ -5,6 +5,7 @@ import { Date } from '../ui/Date';
 import { Matricula } from '../ui/Matricula';
 import { StudentInformation } from '../ui/StudentInformation';
 import { Table } from '../ui/Table';
+import { payStartGetFertilizerPay } from '../../actions/pay';
 const headers = [
     { title: 'FECHA', textAlign: 'center' },
     { title: 'CONCEPTO', textAlign: 'center' },
@@ -14,6 +15,9 @@ const headers = [
     { title: '', textAlign: 'center' },
 
 ]
+
+
+
 
 const pay = {
     fertilizers: [{
@@ -27,37 +31,43 @@ const pay = {
 }
 export const FertilizerPay = () => {
     const dispatch = useDispatch()
+
     useEffect(() => {
-        // dispatch(payStart)
+
     }, [])
-    const { student, ui } = useSelector(state => state);
+
+    const { student, ui, pay: { fertilizers } } = useSelector(state => state);
     const { loading, } = ui;
     const [dataToShow, setDataToShow] = useState([]);
-    const [studentInformation, setStudentInformation] = useState({headers: [], data: []});
+    const [studentInformation, setStudentInformation] = useState({ headers: [], data: [] });
     useEffect(() => {
         setStudentInformation({
             headers: ["Nombre", "Grupo", "Campus", "Carrera"],
             data: [student.student_name, student.name_group, student.campus_name, student.major_name],
         });
     }, [student])
+
+
     const generateData = () => {
         const dataShow = [];
-        pay.fertilizers.forEach(({
-            id, date, concept, cost, anticipo, restante
+        fertilizers.forEach(({
+            id_payment, last_payment_date, name, expected, current, missing
         }) => {
-            const builData = buildDataFertilizer(id, date, concept, cost, anticipo, restante);
+            const builData = buildDataFertilizer(id_payment, last_payment_date, name, expected, current, missing);
             dataShow.push(builData);
-
         });
-
         setDataToShow(dataShow);
     }
 
     useEffect(() => {
         student.matricula && generateData()
-    }, [loading, student])
+    }, [student, fertilizers])
 
-    console.log(studentInformation)
+    useEffect(() => {
+        student.matricula && dispatch(payStartGetFertilizerPay(student.matricula))
+    }, [student])
+
+
     return (
         <div className='fert'>
             <div className='fert__up'>

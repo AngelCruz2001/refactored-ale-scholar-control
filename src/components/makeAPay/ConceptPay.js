@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react'
 import { ButtonMakeAPay } from './ButtonMakeAPay'
 
-export const ConceptPay = ({ payment_type, setFieldValue }) => {
+export const ConceptPay = ({ payment_type, setFieldValue, thingToPay }) => {
 
 
-    const handeClick = (value) => {
+    const handleClick = (value) => {
+        if (value === 'Inscripción') {
+            setFieldValue('thingToPay', 'Inscripción')
+            return;
+        }
         setFieldValue('thingToPay', null);
+
     }
     return (
         <>
@@ -19,7 +24,7 @@ export const ConceptPay = ({ payment_type, setFieldValue }) => {
                             icon={index != 0 ? true : false}
                             payment_type={payment_type}
                             name={name}
-                            onClickFunction={handeClick}
+                            onClickFunction={() => handleClick(name)}
                         />
                     ))}
                 </div>
@@ -27,7 +32,7 @@ export const ConceptPay = ({ payment_type, setFieldValue }) => {
 
             <div className="makeAPay__body__container__conceptToPay">
                 <p className='payTitle'>Concepto a pagar</p>
-                <span>{payment_type}</span>
+                <span>{thingToPay}</span>
             </div>
         </>
     )
