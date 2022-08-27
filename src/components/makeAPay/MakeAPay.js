@@ -67,7 +67,6 @@ export const MakeAPay = () => {
 
                 onSubmit={(values, { resetForm }) => {
                     isAFer ? dispatch(payStartFertilizer(values, activeFertilizer.id_payment)) : dispatch(payStartMakePay(values))
-                    history.goBack();
 
                 }}
 

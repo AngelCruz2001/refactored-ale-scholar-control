@@ -105,6 +105,7 @@ export const payStartMakePay = (values) => {
 
             if (body.ok) {
                 console.log(body)
+                history.goBack()
                 Swal.fire({
                     title: "Pagos",
                     text: "Pago realizado con exito" + '.',
@@ -126,7 +127,7 @@ export const payStartMakePay = (values) => {
         }
     }
 }
-export const payStartFertilizer = (values, idPayment) => {
+export const payStartFertilizer = (values, idPayment, history) => {
     return async (dispatch) => {
         try {
             console.log(values)
@@ -144,6 +145,7 @@ export const payStartFertilizer = (values, idPayment) => {
                 console.log(body)
                 dispatch(payClearModalData())
                 dispatch(payClearActivePay())
+                history.goBack();
                 Swal.fire({
                     title: "Pagos",
                     text: body.msg,
