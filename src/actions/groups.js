@@ -137,6 +137,34 @@ export const groupsStartUpdateGrade = (id, credits, type = 'regular') => {
     }
 }
 
+export const groupsStartDeleteStudent = (id_course, matricula) => { 
+    return async (dispatch) => {
+        try {
+            dispatch(uiStartLoading())  
+            const res = await fetchConToken(`grades/${id_course}`, {
+                matricula
+            }, 'DELETE')
+            const body = await res.json()
+            if (body.ok) {
+                console.log(body)
+                dispatch(groupsDeleteStudent(id_course, matricula))
+            } else {
+                console.log(body)
+                Swal.fire({
+                    title: '¡Oops!',
+                    text: body.msg,
+                    icon: 'question',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            Swal.fire('Error', 'Hablar con el administrador', 'error')
+        }
+        dispatch(uiFinishLoading())
+    }
+}
+            
+
 export const groupsStartRelateGroupCourse = (data) => {
     return async (dispatch, getState) => {
         try {
@@ -249,3 +277,5 @@ const groupsUpdateGrade = (id, grade) => ({ type: types.groupsUpdateGrade, paylo
 const groupsSetStudentsAndGrades = (students, grades) => ({ type: types.groupsSetStudentsAndGrades, payload: { students, grades } })
 
 const groupsSetCoursesTaken = (courses) => ({ type: types.groupsSetCoursesTaken, payload: courses })
+
+const groupsDeleteStudent = (id_course, matricula) => ({ type: types.groupsDeleteStudent, payload: { id_course, matricula } })

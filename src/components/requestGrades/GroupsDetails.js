@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import { groupsClearActiveGroup, groupsGetStudentAndGradesGroup, groupsSetActiveCourse, groupsStartDeleteGroupCourse, groupsStartUpdateGrade } from '../../actions/groups'
+import { groupsClearActiveGroup, groupsGetStudentAndGradesGroup, groupsSetActiveCourse, groupsStartDeleteGroupCourse, groupsStartDeleteStudent, groupsStartUpdateGrade } from '../../actions/groups'
 import { buildDataCoursesStudents, buildDataGroupsDetails } from '../../helpers/buildDataTables'
 import { StudentInformation } from '../ui/StudentInformation'
 import { Table } from '../ui/Table'
@@ -51,6 +51,25 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
         dispatch(groupsGetStudentAndGradesGroup(id_course, dataGroup.id_group))
     }
 
+
+    const handleDeleteStudent = ({id_course, matricula}) => {
+        console.log(id_course)
+        Swal.fire({
+            title: '¿Esta seguro?',
+            text: "No podra revertir esta accion",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(groupsStartDeleteStudent(id_course, matricula))
+            }
+        }
+        )
+    }
+
     const handleEditGrade = (id) => {
         console.log(id)
         Swal.fire({
@@ -76,15 +95,17 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
     }
 
     const generateData = () => {
-        console.log(activeGroup, isActiveCourse, activeCourse)
         let dataToShow;
         if (isActiveCourse) {
+            console.log(activeCourse.id_course,)
             dataToShow = activeCourse.grades.map(({ id_grade, student_name, matricula, grade }) => buildDataCoursesStudents(
                 id_grade,
+                activeCourse.id_course,
                 student_name,
                 matricula,
                 grade,
-                handleEditGrade
+                handleEditGrade, 
+                handleDeleteStudent
             ))
         } else {
             dataToShow = courses?.map(({ id_course, course_name, clave, teacher_name }) => buildDataGroupsDetails(
@@ -166,13 +187,13 @@ export const GroupsDetails = ({ dataGroup, setIsGroupActive }) => {
                                 textAlign: "center",
                             },
                             {
-                                title: "",
+                                title: "Eliminar",
                                 textAlign: "center",
                             },
 
                         ]}
                         data={dataShow}
-                        sizesColumns={isActiveCourse ? [40, 40,  10, 10] : [40, 30, 10, 10, 10]}
+                        sizesColumns={isActiveCourse ? [40, 30,  10, 10, 10 ] : [40, 30, 10, 10, 10]}
                     />
                 </div>
             </div>

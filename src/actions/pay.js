@@ -105,7 +105,7 @@ export const payStartMakePay = (values) => {
 
             if (body.ok) {
                 console.log(body)
-                history.goBack()
+                //history.goBack()
                 Swal.fire({
                     title: "Pagos",
                     text: "Pago realizado con exito" + '.',

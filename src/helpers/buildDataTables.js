@@ -184,12 +184,13 @@ export const buildDataGroupsDetails = (id_course, course_name, clave, teacher_na
     ];
 }
 
-export const buildDataCoursesStudents = (id_course, student_name, matricula, grade, handleClick) => {
+export const buildDataCoursesStudents = (id_grade, id_course, student_name, matricula, grade, handleClick, handleDelete) => {
     return [
         { element: <SpanTable text={student_name} />, searched: false },
         { element: <SpanTable text={matricula} />, searched: false },
         { element: <SpanTable text={grade} />, searched: false },
-        { element: <ButtonTable onClick={handleClick} type={1} id={id_course} />, searched: false },
+        { element: <ButtonTable onClick={handleClick} type={1} id={id_grade} />, searched: false },
+        { element: <ButtonTable onClick={handleDelete} type={2} id={{id_course, matricula}} />, searched: false } //Lo de {} es una mexicanada, para no tener que recibir los dos objetos
     ];
 }
 export const buildDataCourses = (id_course, student_name, matricula, grade, handleClick) => {

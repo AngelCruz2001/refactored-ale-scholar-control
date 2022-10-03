@@ -41,7 +41,7 @@ export const types = {
     groupsSetCourses: '[groups] Set data courses',
     groupsSetCoursesTaken : '[groups] Set data courses taken',
     groupsDeleteGroupCourse: '[groups] Delete group course',
-
+    groupsDeleteStudent: '[groups] Delete student',
 
     requestSetRequests: '[request] Set requests',
     requestDeleteRequest: '[request] Delete request',

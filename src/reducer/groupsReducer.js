@@ -79,6 +79,13 @@ export const groupsReducer = (state = initialState, action) => {
                 activeCourse: null,
                 activeCourseData: null
             }
+        case types.groupsDeleteStudent:
+            return {
+                ...state,
+                activeCourse : {
+                    ...state.activeCourse, grades: state.activeCourse.grades.filter(student => student.matricula !== action.payload.matricula)
+                }
+            }
 
         default:
             return state;
