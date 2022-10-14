@@ -10,10 +10,10 @@ export const AuthRouter = ({ history }) => {
                 <Switch>
                     <Route
                         exact
-                        path="/auth/login"
+                        path="/auth"
                         component={LoginScreen}
                     />
-                    <Redirect to="/auth/login" />
+                    <Redirect to="/auth" />
                 </Switch>
             </div>
         </div>

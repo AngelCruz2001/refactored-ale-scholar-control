@@ -22,7 +22,7 @@ export const AppRouter = ({ history }) => {
                 <Switch>
                     <PublicRoute
                         exact
-                        path="/auth/login"
+                        path="/auth"
                         isAuthenticated={logged}
                         component={AuthRouter}
                     />
