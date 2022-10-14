@@ -1,4 +1,4 @@
-const baseUrl = 'http://api.alejandria.edu.mx:3005/api-ale/v1';
+const baseUrl = 'https://alejandria.edu.mx/api-ale/v1';
 
 const fetchSinToken = (endpoint, data, method = 'GET') => {
 
