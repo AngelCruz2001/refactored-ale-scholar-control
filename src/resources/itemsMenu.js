@@ -127,9 +127,9 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1,
-            2, 
-            5
+            // 1,
+            // 2, 
+            // 5
         ],
         text: "Realizar pago",
         icon: "fas fa-money-bill",
@@ -140,9 +140,9 @@ export const itemsMenu = [
     },
     {
         permissions: [
-            1,
-            2, 
-            5
+            // 1,
+            // 2, 
+            // 5
         ],
         text: "Abonos",
         icon: "fas fa-coins",
