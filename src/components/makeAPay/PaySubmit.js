@@ -1,9 +1,15 @@
-import React from 'react'
+export const PaySubmit = ({ onCancel, cancel }) => {
+  return (
+    <div className="makeAPay__body__container__pay">
+      {cancel && (
+        <button className="btn-cancelPay " type="button" onClick={onCancel}>
+          Cancelar
+        </button>
+      )}
 
-export const PaySubmit = ({ handleSubmit }) => {
-    return (
-        <div className="makeAPay__body__container__pay">
-            <button type='submit' className='btn btn-bluePay' onClick={handleSubmit}>Pagar</button>
-        </div>
-    )
-}
+      <button type="submit" className="btn btn-bluePay">
+        Pagar
+      </button>
+    </div>
+  );
+};

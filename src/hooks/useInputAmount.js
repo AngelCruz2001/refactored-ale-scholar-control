@@ -16,15 +16,15 @@ export const useInputAmount = (startQuantity) => {
         changeShowInput(startQuantity, setShowInput)
     }, [startQuantity])
     const handleInputChange = (e) => {
-        if (parseInt(e.key) >= 0) {
-            let newNumber = String(amountToPay).concat(e.key);
-            setAmountToPay(newNumber);
-            setShowInput(`$${newNumber}.00 (${newNumber === '1' ? 'un peso' : `${numberToText(newNumber)} pesos`})`)
-        } else if (e.key === "Backspace" && amountToPay !== '') {
-            const deleteNumber = String(amountToPay).slice(0, -1)
-            setAmountToPay(deleteNumber);
-            setShowInput(deleteNumber.length > 0 ? `$${deleteNumber}.00 ${numberToText(deleteNumber)}` : "$")
-        }
+        // if (parseInt(e.key) >= 0) {
+        //     let newNumber = String(amountToPay).concat(e.key);
+        //     setAmountToPay(newNumber);
+        //     setShowInput(`$${newNumber}.00 (${newNumber === '1' ? 'un peso' : `${numberToText(newNumber)} pesos`})`)
+        // } else if (e.key === "Backspace" && amountToPay !== '') {
+        //     const deleteNumber = String(amountToPay).slice(0, -1)
+        //     setAmountToPay(deleteNumber);
+        //     setShowInput(deleteNumber.length > 0 ? `$${deleteNumber}.00 ${numberToText(deleteNumber)}` : "$")
+        // }
     }
     return [amountToPay, showInput, handleInputChange];
 }

@@ -28,7 +28,6 @@ export const usePayments = (id) => {
     }, [student])
 
     useEffect(() => {
-        console.log(fertilizers, id)
         id != null && setActiveFertilizer(fertilizers.find(fertilizer => fertilizer.id_payment == id))
     }, [id])
 

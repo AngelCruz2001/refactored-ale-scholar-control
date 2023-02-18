@@ -129,6 +129,7 @@
                 p {
                     &.title {
                         font-size: 2rem;
+                        color: $gray-bars;
                     }
                     font-size: 1.5rem;
                     font-weight: 600;
@@ -245,10 +246,13 @@
 
             &__pay {
                 align-self: center;
-                position: absolute;
-                bottom: 0;
+                display: flex;
+                margin-top: 10rem;
+                width: 100%;
+                justify-content: space-around;
+                align-items: center;
                 button {
-                    padding: 1rem 3rem;
+                    padding: 1rem 4rem;
                 }
             }
         }
@@ -298,7 +302,30 @@
     font-weight: 500;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     padding: 1rem 2rem;
+    transition: all .2s;
+    &:hover {
+        transition: all .2s;
+        background-color: darken($color: $blue-button , $amount: 10);
+    }
     &.active {
         background-color: $blue-btn-text;
+    }
+   
+}
+
+.btn-cancelPay {
+    color: $white;
+    background-color:red;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    transition: all .2s;
+    &:hover {
+        transition: all .2s;
+        background-color: darken($color: red, $amount: 10);
     }
 }

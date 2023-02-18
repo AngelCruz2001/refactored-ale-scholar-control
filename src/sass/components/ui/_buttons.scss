@@ -8,8 +8,8 @@
         border-radius: 10px;
         font-size: 2rem;
         font-weight: 500;
-        width: 11%;
-        height: 60%;
+        width: 4rem;
+        height: 4rem;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         box-shadow: none;
         border: none;
@@ -18,6 +18,21 @@
 
     &-primary.active {
         background-color: $blue-btn-text;
+    }
+
+    &-cancel {
+        color: $white;
+        background-color: $red-btn-text;
+        border-radius: 10px;
+        font-size: 2rem;
+        font-weight: 500;
+        justify-content: center;
+        width: 11%;
+        height: 60%;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
     }
 }
 
