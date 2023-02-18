@@ -9,7 +9,7 @@ export const MethodDetails = ({ payment_method }) => {
         <div className="makeAPay__body__container__deposit">
           <Field as="select" name="id_card">
             
-            <option value="" disabled selected>Selecciona una tarjeta</option>
+            <option value="" disabled defaultValue>Selecciona una tarjeta</option>
             {cards.map((card) => (
               <option key={card.card_number} value={card.id_card}>
                 {card.card_number}

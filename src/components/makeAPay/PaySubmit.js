@@ -1,4 +1,4 @@
-export const PaySubmit = ({ onCancel, cancel }) => {
+export const PaySubmit = ({ onCancel, cancel, isValid }) => {
   return (
     <div className="makeAPay__body__container__pay">
       {cancel && (
@@ -7,7 +7,7 @@ export const PaySubmit = ({ onCancel, cancel }) => {
         </button>
       )}
 
-      <button type="submit" className="btn btn-bluePay">
+      <button type="submit" className={`btn btn-bluePay active`}>
         Pagar
       </button>
     </div>

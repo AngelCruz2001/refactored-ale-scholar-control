@@ -13,12 +13,13 @@ export const ConceptPay = ({ payment_type, setFieldValue, thingToPay }) => {
 
     }
     return (
+        // ['Inscripción', 'Materia', 'Documento', 'Extra',]
         <>
 
             <div className="makeAPay__body__container__concept">
                 <p className='payTitle'>Concepto de pago</p>
                 <div className='makeAPay__body__container__concept__buttons'>
-                    {['Inscripción', 'Materia', 'Documento', 'Extra',].map((name, index) => (
+                    {['Inscripción', 'Materia', 'Documento',].map((name, index) => (
                         <ButtonMakeAPay
                             key={index}
                             icon={index != 0 ? true : false}

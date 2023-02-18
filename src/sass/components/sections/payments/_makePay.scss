@@ -309,6 +309,10 @@
     }
     &.active {
         background-color: $blue-btn-text;
+        &:hover {
+            transition: all .2s;
+            background-color: darken($color:  $blue-btn-text , $amount: 10);
+        }
     }
    
 }

@@ -40,7 +40,7 @@ export const MakeAPay = () => {
     setIsAFer(activeFertilizer != null);
   }, [activeFertilizer]);
 
-  const handleGetTotal = () => {};
+  const handleGetTotal = () => { };
 
   const handleCancelFertilizer = () => {
     // dispatch(payClearModalData());
@@ -66,7 +66,7 @@ export const MakeAPay = () => {
           thingToPay: isAFer ? activeFertilizer.name : null,
           amount: 0,
           document_type: null,
-          id_card: null,
+          id_card: "",
           start_date: null,
           id_ext_cou: null,
           search: "",
@@ -78,25 +78,31 @@ export const MakeAPay = () => {
           payment_method: Yup.string().required("Método de pago requerido"),
           payment_type: Yup.string().required("Tipo de pago requerido"),
           thingToPay: Yup.string().required("Concepto de pago requerido"),
-          amount: Yup.number().required("Cantidad requerida"),
-          document_type: Yup.number()
+          amount: Yup.number().required("Cantidad requerida").min(1),
+          document_type: !isAFer ? Yup.number()
             .when("payment_type", {
               is: (payment_type) => payment_type === "Documento",
               then: Yup.number().required("Tipo de documento requerido"),
             })
-            .nullable(),
-          id_card: Yup.number()
-            .when("payment_method", {
-              is: (payment_method) => payment_method === "Tarjeta",
-              then: Yup.number().required("Tarjeta requerida"), //TODO: Cargar la tarjeta por defecto al componente.
-            })
-            .nullable(),
-          start_date: Yup.string()
+            .nullable()
+            :
+            Yup.number()
+              .nullable(),
+          id_card: Yup.string().when
+            ('payment_method', {
+              is: 'Depósito',
+              then: Yup.string().required('Requerido')
+            }).nullable(),
+          start_date: !isAFer ? Yup.string()
             .nullable()
             .when("payment_type", {
               is: (payment_type) => payment_type === "Materia",
               then: Yup.string().required("La materia es requerida."),
-            }),
+            })
+            :
+            Yup.string()
+              .nullable()
+          ,
           id_ext_cou: Yup.string()
             .nullable()
             .when("payment_type", {
@@ -106,10 +112,11 @@ export const MakeAPay = () => {
         })}
         onSubmit={(values, { resetForm }) => {
           console.log(values);
+          values.id_card = values.id_card !== '' ? values.id_card : null;
           isAFer
             ? dispatch(
-                payStartFertilizer(values, activeFertilizer.id_payment, history)
-              )
+              payStartFertilizer(values, activeFertilizer.id_payment, history)
+            )
             : dispatch(payStartMakePay(values, resetForm, history));
         }}
       >
@@ -121,6 +128,7 @@ export const MakeAPay = () => {
           setFieldError,
           errors,
           dirty,
+          isValid
         }) => (
           <>
             <Form className="makeAPay__body" onSubmit={handleSubmit}>
@@ -149,9 +157,8 @@ export const MakeAPay = () => {
                 />
 
                 <PayTotal
-                  total={`$${
-                    isAFer ? activeFertilizer.missing : totalPayMoney
-                  }`}
+                  total={`$${isAFer ? activeFertilizer.missing : totalPayMoney
+                    }`}
                 />
 
                 <MethodDetails
@@ -163,7 +170,12 @@ export const MakeAPay = () => {
                   amount={values.amount}
                 />
 
-                <PaySubmit type="submit" onCancel={handleCancelFertilizer} cancel={isAFer}/>
+                <PaySubmit
+                  type="submit"
+                  onCancel={handleCancelFertilizer}
+                  cancel={isAFer}
+                  isValid= {isValid}
+                   />
               </div>
             </Form>
           </>
