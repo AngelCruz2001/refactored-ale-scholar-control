@@ -8,13 +8,17 @@ export const feedStartGetData = (endpoint, name, nameId) => {
         dispatch(uiStartLoading());
         dispatch(feedSetActiveNameId(nameId));
         try {
+            console.log(endpoint, name, nameId)
             const res = await fetchConToken(endpoint)
             const body = await res.json()
             if (body.ok) {
+                if(endpoint == 'scholarships'){
+                    console.log(body)
+                }
                 // console.log(body)
                 dispatch(feedSetData(body[name]))
             } else {
-                console.log(body)
+                // console.log(body)
                 Swal.fire({
                     title: '¡Oops!',
                     text: body.msg,
@@ -71,10 +75,10 @@ export const feedStartGetSelectsData = (endpoints) => { //endpoints = ["nameEndp
             for (let endpoint of endpoints) {
                 const res = await fetchConToken(endpoint)
                 const body = await res.json()
-                console.log(res)
+                // console.log(res)
                 if (body.ok) {
                     data[endpoint] = body[endpoint]
-                    console.log(body)
+                    // console.log(body)
                 } else {
                     console.log(body)
                     Swal.fire({
@@ -85,7 +89,7 @@ export const feedStartGetSelectsData = (endpoints) => { //endpoints = ["nameEndp
                 }
             }
             dispatch(feedSetSelectData(data))
-            console.log(data)
+            // console.log(data)
         } catch (error) {
             console.log(error)
             Swal.fire('Error', 'Hablar con el administrador', 'error')

@@ -34,7 +34,8 @@ export const validationsInputs = (dataForm, active) => {
                                 ).required('Introduzca los datos correspondientes.'),
                                 'rfc': Yup.string().min(13, 'Introduzca 13 caracteres.').matches(typesRegexInputs.rfc, 'Rfc no válido'),
                                 'clave': Yup.string().min(5, 'Introduzca 5 caracteres.'),
-                                'name_course': Yup.string().max(15, 'Introduzca 15 caracteres.')
+                                'name_course': Yup.string().max(15, 'Introduzca 15 caracteres.'), 
+                                'becaPercentage': Yup.string().matches(typesRegexInputs.becaPercentage, 'Solo porcentajes son permitidos.'),
                             }
                             if (yupsSchema[rule.type]) {
                                 schema = !schema ? yupsSchema[rule.type] : schema.concat(yupsSchema[rule.type]);

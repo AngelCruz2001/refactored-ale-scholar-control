@@ -21,7 +21,6 @@ export const isACoincidenceSearch = (data = [], wordToSearch) => {
 
 export const isACoincidenceSpecificWord = (searchIn, wordToSearch) => {
 
-    console.log(wordToSearch)
     if (wordToSearch === '') return null;
     if (searchIn == undefined) return null;
     let coincidence;

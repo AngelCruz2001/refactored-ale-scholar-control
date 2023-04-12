@@ -18,7 +18,7 @@ export const FormContainer = ({ handleIsAdding, dataForm, active, dataSelects, d
     }
 
     const handleSubmit = (values, resetForm) => {
-        console.log("🚀 ~ file: FormContainer.js ~ line 19 ~ handleSubmit ~ values", values)
+        // console.log("🚀 ~ file: FormContainer.js ~ line 19 ~ handleSubmit ~ values", values)
         if (active) {
             dispatch(feedStartEditData(dataSection.endpoint, values))
         } else {

@@ -1134,13 +1134,13 @@
             "campus"
         ],
         "form": {
-            "Datos de la institución": [
+            "Datos de la beca": [
                 [
                     {
-                        "name": "name",
-                        "label": "Nombre(s)",
+                        "name": "matricula",
+                        "label": "Matricula",
                         "type": "input",
-                        "placeholder": "Nombre",
+                        "placeholder": "Matricula",
                         "styles": {
                             "width": "35%"
                         },
@@ -1152,10 +1152,10 @@
                         ]
                     },
                     {
-                        "name": "surname_f",
-                        "label": "Apellido materno",
+                        "name": "scholarship_name",
+                        "label": "Nombre de la beca",
                         "type": "input",
-                        "placeholder": "Apellido materno",
+                        "placeholder": "Nombre de la beca",
                         "styles": {
                             "width": "27.5%"
                         },
@@ -1167,10 +1167,10 @@
                         ]
                     },
                     {
-                        "name": "surname_m",
-                        "label": "Apellido paterno",
+                        "name": "percentage",
+                        "label": "Porcentaje",
                         "type": "input",
-                        "placeholder": "Apellido paterno",
+                        "placeholder": "100",
                         "styles": {
                             "width": "27.5%"
                         },
@@ -1178,16 +1178,19 @@
                         "validations": [
                             {
                                 "type": "required"
+                            }, 
+                            {
+                                "type": "becaPercentage"
                             }
                         ]
                     }
                 ],
                 [
                     {
-                        "name": "curp",
-                        "label": "CURP",
+                        "name": "reason",
+                        "label": "Razón de la beca",
                         "type": "input",
-                        "placeholder": "Curp",
+                        "placeholder": "¿Por qué se le otorga la beca?",
                         "styles": {
                             "width": "30%"
                         },
@@ -1196,49 +1199,19 @@
                         "validations": [
                             {
                                 "type": "required"
-                            },
-                            {
-                                "type": "curp"
                             }
                         ]
                     },
                     {
-                        "name": "rfc",
-                        "label": "RFC",
+                        "name": "observations",
+                        "label": "Observaciones",
                         "type": "input",
-                        "placeholder": "RFC",
+                        "placeholder": "Observaciones",
                         "styles": {
                             "width": "28%"
                         },
                         "value": "",
                         "validations": [
-                            {
-                                "type": "required"
-                            },
-                            {
-                                "type": "rfc"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "mobile_number",
-                        "label": "Número",
-                        "type": "input",
-                        "placeholder": "",
-                        "styles": {
-                            "width": "25%"
-                        },
-                        "value": "",
-                        "validations": [
-                            {
-                                "type": "required"
-                            },
-                            {
-                                "type": "number"
-                            },
-                            {
-                                "type": "phone"
-                            }
                         ]
                     }
                 ]

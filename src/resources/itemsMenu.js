@@ -161,12 +161,12 @@ export const itemsMenu = [
         css: {},
         path: "/captura_de_datos/colaboradores",
       },
-      // {
-      //     text: "Becas",
-      //     icon: "fa-solid fa-hand-holding-dollar",
-      //     css: {},
-      //     path: "/captura_de_datos/becas",
-      // },
+      {
+        text: "Becas",
+        icon: "fa-solid fa-hand-holding-dollar",
+        css: {},
+        path: "/captura_de_datos/becas",
+      },
       {
         text: "Campus",
         icon: "fa-solid fa-landmark",
