@@ -76,7 +76,6 @@ export const payStartGetPrice = (payment_type, thingToPay) => {
         "POST"
       );
       const body = await res.json();
-      console.log("cacaDataToSend", dataToSend);
       if (body.ok) {
         console.log(body);
         dispatch(paySetPrice(body.total_to_pay));

@@ -78,7 +78,7 @@ export const MakeAPay = () => {
           payment_method: Yup.string().required("Método de pago requerido"),
           payment_type: Yup.string().required("Tipo de pago requerido"),
           thingToPay: Yup.string().required("Concepto de pago requerido"),
-          amount: Yup.number().required("Cantidad requerida").min(1),
+          amount: Yup.number().required("Cantidad requerida"),
           document_type: !isAFer ? Yup.number()
             .when("payment_type", {
               is: (payment_type) => payment_type === "Documento",

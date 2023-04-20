@@ -1170,7 +1170,7 @@
                         "name": "percentage",
                         "label": "Porcentaje",
                         "type": "input",
-                        "placeholder": "100",
+                        "placeholder": "1% - 100%",
                         "styles": {
                             "width": "27.5%"
                         },
