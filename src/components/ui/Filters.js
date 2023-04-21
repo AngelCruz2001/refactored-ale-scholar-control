@@ -1,54 +1,10 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
+import "moment/locale/es"
+const daysDates = new Array(31).fill(0).map((_, index) => index + 1);
+const monthsDates = moment.months().map((month) => month.charAt(0).toUpperCase() + month.slice(1));
+const yearsDates = new Array(30).fill(0).map((_, index) => moment().year() - index);
 
-const daysDates = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
-];
-const monthsDates = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-];
-const yearsDates = [2021, 2020, 2044];
 export const Filters = ({ setValueSearchFilter, returnDay = true, returnMonth = true, returnYear = true }) => {
 
     const [maxDays, setMaxDays] = useState(daysDates);
@@ -60,7 +16,6 @@ export const Filters = ({ setValueSearchFilter, returnDay = true, returnMonth = 
     }
 
     useEffect(() => {
-        console.log(date)
         setValueSearchFilter(prev => ({ ...prev, dateSearch: { ...date, month: month ? monthsDates[month] : '' } }));
         if (month !== '') {
             const yearRequestMoment = `${year ? year : moment().year()}`;
@@ -81,7 +36,7 @@ export const Filters = ({ setValueSearchFilter, returnDay = true, returnMonth = 
                         <option hidden defaultValue>
                             Día
                         </option>
-                        <option>Ninguno</option>
+                        <option value="">-</option>
                         {maxDays.map((day) => (
                             <option value={day} key={day}>
                                 {day}
@@ -95,6 +50,8 @@ export const Filters = ({ setValueSearchFilter, returnDay = true, returnMonth = 
                         <option className="select__default" hidden defaultValue>
                             Mes
                         </option>
+                        <option value="">-</option>
+
                         {monthsDates.map((month, index) => (
                             <option value={index} key={month}>
                                 {monthsDates[index]}
@@ -109,7 +66,7 @@ export const Filters = ({ setValueSearchFilter, returnDay = true, returnMonth = 
                             Año
                         </option>
 
-                        <option>Ninguno</option>
+                        <option value="">-</option>
                         {yearsDates.map((year) => (
                             <option value={year} key={year}>
                                 {year}

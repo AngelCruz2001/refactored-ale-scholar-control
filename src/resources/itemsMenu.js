@@ -15,7 +15,7 @@ export const itemsMenu = [
   {
     permissions: [1, 2, 7],
     text: "Solicitud de documento",
-    icon: "fas fa-file",
+    icon: "fa-solid fa-folder",
     css: {
       transform: "rotate(90deg) scaleX(-1)",
     },
@@ -27,20 +27,19 @@ export const itemsMenu = [
   {
     permissions: [1, 2, 3],
     text: "Avances de grupos",
-    icon: "fas fa-file",
+    icon: "fa-regular fa-circle-right",
     css: {
       transform: "rotate(90deg) scaleX(-1)",
     },
     path: "/avances_de_grupo",
     component: AdvancesGroups,
-
     subMenu: [],
     name: "advancesGroups",
   },
   {
     permissions: [1, 4, 2, 3],
     text: "Alumnos irregulares",
-    icon: "fas fa-file",
+    icon: "fa-regular fa-rectangle-list",
     css: {
       transform: "rotate(90deg) scaleX(-1)",
     },
@@ -53,7 +52,7 @@ export const itemsMenu = [
   {
     permissions: [1, 4, 2, 3],
     text: "Organizacion de grupos",
-    icon: "fas fa-file",
+    icon: "fa-regular fa-calendar-days",
     css: {
       transform: "rotate(90deg) scaleX(-1)",
     },

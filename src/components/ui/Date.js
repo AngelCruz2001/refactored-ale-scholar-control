@@ -1,12 +1,14 @@
-import React from 'react'
+import moment from "moment/moment";
+import React from "react";
+import "moment/locale/es";
 
 export const Date = () => {
-    return (
-        <div className="date__container">
-         
-            <p className="date__data">
-                15 - junio - 2021
-            </p>
-        </div>
-    )
-}
+  const date = moment().format("DD - MMMM - YYYY");
+  return (
+    <div className="date__container">
+      <p className="date__data">
+        {date}
+      </p>
+    </div>
+  );
+};
