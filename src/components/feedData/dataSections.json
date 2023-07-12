@@ -670,7 +670,7 @@
                         "name": "clave",
                         "label": "Clave",
                         "type": "input",
-                        "maxlength": 5,
+                        "maxlength": 7,
                         "styles": {
                             "width": "45%"
                         },

@@ -39,7 +39,7 @@ export const documentStartGenerateDocument = () => {
                 id_group: student.id_group,
             }, 'POST')
             const blob = await res.blob();
-            const statusDocument = download(blob, "test.pdf");
+            const statusDocument = download(blob, "Documento.pdf");
             console.log(statusDocument)
             if (statusDocument) {
                 Swal.fire({

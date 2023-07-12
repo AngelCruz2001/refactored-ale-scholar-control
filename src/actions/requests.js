@@ -42,8 +42,9 @@ export const requestStartRequestDocument = (data) => {
 export const requestStartCompleteRequestDocument = (id) => {
   return async (dispatch) => {
     try {
+      
       const res = await fetchConToken(`requests/${id}`, {}, "POST");
-      console.log(res.headers.get("Content-type"));
+      console.log(res);
 
       if (res.headers.get("Content-type") === "application/pdf") {
         const blob = await res.blob();
